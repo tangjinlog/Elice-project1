@@ -14,7 +14,7 @@ function addOption(e) {
   option_list.insertAdjacentHTML(
     'beforeend',
     `
-      <li class="mx-2 "><span class="bg-gray-400 rounded-lg text-xs p-1">${e.target.innerText}</span> <button class="">삭제</button></li>
+      <li class="mx-2 "><span class="bg-gray-400 rounded-lg text-xs p-1">${e.target.innerText}</span> <button class="">x</button></li>
     `
   );
 }
