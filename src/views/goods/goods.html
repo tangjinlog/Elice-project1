@@ -8,110 +8,80 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="filter-div flex justify-center">
-      <div class="filter-box w-3/5 justify-center m-auto border-4 rounded-lg">
+    <div class="filter-div flex flex-col justify-center">
+      <div class="filter-box w-3/5 justify-center m-auto border-4">
         <div class="filter 배송비 flex py-2 border-b-2">
           <div class="w-1/12 pl-3">배송비</div>
-          <div class="option-box flex w-11/12">
+          <div class="option-box flex w-11/12 pl-12">
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="delivery-opt" checked="checked" />
-              <span>전체</span>
-            </div>
-            <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="delivery-opt" />
-              <span>무료배송</span>
-            </div>
-            <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="delivery-opt" />
-              <span>3000원</span>
+              <input type="checkbox" name="delivery-opt" id="free_deli" />
+              <label for="free_deli" class="free_deli">무료배송</label>
             </div>
           </div>
         </div>
         <div class="filter 색깔 flex py-2 border-b-2">
           <div class="w-1/12 pl-3">색상</div>
-          <div class="option-box flex w-11/12">
+          <div class="option-box flex w-11/12 pl-12">
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="color-opt" checked="checked" />
-              <span>전체</span>
+              <input type="checkbox" name="color-opt" id="col-white" />
+              <label for="col-white">흰색</label>
             </div>
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="color-opt" />
-              <span>흰색</span>
+              <input type="checkbox" name="color-opt" id="col-black" />
+              <label for="col-black">검은색</label>
             </div>
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="color-opt" />
-              <span>검은색</span>
+              <input type="checkbox" name="color-opt" id="col-gray" />
+              <label for="col-gray">회색</label>
             </div>
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="color-opt" />
-              <span>회색</span>
-            </div>
-            <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="color-opt" />
-              <span>유채색</span>
+              <input type="checkbox" name="color-opt" id="col-etc" />
+              <label for="col-etc">유채색</label>
             </div>
           </div>
         </div>
         <div class="filter 가격대 flex py-2 border-b-2">
           <div class="w-1/12 pl-3">가격대</div>
-          <div class="option-box flex w-11/12">
+          <div class="option-box flex w-11/12 pl-12">
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="price-opt" checked="checked" />
-              <span>전체</span>
+              <input type="checkbox" name="price-opt" id="under-10000" />
+              <label for="under-10000">1만원 이하</label>
             </div>
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="checkbox" name="price-opt" />
-              <span>1만원 이하</span>
+              <input type="checkbox" name="price-opt" id="10000-20000" />
+              <label for="10000-20000">1만원~2만원</label>
             </div>
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="checkbox" name="price-opt" />
-              <span>1~2만원</span>
-            </div>
-            <div class="w-1/5">
-              <label for=""></label>
-              <input type="checkbox" name="price-opt" />
-              <span>2만원 이싱</span>
+              <input type="checkbox" name="price-opt" id="over-20000" />
+              <label for="over-20000">2만원 이상</label>
             </div>
           </div>
         </div>
         <div class="filter 카테고리 flex py-2">
           <div class="w-1/12 pl-3">카테고리</div>
-          <div class="option-box flex w-11/12">
+          <div class="option-box flex w-11/12 pl-12">
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="radio" name="category-opt" checked="checked" />
-              <span>전체</span>
+              <input type="checkbox" name="category-opt" id="normal-stone" />
+              <label for="normal-stone">일반돌</label>
             </div>
             <div class="w-1/5">
-              <label for=""></label>
-              <input type="checkbox" name="category-opt" />
-              <span>일반돌</span>
+              <input type="checkbox" name="category-opt" id="incense" />
+              <label for="incense">인센스홀더</label>
             </div>
-            <div class="w-1/5">
-              <label for=""></label>
-              <input type="checkbox" name="category-opt" />
-              <span>인센스홀더</span>
-            </div>
-            <div class="w-1/5">
-              <label for=""></label>
-              <input type="checkbox" name="category-opt" />
-              <span>디퓨저</span>
+            <div class="w-1/5 test">
+              <input type="checkbox" name="category-opt" id="diffuser" />
+              <label for="diffuser">디퓨저</label>
             </div>
           </div>
         </div>
       </div>
+      <div class="w-3/5 m-auto bg-neutral-100 p-2 flex">
+        <button>필터 초기화</button>
+        <ul class="inline-block flex" id="option_list"></ul>
+        <button class="filter-btn">검색</button>
+      </div>
     </div>
+
     <script type="text/javascript" src="goods.js"></script>
   </body>
 </html>
