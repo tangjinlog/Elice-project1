@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="filter-div flex justify-center">
+      <div class="filter-box w-3/5 justify-center m-auto border-4 rounded-lg">
+        <div class="filter 배송비 flex py-2 border-b-2">
+          <div class="w-1/12 pl-3">배송비</div>
+          <div class="option-box flex w-11/12">
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="delivery-opt" checked="checked" />
+              <span>전체</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="delivery-opt" />
+              <span>무료배송</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="delivery-opt" />
+              <span>3000원</span>
+            </div>
+          </div>
+        </div>
+        <div class="filter 색깔 flex py-2 border-b-2">
+          <div class="w-1/12 pl-3">색상</div>
+          <div class="option-box flex w-11/12">
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="color-opt" checked="checked" />
+              <span>전체</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="color-opt" />
+              <span>흰색</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="color-opt" />
+              <span>검은색</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="color-opt" />
+              <span>회색</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="color-opt" />
+              <span>유채색</span>
+            </div>
+          </div>
+        </div>
+        <div class="filter 가격대 flex py-2 border-b-2">
+          <div class="w-1/12 pl-3">가격대</div>
+          <div class="option-box flex w-11/12">
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="price-opt" checked="checked" />
+              <span>전체</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="checkbox" name="price-opt" />
+              <span>1만원 이하</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="checkbox" name="price-opt" />
+              <span>1~2만원</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="checkbox" name="price-opt" />
+              <span>2만원 이싱</span>
+            </div>
+          </div>
+        </div>
+        <div class="filter 카테고리 flex py-2">
+          <div class="w-1/12 pl-3">카테고리</div>
+          <div class="option-box flex w-11/12">
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="radio" name="category-opt" checked="checked" />
+              <span>전체</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="checkbox" name="category-opt" />
+              <span>일반돌</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="checkbox" name="category-opt" />
+              <span>인센스홀더</span>
+            </div>
+            <div class="w-1/5">
+              <label for=""></label>
+              <input type="checkbox" name="category-opt" />
+              <span>디퓨저</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="goods.js"></script>
+  </body>
+</html>
