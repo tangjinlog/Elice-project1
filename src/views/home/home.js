@@ -14,33 +14,33 @@ addAllEvents();
 
 // html에 요소를 추가하는 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 async function addAllElements() {
-  insertTextToLanding();
-  insertTextToGreeting();
+  // insertTextToLanding();
+  // insertTextToGreeting();
 }
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
   landingDiv.addEventListener("click", alertLandingText);
-  greetingDiv.addEventListener("click", alertGreetingText);
+  // greetingDiv.addEventListener("click", alertGreetingText);
 }
 
-function insertTextToLanding() {
-  landingDiv.insertAdjacentHTML(
-    "beforeend",
-    `
-      <h2>n팀 쇼핑몰의 랜딩 페이지입니다. 자바스크립트 파일에서 삽입되었습니다.</h2>
-    `
-  );
-}
+// function insertTextToLanding() {
+//   landingDiv.insertAdjacentHTML(
+//     "beforeend",
+//     `
+//       <h2>n팀 쇼핑몰의 랜딩 페이지입니다. 자바스크립트 파일에서 삽입되었습니다.</h2>
+//     `
+//   );
+// }
 
-function insertTextToGreeting() {
-  greetingDiv.insertAdjacentHTML(
-    "beforeend",
-    `
-      <h1>반갑습니다! 자바스크립트 파일에서 삽입되었습니다.</h1>
-    `
-  );
-}
+// function insertTextToGreeting() {
+//   greetingDiv.insertAdjacentHTML(
+//     "beforeend",
+//     `
+//       <h1>반갑습니다! 자바스크립트 파일에서 삽입되었습니다.</h1>
+//     `
+//   );
+// }
 
 function alertLandingText() {
   alert("n팀 쇼핑몰입니다. 안녕하세요.");
@@ -58,3 +58,52 @@ async function getDataFromApi() {
   console.log({ data });
   console.log({ random });
 }
+const itemListCon = document.querySelector('.slider-con');
+function sliderTemplate() {
+  for(let i=1; i<5; i++){
+    itemListCon.innerHTML += ''
+    + `<ul class="w-[${6}00%] flex">
+    <div class="slider-con flex w-full relative transition-all">
+    <li class="slide w-full">
+    <div class="img-box w-screen h-full">
+    <a href="#" class="img h-full">
+    <img class="h-full" src="../images/slider/제목 없음-${i}.png" alt="image-${i}">
+    </a>
+    </div>
+    </li>
+    </ul>`; 
+  }
+}
+
+
+function itemArrow() {
+  // const leftArrow = document.querySelector('.arrow-left');
+  // const rightArrow = document.querySelector('.arrow-right');
+  let itemList = document.getElementsByClassName('slide');
+  let cloneFirst = itemListCon.lastElementChild.cloneNode(true)
+  let cloneLast = itemListCon.firstElementChild.cloneNode(true)
+  
+  itemListCon.insertBefore(cloneLast, itemListCon[0]);
+  itemListCon.appendChild(cloneFirst);
+  let index = 0;
+  setInterval(() => {
+    console.log('ha')
+    if( index == 0 ) {
+      index = 1;
+      itemListCon.style.transition = `${0.5}s ease-out`;
+
+    }
+    console.log(index) 
+    itemListCon.style.marginLeft = '-' + index * 16.6666 + '%';
+    index++;
+
+    if( index == itemList.length) {
+      index = 0;
+        itemListCon.style.marginLeft =  '-'+ index * 16.6666 + '%';
+        itemListCon.style.transition = `${0}s ease-out`;
+    } 
+    
+  },3000);
+}
+sliderTemplate();
+itemArrow();
