@@ -2,8 +2,8 @@
 // 다만, 앞으로 ~.js 파일을 작성할 때 아래의 코드 구조를 참조할 수 있도록,
 // 코드 예시를 남겨 두었습니다.
 
-import * as Api from "/api.js";
-import { randomId } from "/useful-functions.js";
+import * as Api from "../api.js";
+import { randomId } from "../useful-functions.js";
 
 // 요소(element), input 혹은 상수
 const landingDiv = document.querySelector("#landingDiv");
@@ -63,7 +63,6 @@ function sliderTemplate() {
   for(let i=1; i<5; i++){
     itemListCon.innerHTML += ''
     + `<ul class="w-[${6}00%] flex">
-    <div class="slider-con flex w-full relative transition-all">
     <li class="slide w-full">
     <div class="img-box w-screen h-full">
     <a href="#" class="img h-full">
@@ -87,23 +86,21 @@ function itemArrow() {
   itemListCon.appendChild(cloneFirst);
   let index = 0;
   setInterval(() => {
-    console.log('ha')
     if( index == 0 ) {
       index = 1;
       itemListCon.style.transition = `${0.5}s ease-out`;
 
     }
-    console.log(index) 
-    itemListCon.style.marginLeft = '-' + index * 16.6666 + '%';
+    itemListCon.style.marginLeft = `${-index * window.innerWidth}px`
     index++;
 
     if( index == itemList.length) {
       index = 0;
-        itemListCon.style.marginLeft =  '-'+ index * 16.6666 + '%';
+        itemListCon.style.marginLeft =  `${-index * window.innerWidth}px`
         itemListCon.style.transition = `${0}s ease-out`;
     } 
     
-  },3000);
+  },4000);
 }
 sliderTemplate();
 itemArrow();
