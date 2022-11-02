@@ -2,6 +2,10 @@
 node_modules
 yarn.lock
 package-lock.json
+<<<<<<< HEAD
 .env
 .Ds_Store
 .gitmessage.txt
+=======
+.env
+>>>>>>> 46d3d76bf31ee66afc4685e180be427671427895
