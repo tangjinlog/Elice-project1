@@ -4,21 +4,12 @@ const searchBtn = document.querySelector('.search-btn');
 const filter_options = document.querySelectorAll('.filter-option');
 
 //이벤트추가
-filter_options.forEach((a) => {
-  a.addEventListener('change', addOption);
+filter_options.forEach((inputValue) => {
+  inputValue.addEventListener('change', addOption);
 });
 searchBtn.addEventListener('click', searchGoods);
 
-const filter_option = {
-  free_delivery: false,
-  color_white: false,
-  color_gray: false,
-  color_black: false,
-  color_chromatic: false,
-  under_10000: false,
-  over_10000: false,
-  over_20000: false,
-};
+const filter_option = [];
 //필터옵션은 리스트에 담아서
 //체크된 옵션은 true, 아니면 false로 하는 방법도 있음
 
