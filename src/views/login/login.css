@@ -16,3 +16,6 @@
 .login-form-box .button {
   font-weight: bold;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
