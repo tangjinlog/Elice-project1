@@ -4,3 +4,4 @@ yarn.lock
 package-lock.json
 .env
 .Ds_Store
+.gitmessage.txt
