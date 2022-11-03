@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <section class="flex mg-auto justify-center">
+      <div class="account-container m-12 w-full h-full">
+        <div>
+          <h1 class="border-b-2 mb-3 pb-3 text-2xl">제품판매</h1>
+        </div>
+        <div class="flex mg-auto justify-center mg-auto">
+          <form class="p-2 w-1/2 border border-gray-100 rounded shadow-lg">
+            <div class="text-center my-4 text-teal-400 text-xl">
+              제품을 판매해 보세요
+            </div>
+            <div class="m-2">
+              <label for="nameInput">제품 이름</label>
+              <div class="h-10">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300 pl-3"
+                  placeholder="예시) 꼬마돌"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">카테고리</label>
+              <div class="h-10">
+                <select
+                  class="w-full h-full rounded border border-gray-300 pl-2"
+                >
+                  <option value="">카테고리를 선택해 주세요</option>
+                  <option value="">일반돌</option>
+                  <option value="">인센스홀더</option>
+                  <option value="">디퓨저</option>
+                </select>
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">제조사</label>
+              <div class="h-10">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">요약 설명</label>
+              <div class="h-24">
+                <textarea
+                  class="w-full border border-gray-300 rounded h-full p-3"
+                  placeholder="제품에 대한 설명을 1~2문장으로 적어 주세요"
+                ></textarea>
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">상세 설명</label>
+              <div class="h-48">
+                <textarea
+                  class="w-full border border-gray-300 rounded h-full p-3"
+                  placeholder="제품에 대한 상세한 설명을 적어 주세요"
+                ></textarea>
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">제품 사진</label>
+              <div class="h-10 flex rounded border border-gray-300">
+                <label for="">
+                  <input type="file" class="w-1/10 h-full my-auto" />
+                  <span><i class="fa-solid fa-upload"></i></span>
+                  <span>사진 업로드</span>
+                </label>
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">재고 수</label>
+              <div class="h-10">
+                <input
+                  type="number"
+                  class="w-full h-full rounded border border-gray-300 pl-3"
+                  placeholder="10"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">가격</label>
+              <div class="h-10 flex rounded border border-gray-300">
+                <input
+                  type="number"
+                  class="w-full h-full pl-3"
+                  placeholder="10000"
+                />
+                <span class="my-auto mr-3">원</span>
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">검색 키워드</label>
+              <div class="h-10 flex">
+                <input
+                  type="text"
+                  class="w-5/6 h-full rounded-l border border-gray-300 pl-3"
+                  placeholder="조약돌"
+                />
+                <div class="text-center w-1/6">
+                  <button
+                    class="text-center rounded-r w-full h-full bg-teal-400 text-white"
+                  >
+                    추가하기
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="m-2 mt-8">
+              <button class="w-full h-10 rounded bg-teal-400 text-white">
+                제품 판매하기
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
