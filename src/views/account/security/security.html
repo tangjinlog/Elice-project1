@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <section class="flex mg-auto justify-center">
+      <div class="account-container m-12 w-full h-full">
+        <div>
+          <h1 class="border-b-2 mb-3 pb-3 text-2xl">회원정보 관리 (email)</h1>
+        </div>
+        <div class="flex mg-auto justify-center mg-auto">
+          <form class="p-2 w-1/2 border border-gray-100 rounded shadow-lg">
+            <div class="m-2">
+              <label for="nameInput">이름</label>
+              <div class="h-10">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">비밀번호</label>
+              <div class="h-10">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">비밀번호 확인</label>
+              <div class="h-10">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">주소</label>
+              <div class="h-10 flex">
+                <input
+                  type="text"
+                  class="w-5/6 h-full rounded border border-gray-300 mr-auto"
+                />
+                <div class="ml-auto text-center">
+                  <button class="text-center rounded w-24 h-full bg-gray-200">
+                    주소찾기
+                  </button>
+                </div>
+              </div>
+              <div class="h-10 mt-5">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300 mr-auto"
+                />
+              </div>
+              <div class="h-10 mt-5">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300 mr-auto"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">전화번호</label>
+              <div class="h-10">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300"
+                />
+              </div>
+            </div>
+            <div class="m-2 mt-8">
+              <button class="w-full h-10 rounded bg-blue-500 text-white">
+                저장하기
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
