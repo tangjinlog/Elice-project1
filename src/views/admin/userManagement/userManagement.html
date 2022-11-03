@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="./userManagement.js" type="module" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <section class="flex-col justify-center px-12 py-6">
+      <!-- 제목 -->
+      <div class="bg-blue-400 rounded max-w-screen-md">
+        <div><h1 class="border-b-2 mb-3 pb-3 text-2xl p-3 rounded">웹 서비스 관리</h1></div>
+      </div>
+      <!-- 요약현황 -->
+      <nav class="userNav flex justify-evenly text-center max-w-screen-md">
+        <div class="userNavMenu py-6">
+          <p>총 회원수</p>
+          <p class="text-3xl">15</p>
+        </div>
+        <div class="userNavMenu py-6">
+          <p>관리자 수</p>
+          <p class="text-3xl">15</p>
+        </div>
+      </nav>
+      <!-- 유저목록 카테고리  -->
+      <div class="userListCon mt-10 max-w-screen-md">
+        <div class="userListCategory flex justify-around text-center bg-sky-400 rounded">
+          <div class="w-1/6">가입날짜</div>
+          <div class="w-1/6">이메일</div>
+          <div class="w-1/6">이름</div>
+          <div class="w-1/6">권한</div>
+          <div class="w-1/6">관리</div>
+        </div>
+        <!-- 유저정보 리스트 -->
+        <div class="userList flex justify-around text-center items-center border-b-2 max-w-screen-md">
+          <div class="w-1/6 py-3">2022-11-03</div>
+          <div class="w-1/6 py-3">user@test.com</div> <!-- 정보입력시 개 수에 따라 줄바꿈해줘야 함 -->
+          <div class="w-1/6 py-3">김탕진</div>
+          <div class="w-1/6 py-3 bg-slate-300 rounded">
+            <select name="권한" id="selectBox">
+              <option selected value="일반사용자">일반사용자</option>
+              <option value="관리자">관리자</option>
+            </select>
+          </div>
+          <div class="userDelete w-1/6 h-full py-3 bg-red-300 mx-1 my-3 rounded">
+            <a href="#" class=" whitespace-nowrap">회원정보삭제</a>
+          </div>
+        </div>
+      </div>
+    </section> 
+  </body>
+</html>
+
