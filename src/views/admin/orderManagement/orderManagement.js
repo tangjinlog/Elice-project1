@@ -16,11 +16,13 @@ const modal = `
   </div>
 `;
 
-const userDelete = document.querySelector(".userDelete");
-userDelete.addEventListener("click", createModal);
+const userDeleteBtn = document.querySelector(".userDelete");
+userDeleteBtn.addEventListener("click", createModal);
 
 /* 모달창 생성 */
 function createModal() {
+  /* userDeleteBtn 전달 */
+  const self = this;
   const modalEl = document.createElement("div");
   modalEl.setAttribute("class", "modalCon");
   modalEl.innerHTML = modal;
@@ -30,6 +32,10 @@ function createModal() {
   const deleteNoBtn = document.getElementById("deleteNoBtn");
   const closeBtn = document.querySelector(".closeBtn");
 
+  /* 즉시실행 방지 */
+  deleteYesBtn.addEventListener("click", ()=> {
+    cancelOrder(self)
+  });
   deleteYesBtn.addEventListener("click", closeModal);
   deleteNoBtn.addEventListener("click", closeModal);
   /* x 버튼 클릭시 닫기 */
@@ -38,7 +44,6 @@ function createModal() {
   /* 모달창 외에 배경을 클릭하면 닫기 */
   modalEl.addEventListener("click", (e) => {
     const target = e.target;
-    console.log(target);
     if (target.classList.contains("modalBackground")) {
       closeModal(e);
     }
@@ -49,4 +54,10 @@ function closeModal(e) {
   const modalEl = document.querySelector(".modalCon");
   const body = document.querySelector("body");
   body.removeChild(modalEl);
+}
+
+function cancelOrder(cancelBtn) {
+  let parentTag = cancelBtn;
+  for(; parentTag.classList.contains('orderList') != true; parentTag = parentTag.parentElement);
+  parentTag.remove()
 }
