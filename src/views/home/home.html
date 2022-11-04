@@ -15,21 +15,10 @@
   </head>
   <body>
     <!-- 헤더 -->
-    <nav class="w-full py-2" role="navigation" aria-label="main navigation">
-      <a
-        role="button"
-        class="navbar-burger"
-        aria-label="menu"
-        aria-expanded="false"
-        data-target="navbarBasicExample"
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-      <ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
+    <nav class="w-full py-2">
+      <ul id="navbar" class="flex w-full">
         <li class="pl-10 my-auto text-xl">
-          <a href="#">
+          <a href="./home.html">
             <i class="fa-solid fa-house"></i>
           </a>
         </li>
@@ -85,11 +74,12 @@
             </ul>
           </div>
         </li>
-
         <li class="w-1/12 pl-5 my-auto ml-auto">
-          <a href="/register">회원가입</a>
+          <a href="../register/register.html">회원가입</a>
         </li>
-        <li class="w-1/12 pl-5 my-auto"><a href="/login">로그인</a></li>
+        <li class="w-1/12 pl-5 my-auto">
+          <a href="../login/login.html">로그인</a>
+        </li>
         <li class="w-1/12 pl-5 my-auto">
           <a href="/cart">
             <span>
@@ -104,9 +94,9 @@
     <div class="div-container">
       <div class="landing flex" id="landingDiv">
         <ul class="w-[600%] flex h-95" id="slider">
-          <div class="slider-con flex w-full h-full relative transition-all">
-            <!-- li 동적 추가 -->
-          </div>
+          <div
+            class="slider-con flex w-full h-full relative transition-all"
+          ></div>
           <button
             class="bg-[url('../images/arrow-left.png')] z-10 float-left w-14 h-14 inset-y-0"
           ></button>
@@ -114,14 +104,14 @@
         </ul>
       </div>
       <div class="flex justify-center mt-10">
-        <button
-          class="px-6 py-3 bg-slate-200 hover:bg-slate-500 hover:text-white font-bold rounded"
-        >
-          애완돌 보러가기
-        </button>
+        <a href="../goods/goods.html">
+          <button
+            class="px-6 py-3 bg-slate-200 hover:bg-slate-500 hover:text-white font-bold rounded"
+          >
+            애완돌 보러가기
+          </button>
+        </a>
       </div>
-      <!-- <div class="greeting" id="greetingDiv"> -->
-      <!-- <h1>안녕하세요!</h1> -->
     </div>
   </body>
 </html>
