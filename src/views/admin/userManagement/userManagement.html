@@ -1,163 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script src="./userManagement.js" type="module" defer></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <nav class="w-full py-2">
-      <ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
-        <li class="pl-10 my-auto text-xl">
-          <a href="../../home/home.html">
-            <i class="fa-solid fa-house"></i>
-          </a>
-        </li>
-        <li class="pl-10">
-          <button
-            class="text-black bg-white hover:bg-black hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
-            type="button"
-            data-dropdown-toggle="dropdown"
-          >
-            카테고리
-            <svg
-              class="w-4 h-4 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <!-- Dropdown menu -->
-          <div
-            class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4"
-            id="dropdown"
-          >
-            <ul class="py-1" aria-labelledby="dropdown">
-              <li>
-                <a
-                  href="#"
-                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
-                  >일반돌</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
-                  >인센스홀더</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
-                  >디퓨저</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>회원관리</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<script src="./userManagement.js" type="module" defer></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+	</head>
+	<body>
+		<nav class="w-full py-2">
+			<ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
+				<li class="pl-10 my-auto text-xl">
+					<a href="../../home/home.html">
+						<i class="fa-solid fa-house"></i>
+					</a>
+				</li>
+				<li class="pl-10">
+					<button
+						class="text-black bg-white hover:bg-black hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+						type="button"
+						data-dropdown-toggle="dropdown"
+					>
+						카테고리
+						<svg
+							class="w-4 h-4 ml-2"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"
+							></path>
+						</svg>
+					</button>
+					<!-- Dropdown menu -->
+					<div
+						class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4"
+						id="dropdown"
+					>
+						<ul class="py-1" aria-labelledby="dropdown">
+							<li>
+								<a
+									href="#"
+									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+									>일반돌</a
+								>
+							</li>
+							<li>
+								<a
+									href="#"
+									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+									>인센스홀더</a
+								>
+							</li>
+							<li>
+								<a
+									href="#"
+									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+									>디퓨저</a
+								>
+							</li>
+						</ul>
+					</div>
+				</li>
 
-        <li class="w-1/12 pl-5 my-auto ml-auto">
-          <a href="../../admin/admin.html">페이지관리</a>
-        </li>
-        <li class="w-1/12 pl-5 my-auto">
-          <a href="../../account/account.html">계정관리</a>
-        </li>
-        <li class="w-1/12 pl-5 my-auto">
-          <a href="../../login/login.html">로그인</a>
-        </li>
-        <li class="w-1/12 pl-5 my-auto">
-          <a href="../../cart/cart.html">
-            <span>
-              <i class="fas fa-cart-shopping" aria-hidden="true"></i>
-            </span>
-            <span> 카트</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+				<li class="w-1/12 pl-5 my-auto ml-auto">
+					<a href="../../admin/admin.html">페이지관리</a>
+				</li>
+				<li class="w-1/12 pl-5 my-auto">
+					<a href="../../account/account.html">계정관리</a>
+				</li>
+				<li class="w-1/12 pl-5 my-auto">
+					<a href="../../login/login.html">로그인</a>
+				</li>
+				<li class="w-1/12 pl-5 my-auto">
+					<a href="../../cart/cart.html">
+						<span>
+							<i class="fas fa-cart-shopping" aria-hidden="true"></i>
+						</span>
+						<span> 카트</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 
-    <section class="flex-col justify-center px-12 py-6 mx-auto max-w-screen-md">
-      <!-- 제목 -->
-      <div class="bg-blue-400 rounded">
-        <div>
-          <h1 class="border-b-2 mb-3 pb-3 text-2xl p-3 rounded">회원관리</h1>
-        </div>
-      </div>
-      <!-- 요약현황 -->
-      <nav class="userNav flex justify-evenly text-center max-w-screen-md">
-        <div class="userNavMenu py-6">
-          <p>총 회원수</p>
-          <p class="text-3xl">15</p>
-        </div>
-        <div class="userNavMenu py-6">
-          <p>관리자 수</p>
-          <p class="text-3xl">15</p>
-        </div>
-      </nav>
-      <!-- 유저목록 카테고리  -->
-      <div class="userListCon mt-10 max-w-screen-md">
-        <div
-          class="userListCategory flex justify-around text-center bg-sky-400 rounded"
-        >
-          <div class="w-1/6">가입날짜</div>
-          <div class="w-1/6">이메일</div>
-          <div class="w-1/6">이름</div>
-          <div class="w-1/6">권한</div>
-          <div class="w-1/6">관리</div>
-        </div>
-        <!-- 유저정보 리스트 -->
-        <div
-          class="userList flex justify-around text-center items-center border-b-2 max-w-screen-md"
-        >
-          <div class="w-1/6 py-3">2022-11-03</div>
-          <div class="w-1/6 py-3">user@test.com</div>
-          <!-- 정보입력시 개 수에 따라 줄바꿈해줘야 함 -->
-          <div class="w-1/6 py-3">김탕진</div>
-          <div class="w-1/6 py-3">
-            <select
-              class="p-3 bg-slate-200 rounded"
-              name="상태관리"
-              id="selectBox"
-            >
-              <option selected value="일반사용자">일반사용자</option>
-              <option value="관리자">관리자</option>
-            </select>
-          </div>
-          <div
-            class="userDelete w-1/6 h-full py-3 bg-red-300 mx-1 my-3 rounded"
-          >
-            <a href="#" class="whitespace-nowrap">회원정보삭제</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </body>
+		<section class="flex-col justify-center px-12 py-6 mx-auto max-w-screen-md">
+			<!-- 제목 -->
+			<div class="bg-blue-400 rounded">
+				<div>
+					<h1 class="border-b-2 mb-3 pb-3 text-2xl p-3 rounded">회원관리</h1>
+				</div>
+			</div>
+			<!-- 요약현황 -->
+			<nav class="userNav flex justify-evenly text-center max-w-screen-md">
+				<div class="userNavMenu py-6">
+					<p>총 회원수</p>
+					<p class="text-3xl">15</p>
+				</div>
+				<div class="userNavMenu py-6">
+					<p>관리자 수</p>
+					<p class="text-3xl">15</p>
+				</div>
+			</nav>
+			<!-- 유저목록 카테고리  -->
+			<div class="userListCon mt-10 max-w-screen-md">
+				<div
+					class="userListCategory flex justify-around text-center bg-sky-400 rounded"
+				>
+					<div class="w-1/6">가입날짜</div>
+					<div class="w-1/6">이메일</div>
+					<div class="w-1/6">이름</div>
+					<div class="w-1/6">권한</div>
+					<div class="w-1/6">관리</div>
+				</div>
+				<!-- 유저정보 리스트 -->
+				<div
+					class="userList flex justify-around text-center items-center border-b-2 max-w-screen-md"
+				>
+					<div class="w-1/6 py-3">2022-11-03</div>
+					<div class="w-1/6 py-3">user@test.com</div>
+					<!-- 정보입력시 개 수에 따라 줄바꿈해줘야 함 -->
+					<div class="w-1/6 py-3">김탕진</div>
+					<div class="w-1/6 py-3">
+						<select
+							class="p-3 bg-slate-200 rounded"
+							name="상태관리"
+							id="selectBox"
+						>
+							<option selected value="일반사용자">일반사용자</option>
+							<option value="관리자">관리자</option>
+						</select>
+					</div>
+					<div
+						class="userDelete w-1/6 h-full py-3 bg-red-300 mx-1 my-3 rounded"
+					>
+						<a href="#" class="whitespace-nowrap">회원정보삭제</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
 </html>
