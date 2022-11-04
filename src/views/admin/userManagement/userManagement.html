@@ -17,10 +17,10 @@
     />
   </head>
   <body>
-    <section class="flex-col justify-center px-12 py-6">
+      <section class="flex-col justify-center px-12 py-6 mx-auto max-w-screen-md">
       <!-- 제목 -->
-      <div class="bg-blue-400 rounded max-w-screen-md">
-        <div><h1 class="border-b-2 mb-3 pb-3 text-2xl p-3 rounded">웹 서비스 관리</h1></div>
+      <div class="bg-blue-400 rounded">
+        <div><h1 class="border-b-2 mb-3 pb-3 text-2xl p-3 rounded">회원관리</h1></div>
       </div>
       <!-- 요약현황 -->
       <nav class="userNav flex justify-evenly text-center max-w-screen-md">
@@ -47,14 +47,14 @@
           <div class="w-1/6 py-3">2022-11-03</div>
           <div class="w-1/6 py-3">user@test.com</div> <!-- 정보입력시 개 수에 따라 줄바꿈해줘야 함 -->
           <div class="w-1/6 py-3">김탕진</div>
-          <div class="w-1/6 py-3 bg-slate-300 rounded">
-            <select name="권한" id="selectBox">
+          <div class="w-1/6 py-3">
+            <select class="p-3 bg-slate-200 rounded" name="상태관리" id="selectBox">
               <option selected value="일반사용자">일반사용자</option>
               <option value="관리자">관리자</option>
             </select>
           </div>
           <div class="userDelete w-1/6 h-full py-3 bg-red-300 mx-1 my-3 rounded">
-            <a href="#" class=" whitespace-nowrap">회원정보삭제</a>
+            <a href="#" class="whitespace-nowrap">회원정보삭제</a>
           </div>
         </div>
       </div>
