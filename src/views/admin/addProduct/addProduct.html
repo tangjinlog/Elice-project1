@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
     <script src="./addProduct.js" type="module" defer></script>
     <link
       rel="stylesheet"
@@ -16,6 +17,85 @@
     />
   </head>
   <body>
+    <nav class="w-full py-2">
+      <ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
+        <li class="pl-10 my-auto text-xl">
+          <a href="../../home/home.html">
+            <i class="fa-solid fa-house"></i>
+          </a>
+        </li>
+        <li class="pl-10">
+          <button
+            class="text-black bg-white hover:bg-black hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+            type="button"
+            data-dropdown-toggle="dropdown"
+          >
+            카테고리
+            <svg
+              class="w-4 h-4 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div
+            class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4"
+            id="dropdown"
+          >
+            <ul class="py-1" aria-labelledby="dropdown">
+              <li>
+                <a
+                  href="#"
+                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                  >일반돌</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                  >인센스홀더</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                  >디퓨저</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="w-1/12 pl-5 my-auto ml-auto">
+          <a href="../../admin/admin.html">페이지관리</a>
+        </li>
+        <li class="w-1/12 pl-5 my-auto">
+          <a href="../../account/account.html">계정관리</a>
+        </li>
+        <li class="w-1/12 pl-5 my-auto">
+          <a href="../../login/login.html">로그인</a>
+        </li>
+        <li class="w-1/12 pl-5 my-auto">
+          <a href="../../cart/cart.html">
+            <span>
+              <i class="fas fa-cart-shopping" aria-hidden="true"></i>
+            </span>
+            <span> 카트</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
     <section class="flex-col justify-center px-12 py-6 mx-auto max-w-screen-md">
       <!-- 제목 -->
       <div class="bg-blue-400 rounded">
@@ -43,8 +123,14 @@
           <div>
             <label for="categoryInput" class="font-bold">카테고리</label>
             <div>
-              <select class="p-3 mt-2 mb-4 w-full border rounded" name="category" id="category">
-                <option value="카테고리를 선택해 주세요." selected>카테고리를 선택해 주세요.</option>
+              <select
+                class="p-3 mt-2 mb-4 w-full border rounded"
+                name="category"
+                id="category"
+              >
+                <option value="카테고리를 선택해 주세요." selected>
+                  카테고리를 선택해 주세요.
+                </option>
                 <option value="애완돌">애완돌</option>
                 <option value="애완돌 하우스">애완돌 하우스</option>
                 <option value="애완돌 옷">애완돌 옷</option>
@@ -106,11 +192,15 @@
                   accept=".png, .jpeg, .jpg"
                   multiple
                 />
-                <span class="flex items-center inline-block p-2 absolute bg-slate-400 h-full rounded-tl rounded-bl">
+                <span
+                  class="flex items-center inline-block p-2 absolute bg-slate-400 h-full rounded-tl rounded-bl"
+                >
                   <i class="fa-solid fa-camera"></i>
                   <span class="fileLabel ml-1">사진 업로드</span>
                 </span>
-                <span class="imgPath inline-block p-2 ml-36">사진파일(png, jpg, jpeg)</span>
+                <span class="imgPath inline-block p-2 ml-36"
+                  >사진파일(png, jpg, jpeg)</span
+                >
               </label>
             </div>
           </div>
@@ -144,7 +234,8 @@
             <label for="keywordInput" class="font-bold">검색 키워드</label>
             <div class="flex w-full py-2 mt-2">
               <div class="grow -mr-px">
-                <input type="text"
+                <input
+                  type="text"
                   class="keywordInput p-2 border rounded-tl rounded-bl w-full max-w-full"
                 />
               </div>
@@ -170,6 +261,3 @@
     </section>
   </body>
 </html>
-
-
-  
