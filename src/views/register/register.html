@@ -3,18 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>쇼핑-데모</title>
+    <title>회원가입</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
       href="/elice-rabbit-favicon.png"
-    />
-    <!-- bulma css 관련 -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
     <!-- 폰트 어썸: 아이콘 -->
     <script
@@ -27,7 +22,6 @@
     <!-- 카카오 OAuth -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="register.css" />
     <script src="register.js" type="module" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
@@ -109,67 +103,65 @@
         </li>
       </ul>
     </nav>
-
     <!-- 회원가입 폼(Form) -->
-    <div class="register-user-form-container">
-      <form class="box register-user-form-box" id="registerUserForm">
-        <p class="title is-5 has-text-primary">환영합니다!</p>
-        <div class="field">
-          <label class="label" for="fullNameInput">이름</label>
-          <div class="control">
-            <input
-              class="input"
-              id="fullNameInput"
-              type="text"
-              placeholder="유재석"
-              autocomplete="on"
-            />
-          </div>
-        </div>
+    <section class="h-[85vh]">
+      <div class="account-container w-full h-full">
+        <div class="flex justify-center">
+          <form
+            class="mt-[20vh] w-1/3 border border-gray-100 rounded shadow-lg"
+          >
+            <div class="text-center my-4 text-teal-400 text-xl">
+              환영합니다!
+            </div>
+            <div class="m-2">
+              <label for="nameInput">이름</label>
+              <div class="h-10">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300 pl-3"
+                  placeholder="이름을 입력해주세요"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">이메일</label>
+              <div class="h-10">
+                <input
+                  type="text"
+                  class="w-full h-full rounded border border-gray-300 pl-3"
+                  placeholder="abc@example.com"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">비밀번호</label>
+              <div class="h-10">
+                <input
+                  type="password"
+                  class="w-full h-full rounded border border-gray-300 pl-3"
+                  placeholder="********"
+                />
+              </div>
+            </div>
+            <div class="m-2">
+              <label for="nameInput">비밀번호 확인</label>
+              <div class="h-10">
+                <input
+                  type="password"
+                  class="w-full h-full rounded border border-gray-300 pl-3"
+                  placeholder="********"
+                />
+              </div>
+            </div>
 
-        <div class="field">
-          <label class="label" for="emailInput">이메일</label>
-          <div class="control">
-            <input
-              class="input"
-              id="emailInput"
-              type="email"
-              placeholder="abc@example.com"
-              autocomplete="on"
-            />
-          </div>
+            <div class="m-2 mt-8">
+              <button class="w-full h-10 rounded bg-teal-400 text-white">
+                회원가입하기
+              </button>
+            </div>
+          </form>
         </div>
-
-        <div class="field">
-          <label class="label" for="passwordInput">비밀번호</label>
-          <div class="control">
-            <input
-              class="input"
-              id="passwordInput"
-              type="password"
-              placeholder="********"
-              autocomplete="off"
-            />
-          </div>
-        </div>
-
-        <div class="field mb-5">
-          <label class="label" for="passwordConfirmInput">비밀번호 확인</label>
-          <div class="control">
-            <input
-              class="input"
-              id="passwordConfirmInput"
-              type="password"
-              placeholder="********"
-              autocomplete="off"
-            />
-          </div>
-        </div>
-
-        <button class="button is-primary is-fullwidth" id="submitButton">
-          회원가입하기
-        </button>
-      </form>
-    </div>
+      </div>
+    </section>
   </body>
 </html>
