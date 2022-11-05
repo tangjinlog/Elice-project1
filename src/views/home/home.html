@@ -3,87 +3,116 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <link rel="stylesheet" href="../dist/output.css"> -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>쇼핑-n팀</title>
-    <!-- 아이콘 -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/elice-rabbit-favicon.png"
-    />
-    <!-- bulma css -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
-    <!-- 폰트 어썸: 아이콘 -->
+    <title>반려돌</title>
     <script
       defer
       src="https://kit.fontawesome.com/9daa42bcef.js"
       crossorigin="anonymous"
     ></script>
-    <!-- 커스텀 css, js -->
-    <!-- <link rel="stylesheet" href="home.css" /> -->
     <script src="home.js" type="module" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
   </head>
   <body>
     <!-- 헤더 -->
-    <nav class="w-full bg-yellow-300 py-2" role="navigation" aria-label="main navigation">
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-  <ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
-    <li class="w-1/12 pl-10"> 
-      <a href="/">
-        <span><i class="fa-solid fa-house"></i></span>
-      </a>
-    </li>
-    <li class="w-2/3 pl-10">
-      <details>
-        <summary><a href="/">전체상품</a></summary>
-        <ul>
-            <li><a href="/">●일반돌</a></li>
-            <li><a href="/">●인센스홀더</a></li>
-            <li><a href="/">●디퓨저</a></li>
+    <header>
+      <nav class="w-full py-2">
+        <ul id="navbar" class="flex w-full">
+          <li class="pl-10 my-auto text-xl">
+            <a href="./home.html">
+              <i class="fa-solid fa-house"></i>
+            </a>
+          </li>
+          <li class="pl-10">
+            <button
+              class="text-black bg-white hover:bg-black hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+              type="button"
+              data-dropdown-toggle="dropdown"
+            >
+              카테고리
+              <svg
+                class="w-4 h-4 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <!-- Dropdown menu -->
+            <div
+              class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4"
+              id="dropdown"
+            >
+              <ul class="py-1" aria-labelledby="dropdown">
+                <li>
+                  <a
+                    href="#"
+                    class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                    >일반돌</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                    >인센스홀더</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                    >디퓨저</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="w-1/12 pl-5 my-auto ml-auto">
+            <a href="../register/register.html">회원가입</a>
+          </li>
+          <li class="w-1/12 pl-5 my-auto">
+            <a href="../login/login.html">로그인</a>
+          </li>
+          <li class="w-1/12 pl-5 my-auto">
+            <a href="/cart">
+              <span>
+                <i class="fas fa-cart-shopping" aria-hidden="true"></i>
+              </span>
+              <span> 카트</span>
+            </a>
+          </li>
         </ul>
-    </details>
-    </li>
-    <li class="w-1/12 pl-5"><a href="/login">로그인</a></li>
-    <li class="w-1/12 pl-5"><a href="/register">회원가입</a></li>
-    <li class="w-1/12 pl-5">
-      <a href="/cart">
-        <span>
-          <i class="fas fa-cart-shopping" aria-hidden="true"></i>
-        </span>
-        <span>카트</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+      </nav>
+    </header>
 
-    <div class="div-container h-auto">
+    <div class="div-container">
       <div class="landing flex" id="landingDiv">
         <ul class="w-[600%] flex h-95" id="slider">
-          <div class="slider-con flex w-full h-full relative transition-all">
-            <!-- li 동적 추가 -->
-          </div>
-          <button class="bg-[url('../images/arrow-left.png')] z-10 float-left w-14 h-14 inset-y-0">
-          </button>
-          <button class="bg-[url('../images/arrow-right.png')]">
-          </button>
+          <div
+            class="slider-con flex w-full h-full relative transition-all"
+          ></div>
+          <button
+            class="bg-[url('../images/arrow-left.png')] z-10 float-left w-14 h-14 inset-y-0"
+          ></button>
+          <button class="bg-[url('../images/arrow-right.png')]"></button>
         </ul>
       </div>
-        
       <div class="flex justify-center mt-10">
-        <button class="px-6 py-3 bg-slate-200 hover:bg-slate-500 hover:text-white font-bold rounded">애완돌 보러가기</button>
-      </div>
-
-      <!-- <div class="greeting" id="greetingDiv"> -->
-        <!-- <h1>안녕하세요!</h1> -->
+        <a href="../goods/goods.html">
+          <button
+            class="px-6 py-3 bg-slate-200 hover:bg-slate-500 hover:text-white font-bold rounded"
+          >
+            애완돌 보러가기
+          </button>
+        </a>
       </div>
     </div>
   </body>

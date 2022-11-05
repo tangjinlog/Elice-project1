@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>쇼핑-데모</title>
+		<!-- 아이콘 -->
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/elice-rabbit-favicon.png"
+		/>
+		<!-- bulma css 관련 -->
+		<!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    /> -->
+		<!-- 폰트 어썸: 아이콘 -->
+		<script
+			defer
+			src="https://kit.fontawesome.com/9daa42bcef.js"
+			crossorigin="anonymous"
+		></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<!-- 구글 OAuth -->
+		<script src="https://accounts.google.com/gsi/client" async defer></script>
+		<!-- 카카오 OAuth -->
+		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		<!-- 커스텀 css, js -->
+		<!-- <link rel="stylesheet" href="shippingpoint.css" /> -->
+		<script src="shippingpoint.js" type="module" defer></script>
+	</head>
+	<body class="h-screen">
+		<!-- 헤더 -->
+		<nav
+			class="w-full bg-yellow-300 py-2"
+			role="navigation"
+			aria-label="main navigation"
+		>
+			<ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
+				<li class="w-1/12 pl-10">
+					<a href="/">
+						<span><i class="fa-solid fa-house"></i></span>
+					</a>
+				</li>
+				<li class="w-2/3 pl-10">
+					<details>
+						<summary><a href="/">전체상품</a></summary>
+						<ul>
+							<li><a href="/">●일반돌</a></li>
+							<li><a href="/">●인센스홀더</a></li>
+							<li><a href="/">●디퓨저</a></li>
+						</ul>
+					</details>
+				</li>
+				<li class="w-1/12 pl-5"><a href="/login">로그인</a></li>
+				<li class="w-1/12 pl-5"><a href="/register">회원가입</a></li>
+				<li class="w-1/12 pl-5">
+					<a href="/cart">
+						<span>
+							<i class="fas fa-cart-shopping" aria-hidden="true"></i>
+						</span>
+						<span>카트</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="section h-full w-[80%] mx-auto">
+			<div class="mx-auto mt-14 h-full">
+				<div>
+					<ul class="flex">
+						<li
+							class="w-1/6 text-2xl pt-5 pl-3 fas fa-cart-shopping hover:text-blue-400"
+						>
+							<a href="/cart">장바구니</a>
+						</li>
+						<li
+							class="w-1/6 text-3xl pt-4 pr-5 text-lime-400 fa-sharp fa-solid fa-credit-card"
+						>
+							<a>주문결제</a>
+						</li>
+						<li class="w-1/6 text-2xl pt-5 pl-3 fa-sharp fa-solid fa-gift">
+							<a>주문완료</a>
+						</li>
+						<li class="w-1/3"></li>
+					</ul>
+				</div>
+				<hr />
+				<div class="w-full h-10"></div>
+				<div class="flex h-full">
+					<div class="w-[60%] h-2/3">
+						<div class="w-[95%] mx-auto mt-5 rounded-md shadow-2xl">
+							<p class="text-2xl pl-5 pt-5 text-slate-600">배송지정보</p>
+							<div class="space-x-1 flex pt-5 pl-5">
+								<div class="w-[15%] pt-2">
+									<label class="label text-lg" for="receiverName">이름</label>
+								</div>
+								<div class="w-[60%]">
+									<p class="control border border-2 rounded-md h-10">
+										<input
+											class="input w-[100%] h-9 pt-1 pl-3"
+											type="text"
+											placeholder="받는 분 이름을 입력해 주세요."
+											autocomplete="on"
+										/>
+									</p>
+								</div>
+							</div>
+							<div class="space-x-1 flex pt-5 pl-5">
+								<div class="w-[15%] pt-2">
+									<label class="label text-lg" for="receiverName">연락처</label>
+								</div>
+								<div class="w-[60%]">
+									<p class="control border border-2 rounded-md h-10">
+										<input
+											class="input w-[100%] h-9 pt-1 pl-3"
+											type="text"
+											placeholder="- 없이 입력해 주세요."
+											autocomplete="on"
+										/>
+									</p>
+								</div>
+							</div>
+							<div class="space-x-1 flex pt-5 pl-5">
+								<div class="w-[15%] pt-2">
+									<label class="label text-lg" for="receiverName">주소</label>
+								</div>
+								<div class="w-[40%]">
+									<p class="control border border-2 rounded-md h-10">
+										<input class="input w-[100%] h-9 pt-1 pl-3" />
+									</p>
+								</div>
+								<div class="w-[5%]"></div>
+								<button
+									class="button rounded-lg bg-blue-200 w-[14%] hover:bg-blue-400"
+									id="searchAddressButton"
+								>
+									주소찾기
+								</button>
+							</div>
+							<div class="space-x-1 flex pt-5 pl-5">
+								<div class="w-[15%] pt-2"></div>
+								<div class="w-[60%]">
+									<p class="control border border-2 rounded-md h-10">
+										<input class="input w-[100%] h-9 pt-1 pl-3" />
+									</p>
+								</div>
+							</div>
+							<div class="space-x-1 flex pt-2 pl-5">
+								<div class="w-[15%] pt-2"></div>
+								<div class="w-[60%]">
+									<p class="control border border-2 rounded-md h-10">
+										<input
+											class="input w-[100%] h-9 pt-1 pl-3"
+											type="text"
+											placeholder="상세주소를 입력해 주세요."
+											autocomplete="on"
+										/>
+									</p>
+								</div>
+							</div>
+							<div class="space-x-1 flex pt-5 pl-5 mb-5 pb-5">
+								<div class="w-[15%] pt-3">
+									<label class="label text-lg" for="receiverName"
+										>요청사항</label
+									>
+								</div>
+								<div class="field-body w-[60%] pt-2">
+									<div class="select control border border-2 rounded-md h-10">
+										<select
+											class="w-[100%] h-9 pt-1 pl-3"
+											id="requestSelectBox"
+										>
+											<option value="0">
+												배송시 요청사항을 선택해 주세요.
+											</option>
+											<option value="1" class="select-option">
+												직접 수령하겠습니다.
+											</option>
+											<option value="2" class="select-option">
+												배송 전 연락바랍니다.
+											</option>
+											<option value="3" class="select-option">
+												부재 시 경비실에 맡겨주세요.
+											</option>
+											<option value="4" class="select-option">
+												부재 시 문 앞에 놓아주세요.
+											</option>
+											<option value="5" class="select-option">
+												부재 시 택배함에 넣어주세요.
+											</option>
+											<option value="6" class="select-option">직접 입력</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="w-[40%] h-[46%] rounded-md shadow-2xl">
+						<div class="w-[90%] mx-auto mt-5 pt-3">
+							<div class="box order-summary">
+								<div
+									class="text-2xl pt-8 border-black border-b-2 text-slate-600"
+								>
+									<p>결제정보</p>
+								</div>
+
+								<div class="order-info">
+									<div class="info flex justify-between mt-5 text-2xl">
+										<p>주문상품</p>
+										<p class="products-title" id="productsTitle">/ 0개</p>
+									</div>
+									<div class="info flex justify-between my-5 text-2xl">
+										<p>상품총액</p>
+										<p id="productsTotal">0원</p>
+									</div>
+									<div class="info flex justify-between mb-5 text-2xl">
+										<p>배송비</p>
+										<p id="deliveryFee">0원</p>
+									</div>
+								</div>
+								<div
+									class="flex justify-between text-2xl pt-5 border-black border-t-2 text-slate-600"
+								>
+									<p class="total-label">총 결제금액</p>
+									<p class="total-price" id="orderTotal">0원</p>
+								</div>
+								<div class="purchase my-5 px-5 py-5">
+									<button
+										class="button hover:bg-cyan-500 font-extrabold text-2xl h-16 w-[100%] bg-cyan-300 rounded-lg"
+										id="checkoutButton"
+									>
+										결제하기
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
