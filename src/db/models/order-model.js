@@ -12,8 +12,30 @@ export class OrderModel {
 		return await Order.create(orderInfo);
 	}
 
+	async findByUser(userId) {
+		// DB에서 userId를 populate하기
+		const orders = await Order.find({}).populate({
+			path: 'userId',
+		});
+
+		// 사용자의 주문이 없으면, 빈 배열 반환
+		if (orders.length < 1) {
+			return orders;
+		}
+
+		// populated 주문 리스트(배열)를 filtering 하고 주문리스트(배열) 반환
+		return orders.filter((order) => order.userId._id == userId);
+	}
+
 	async findById(orderId) {
 		return await Order.findOne({ _id: orderId });
+	}
+
+	async update({ orderId, update }) {
+		const filter = { _id: orderId };
+		const option = { returnOriginal: false };
+
+		return await Order.findOneAndUpdate(filter, update, option);
 	}
 
 	async delete(orderId) {
