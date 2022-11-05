@@ -32,46 +32,81 @@
 	</head>
 	<body>
 		<!-- 헤더 -->
-		<nav
-			class="w-full bg-yellow-300 py-2"
-			role="navigation"
-			aria-label="main navigation"
-		>
-			<a
-				role="button"
-				class="navbar-burger"
-				aria-label="menu"
-				aria-expanded="false"
-				data-target="navbarBasicExample"
-			>
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
-			</a>
+		<nav class="w-full py-2">
 			<ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
-				<li class="w-1/12 pl-10">
-					<a href="/">
-						<span><i class="fa-solid fa-house"></i></span>
+				<li class="pl-10 my-auto text-xl">
+					<a href="../home/home.html">
+						<i class="fa-solid fa-house"></i>
 					</a>
 				</li>
-				<li class="w-2/3 pl-10">
-					<details>
-						<summary><a href="/">전체상품</a></summary>
-						<ul>
-							<li><a href="/">●일반돌</a></li>
-							<li><a href="/">●인센스홀더</a></li>
-							<li><a href="/">●디퓨저</a></li>
+				<li class="pl-10">
+					<button
+						class="text-black bg-white hover:bg-black hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+						type="button"
+						data-dropdown-toggle="dropdown"
+					>
+						카테고리
+						<svg
+							class="w-4 h-4 ml-2"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"
+							></path>
+						</svg>
+					</button>
+					<!-- Dropdown menu -->
+					<div
+						class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4"
+						id="dropdown"
+					>
+						<ul class="py-1" aria-labelledby="dropdown">
+							<li>
+								<a
+									href="#"
+									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+									>일반돌</a
+								>
+							</li>
+							<li>
+								<a
+									href="#"
+									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+									>인센스홀더</a
+								>
+							</li>
+							<li>
+								<a
+									href="#"
+									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+									>디퓨저</a
+								>
+							</li>
 						</ul>
-					</details>
+					</div>
 				</li>
-				<li class="w-1/12 pl-5"><a href="/login">로그인</a></li>
-				<li class="w-1/12 pl-5"><a href="/register">회원가입</a></li>
-				<li class="w-1/12 pl-5">
-					<a href="/cart">
+
+				<li class="w-1/12 pl-5 my-auto ml-auto">
+					<a href="../admin/admin.html">페이지관리</a>
+				</li>
+				<li class="w-1/12 pl-5 my-auto">
+					<a href="../account/account.html">계정관리</a>
+				</li>
+				<li class="w-1/12 pl-5 my-auto">
+					<a href="../login/login.html">로그인</a>
+				</li>
+				<li class="w-1/12 pl-5 my-auto">
+					<a href="../cart/cart.html">
 						<span>
 							<i class="fas fa-cart-shopping" aria-hidden="true"></i>
 						</span>
-						<span>카트</span>
+						<span> 카트</span>
 					</a>
 				</li>
 			</ul>
@@ -101,7 +136,10 @@
 								>
 									작은 돌멩이
 								</p>
-								<h1 class="priceTag text-3xl mt-5 font-bold">1,000,000원</h1>
+								<p>
+									<span class="priceTag text-3xl mt-5 font-bold">1,000,000</span
+									>원
+								</p>
 								<p class="description mt-10 mb-10">
 									★작고 귀여운 당신만의 애완돌★
 								</p>
