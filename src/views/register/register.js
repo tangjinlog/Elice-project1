@@ -1,27 +1,37 @@
-import * as Api from '/api.js';
-import { validateEmail } from '/useful-functions.js';
-const $ = (selector) => document.querySelector(selector);
+// import * as Api from '/api.js';
+// import { validateEmail } from '/useful-functions.js';
+// const $ = (selector) => document.querySelector(selector);
 
-// 요소(element), input 혹은 상수
-const fullNameInput = $('.name');
-const emailInput = $('.email');
-const passwordInput = $('.password');
-const passwordConfirmInput = $('.password-confirm');
-const submitButton = $('.submit-btn');
+// // 요소(element), input 혹은 상수
+// const fullNameInput = $('.name');
+// const emailInput = $('.email');
+// const passwordInput = $('.password');
+// const passwordConfirmInput = $('.password-confirm');
+// const submitButton = $('#submitBtn');
+// const testButton = document.querySelector('.testBtn');
+// testButton.addEventListener('click', () => {
+// 	alert('hi');
+// });
+const $ = (selector) => document.querySelector(selector);
+const submitButton = $('#submitBtn');
+const testButton = document.querySelector('.testBtn');
+
+submitButton.addEventListener('click', () => {
+	alert('hi');
+});
 
 //이벤트리스너
 // submitButton.addEventListener('click', handleSubmit);
 submitButton.addEventListener('click', (e) => {
 	alert('clicked');
-	e.preventDefault();
-	const fullName = fullNameInput.value;
-	const email = emailInput.value;
-	const password = passwordInput.value;
-	const passwordConfirm = passwordConfirmInput.value;
-	console.log(fullName);
-	console.log(email);
-	console.log(password);
-	console.log(passwordConfirm);
+	// const fullName = fullNameInput.value;
+	// const email = emailInput.value;
+	// const password = passwordInput.value;
+	// const passwordConfirm = passwordConfirmInput.value;
+	// console.log(fullName);
+	// console.log(email);
+	// console.log(password);
+	// console.log(passwordConfirm);
 });
 
 //함수
