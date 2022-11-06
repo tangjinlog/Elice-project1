@@ -19,9 +19,6 @@
 
 		<!-- 커스텀 css, js -->
 		<link rel="stylesheet" href="login.css" />
-		<script src="login.js" type="module" defer></script>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
 	</head>
 	<body>
 		<!-- 헤더 -->
@@ -114,7 +111,7 @@
 							<div class="h-10">
 								<input
 									type="text"
-									class="w-full h-full rounded border border-gray-300 pl-3"
+									class="email w-full h-full rounded border border-gray-300 pl-3"
 									placeholder="abc@example.com"
 								/>
 							</div>
@@ -124,14 +121,16 @@
 							<div class="h-10">
 								<input
 									type="password"
-									class="w-full h-full rounded border border-gray-300 pl-3"
+									class="password w-full h-full rounded border border-gray-300 pl-3"
 									placeholder="********"
 								/>
 							</div>
 						</div>
 
 						<div class="m-2 mt-8">
-							<button class="w-full h-10 rounded bg-teal-400 text-white">
+							<button
+								class="submit-btn w-full h-10 rounded bg-teal-400 text-white"
+							>
 								로그인하기
 							</button>
 						</div>
@@ -139,5 +138,8 @@
 				</div>
 			</div>
 		</section>
+		<script src="login.js" type="module"></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
 	</body>
 </html>
