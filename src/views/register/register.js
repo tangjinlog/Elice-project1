@@ -1,62 +1,29 @@
-// import * as Api from '/api.js';
-// import { validateEmail } from '/useful-functions.js';
-// const $ = (selector) => document.querySelector(selector);
-
-// // 요소(element), input 혹은 상수
-// const fullNameInput = $('.name');
-// const emailInput = $('.email');
-// const passwordInput = $('.password');
-// const passwordConfirmInput = $('.password-confirm');
-// const submitButton = $('#submitBtn');
-// const testButton = document.querySelector('.testBtn');
-// testButton.addEventListener('click', () => {
-// 	alert('hi');
-// });
+import * as Api from '/api.js';
+import { validateEmail } from '/useful-functions.js';
 const $ = (selector) => document.querySelector(selector);
-const submitButton = $('#submitBtn');
-const testButton = document.querySelector('.testBtn');
 
-submitButton.addEventListener('click', () => {
-	alert('hi');
-});
+// 요소(element), input 혹은 상수
+// const fullNameInput = $('#fullNameInput');
+// const emailInput = $('#emailInput');
+// const passwordInput = $('#passwordInput');
+// const passwordConfirmInput = $('#passwordConfirmInput');
+// const submitButton = $('#submitButton');
+const fullNameInput = $('.name');
+const emailInput = $('.email');
+const passwordInput = $('.password');
+const passwordConfirmInput = $('.password-confirm');
+const submitButton = $('.submit-btn');
 
 //이벤트리스너
-// submitButton.addEventListener('click', handleSubmit);
-submitButton.addEventListener('click', (e) => {
-	alert('clicked');
-	// const fullName = fullNameInput.value;
-	// const email = emailInput.value;
-	// const password = passwordInput.value;
-	// const passwordConfirm = passwordConfirmInput.value;
-	// console.log(fullName);
-	// console.log(email);
-	// console.log(password);
-	// console.log(passwordConfirm);
-});
-
-//함수
-function CheckEmail(str) {
-	var reg_email =
-		/^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-	if (!reg_email.test(str)) {
-		return false;
-	} else {
-		return true;
-	}
-}
+submitButton.addEventListener('click', handleSubmit);
 
 // 회원가입 진행
 async function handleSubmit(e) {
 	e.preventDefault();
-
 	const fullName = fullNameInput.value;
 	const email = emailInput.value;
 	const password = passwordInput.value;
 	const passwordConfirm = passwordConfirmInput.value;
-	console.log(fullName);
-	console.log(email);
-	console.log(password);
-	console.log(passwordConfirm);
 
 	// 잘 입력했는지 확인
 	const isFullNameValid = fullName.length >= 2;
