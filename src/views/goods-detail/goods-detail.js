@@ -6,10 +6,10 @@ const price = $('.priceTag').innerText;
 const description = $('.description').innerText;
 
 btnAddCart.addEventListener('click', () => {
-	window.localStorage.setItem('manufacturer', manufacturer);
-	window.localStorage.setItem('title', title);
-	window.localStorage.setItem('price', price);
-	window.localStorage.setItem('description', description);
+	let productData = { manufacturer, title, price, description };
+	productData = JSON.stringify(productData);
+	window.localStorage.setItem('1', productData);
+	alert('상품이 장바구니에 추가되었습니다');
 });
 
 const loadProductData = async () => {

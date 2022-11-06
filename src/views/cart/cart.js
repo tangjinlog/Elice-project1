@@ -5,9 +5,11 @@ const productPrice = $('.calculation');
 const regex = /[^0-9]/g;
 
 const loadCartList = async () => {
-	const title = window.localStorage.getItem('title');
-	const price = window.localStorage.getItem('price').replace(regex, ''); //가격표의 ,를 정규식으로 제거
-	productName.innerText = title;
+	let 돌멩이 = window.localStorage.getItem('1');
+	돌멩이 = JSON.parse(돌멩이);
+	console.log(돌멩이);
+	const price = 돌멩이.price.replace(regex, ''); //가격표의 ,를 정규식으로 제거
+	productName.innerText = 돌멩이.title;
 	productPrice.innerText = `${price}원 x ${productCount.value}개 = ${
 		parseInt(price) * parseInt(productCount.value)
 	}원`;
