@@ -11,7 +11,7 @@ const productRouter = Router();
 //const upload = multer({ dest: 'public/images' });
 //const unlinkFile = util.promisify(fs.unlink);
 
-// 제품 등록 api (아래는 /addproduct이지만, 실제로는 /api/productregister로 요청해야 함.)
+// 제품 등록 api
 productRouter.post('/addproduct', async (req, res, next) => {
 	try {
 		// // s3에 이미지 업로드
@@ -35,10 +35,9 @@ productRouter.post('/addproduct', async (req, res, next) => {
 });
 
 // 제품 목록 api
-// 전체 제품 목록을 가져옴 (배열 형태임)
+// 전체 제품 목록을 가져옴
 productRouter.get('/productlist', async function (req, res, next) {
 	try {
-		// 전체 제품 목록을 얻음
 		const totalProducts = await productService.getProducts();
 		// 제품 목록(배열)을 JSON 형태로 프론트에 보냄
 		res.status(200).json(totalProducts);
@@ -49,26 +48,28 @@ productRouter.get('/productlist', async function (req, res, next) {
 
 //카테고리별 제품 목록 api
 //category에 해당하는 제품 목록을 가져옴
-// productRouter.get('/productlist/category/:category', async function (req, res, next) {
-// 	try {
-// 		// category에 해당하는 제품 목록을 얻음
-// 		const { category } = req.params;
-// 		const products = await productService.getProductsByCategory(category);
-// 		// 제품 목록(배열)을 JSON 형태로 프론트에 보냄
-// 		res.status(200).json(products);
-// 	} catch (error) {
-// 		next(error);
-// 	}
-// });
+productRouter.get('/category/:category', async function (req, res, next) {
+	try {
+		// category에 해당하는 제품 목록을 얻음
+		const { category } = req.params;
+		const products = await productService.getProductsByCategory(category);
+		// 제품 목록(배열)을 JSON 형태로 프론트에 보냄
+		res.status(200).json(products);
+	} catch (error) {
+		next(error);
+	}
+});
 
 //제품 상세 api
 // 제품이름에 해당하는 제품 정보를 가져옴
 productRouter.get('/product', async function (req, res, next) {
 	try {
-		console.log(req.query);
 		const { name } = req.query;
+		console.log(req.query)
+		console.log(req.query.name)
 		const product = await productService.getProductByName(name);
 		// 제품 정보를 JSON 형태로 프론트에 보냄.
+		console.log(product)
 		res.status(200).json(product);
 	} catch (error) {
 		next(error);
@@ -77,7 +78,6 @@ productRouter.get('/product', async function (req, res, next) {
 
 productRouter.get('/product-id/:productId', async function (req, res, next) {
 	try {
-		console.log(req.params.id);
 		const product = await productService.getProductById(req.params.productId);
 		// 제품 정보를 JSON 형태로 프론트에 보냄.
 		res.status(200).json(product);
@@ -92,6 +92,22 @@ productRouter.get(
 		try {
 			// category에 해당하는 제품 목록을 얻음
 			const { price1: a, price2: b } = req.params;
+
+			const products = await productService.getProductByPrice(a, b);
+			// 제품 목록(배열)을 JSON 형태로 프론트에 보냄
+			res.status(200).json(products);
+		} catch (error) {
+			next(error);
+		}
+	},
+);
+
+productRouter.get(
+	'/productlist?price_gte=price1&price_lte=price2',
+	async function (req, res, next) {
+		try {
+			// category에 해당하는 제품 목록을 얻음
+			const { price1: a, price2: b } = req.query;
 
 			const products = await productService.getProductByPrice(a, b);
 			// 제품 목록(배열)을 JSON 형태로 프론트에 보냄
