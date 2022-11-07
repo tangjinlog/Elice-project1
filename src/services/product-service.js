@@ -1,4 +1,5 @@
 import { productModel } from '../db';
+import { categoryModel } from '../db';
 
 class ProductService {
 	// 본 파일의 맨 아래에서, ProductService(productModel) 하면, 이 함수의 인자로 전달됨
@@ -6,17 +7,25 @@ class ProductService {
 		this.productModel = productModel;
 	}
 
-	// 1. 제품 등록하기
+	// 1. 제품 등록하기 - 주의!! postman에서 테스트시, 수동으로 카테고리 생성 후 _id와 name 입력 필요
+	//  프론트에서 카테고리 아이디와 이름을 별도로 전달해주고 있으므로!!
+
 	async addProduct(productInfo) {
 		// 객체 destructuring
-		const { name } = productInfo;
+		const { name, category } = productInfo;
 
 		// 제품명 중복 확인
-		const product = await this.productModel.findByName(name);
-		if (product) {
+		const existPproduct = await this.productModel.findByName(name);
+		if (existPproduct) {
 			throw new Error(
 				'이 제품명은 현재 사용중입니다. 다른 제품명을 입력해 주세요.',
 			);
+		}
+		// 카테고리명 이용 조회 후 신규 카테고리일 경우 자동 생성
+		const existCategory = await categoryModel.findByName(category.name);
+		if (!existCategory) {
+			const createdNewCategory = await categoryModel.create(category.name);
+			category._id = createdNewCategory._id.toSrting();
 		}
 
 		// db에 저장
@@ -45,11 +54,11 @@ class ProductService {
 		return totalProduct;
 	}
 
-	// // category에 해당하는 제품 목록을 받음.
-	// async getProductsByCategory(category) {
-	//   const products = await this.productModel.findByCategory(category);
-	//   return products;
-	// }
+	// category에 해당하는 제품 목록을 받음.
+	async getProductsByCategory(category) {
+		const products = await this.productModel.findByCategory(category);
+		return products;
+	}
 
 	// id에 해당하는 제품을 받음.
 	async getProductById(_id) {

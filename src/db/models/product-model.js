@@ -8,44 +8,46 @@ export class ProductModel {
 
 	// 모든제품 가져오기
 	async findAll() {
-		return await Product.find({});
+		return await Product.find({}).populate('category');
 	}
 
 	// 해당 제품 _id로 가져오기
 	async findById(_id) {
-		return await Product.findOne({ _id });
+		return await Product.findOne({ _id }).populate('category');
 		// return await Product.findById({ _id }); //하나의 document를 받아옴
 	}
 
 	// 해당 제품이름으로 가져오기
 	async findByName(name) {
-		return await Product.findOne({ name });
+		return await Product.findOne({ name }).populate('category');
 	}
 
 	// 해당 제품크기로 가져오기
 	async findBySize(size) {
-		return await Product.find({ size });
+		return await Product.find({ size }).populate('category');
 	}
 
 	// 해당 제품색상으로 가져오기
 	async findByColor(color) {
-		return await Product.find({ color });
+		return await Product.find({ color }).populate('category');
 	}
 
 	// 해당 제품가격으로 가져오기
 	async findByPrice(price1, price2) {
-		return await Product.find({ price: { $gte: price1, $lte: price2 } });
+		return await Product.find({
+			price: { $gte: price1, $lte: price2 },
+		}).populate('category');
 	}
 
 	// 무료배송여부로 가져오기
 	async findByFreeDelivery(boolean) {
-		return await Product.find({ free_delivery: boolean });
+		return await Product.find({ free_delivery: boolean }).populate('category');
 	}
 
-	//   // 해당 제품카테고리로 가져오기
-	// async findByCategory(category) {
-	//   return await Product.find({ category });
-	// }
+	// 해당 제품카테고리로 가져오기
+	async findByCategory(category) {
+		return await Product.find({ category });
+	}
 
 	//-------상품 추가 -------
 	async create(productInfo) {
@@ -59,12 +61,14 @@ export class ProductModel {
 		const filter = { _id };
 		const option = { returnOriginal: false };
 
-		return await Product.findOneAndUpdate(filter, updateInfo, option);
+		return await Product.findOneAndUpdate(filter, updateInfo, option).populate(
+			'category',
+		);
 	}
 
 	//-------상품 삭제 -------
 	async delete(_id) {
-		return Product.deleteOne(_id);
+		return Product.deleteOne(_id).populate('category');
 	}
 }
 
