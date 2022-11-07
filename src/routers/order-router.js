@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import is from '@sindresorhus/is';
+// import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import { loginRequired } from '../middlewares';
 import { orderService } from '../services';
@@ -10,13 +10,13 @@ const orderRouter = Router();
 // 주문 추가 api
 orderRouter.post('/order', loginRequired, async (req, res, next) => {
 	try {
-		// Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
-		// application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
-		if (is.emptyObject(req.body)) {
-			throw new Error(
-				'headers의 Content-Type을 application/json으로 설정해주세요',
-			);
-		}
+		// // Content-Type: application/json 설정을 안 한 경우, 에러를 만들도록 함.
+		// // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
+		// if (is.emptyObject(req.body)) {
+		// 	throw new Error(
+		// 		'headers의 Content-Type을 application/json으로 설정해주세요',
+		// 	);
+		// }
 
 		// login-required 미들웨어의 요청으로부터 로그인된 userId를 가져옴
 		const userId = req.currentUserId;
@@ -77,12 +77,12 @@ orderRouter.get('/orderlist/user', loginRequired, async (req, res, next) => {
 orderRouter.patch('/orders/:orderId', loginRequired, async (req, res, next) => {
 	try {
 		// content-type 을 application/json 로 프론트에서
-		// 설정 안 하고 요청하면, body가 비어 있게 됨.
-		if (is.emptyObject(req.body)) {
-			throw new Error(
-				'headers의 Content-Type을 application/json으로 설정해주세요',
-			);
-		}
+		// // 설정 안 하고 요청하면, body가 비어 있게 됨.
+		// if (is.emptyObject(req.body)) {
+		// 	throw new Error(
+		// 		'headers의 Content-Type을 application/json으로 설정해주세요',
+		// 	);
+		// }
 
 		// login-required 미들웨어의 요청으로부터 로그인된 userId를 가져옴
 		const userId = req.currentUserId;
@@ -135,20 +135,8 @@ orderRouter.delete(
 	loginRequired,
 	async (req, res, next) => {
 		try {
-			// 삭제 권한 확인
-			// login-required 미들웨어의 요청으로부터 로그인된 userId를 가져옴
-			const userId = req.currentUserId;
-
 			// params로부터 orderId 가져옴
 			const { orderId } = req.params;
-
-			// orderId에 해당하는 order를 확인
-			let order = await orderService.getOrderById(orderId);
-
-			// 로그인된 사용자가, 해당 주문의 소유자인지 확인
-			if (order.userId != userId) {
-				throw new Error('주문 삭제 권한이 없습니다. 다시 한 번 확인해주세요.');
-			}
 
 			// 삭제 시도
 			const deleteResult = await orderService.deleteOrder(orderId);
