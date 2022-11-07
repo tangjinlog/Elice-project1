@@ -1,5 +1,4 @@
 import { navTemplate } from '../common/nav.js';
-console.log(navTemplate)
 /* nav Template */
 function addNav() {
 	const header = document.querySelector('.headerNav');
@@ -111,12 +110,10 @@ function itemArrow() {
 	itemListCon.appendChild(cloneFirst);
 	let index = 0;
 	setInterval(() => {
-		console.log('ha');
 		if (index == 0) {
 			index = 1;
 			itemListCon.style.transition = `${0.5}s ease-out`;
 		}
-		console.log(index);
 		itemListCon.style.marginLeft = `${-index * window.innerWidth}px`;
 		index++;
 
