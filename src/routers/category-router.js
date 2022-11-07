@@ -1,4 +1,3 @@
-// import is from '@isindresorhus/is';
 import is from '@sindresorhus/is';
 import { Router } from 'express';
 // import { adminOnly, loginRequired } from '../services';
@@ -32,7 +31,7 @@ categoryRouter.post(
 	},
 );
 
-// 2. 전체 카테고리 목록 조회 api
+// 2. 전체 카테고리 목록 조회
 categoryRouter.get('/categories', async function (req, res, next) {
 	try {
 		const categories = await categoryService.getAllCategories();
@@ -43,32 +42,42 @@ categoryRouter.get('/categories', async function (req, res, next) {
 	}
 });
 
-// 3-1. 카데고리 _id로 조회 api
-categoryRouter.get('/category-id/:categoryId', async function (req, res, next) {
-	try {
-		const { categoryId } = req.params;
-		const category = await categoryService.findCategoryById(categoryId);
-		res.status(200).json(category);
-	} catch (error) {
-		next(error);
-	}
-});
-
-// 4. 카테고리 정보 수정
-categoryRouter.patch(
-	'edit-category/:categoryId',
-	/*loginRequired, adminRequired,*/ async function (req, res, next) {
+// 3-1. _id로 카데고리 조회(회원)
+categoryRouter.get(
+	'/categories/:categoryId',
+	/*loginRequired, */ async function (req, res, next) {
 		try {
-			// req.params 으로부터 categoryId 추출
 			const { categoryId } = req.params;
+			const categoryData = await categoryService.findCategoryById(categoryId);
+			res.status(200).json(categoryData);
+		} catch (error) {
+			next(error);
+		}
+	},
+);
 
-			// req.body 로부터 업데이트할 카테고리 정보 추출.
-			// const { name } = req.body;
+// 4. _id로 카테고리 수정(admin)
+categoryRouter.patch(
+	'/categories/:categoryId',
+	/*adminRequired,*/ async function (req, res, next) {
+		try {
+			if (is.emptyObject(req.body)) {
+				throw new Error(
+					'headers의 Content-Type을 application/json으로 설정해주세요.',
+				);
+			}
+			const { categoryId } = req.params;
+			const { name, description } = req.body;
+
+			const updateInfo = {
+				...(name && { name }),
+				...(description && { description }),
+			};
 
 			// 카테고리 정보 업데이트
 			const updatedCategoryInfo = await categoryService.editCategory(
 				categoryId,
-				req.body,
+				updateInfo,
 			);
 
 			// 업데이트된 카테고리 데이터를 프론트 json형태로 전달
@@ -79,15 +88,15 @@ categoryRouter.patch(
 	},
 );
 
-// 5. 카데고리 삭제
+// 5. _id로 카데고리 삭제 (회원)
 categoryRouter.delete(
-	'delete-category/:categoryId',
+	'/categories/:categoryId',
 	async function (req, res, next) {
 		try {
 			const { categoryId } = req.params;
-			const delCategory = await categoryService.deleteCategory(categoryId);
+			const deleteCategoryResult = await categoryService.deleteCategory(categoryId);
 
-			res.status(201).json(delCategory);
+			res.status(201).json(deleteCategoryResult);
 		} catch (err) {
 			next(err);
 		}
