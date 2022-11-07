@@ -1,3 +1,12 @@
+import { navTemplate } from '../common/nav.js';
+
+/* nav Template */
+function addNav() {
+	const header = document.querySelector('.headerNav');
+	header.innerHTML = navTemplate();
+}
+addNav();
+
 /* modal */
 const modal = `
   <div class="modalBackground flex justify-center items-center absolute w-full h-full inset-0 bg-black/[0.25]">

@@ -1,3 +1,12 @@
+import { navTemplate } from '../common/nav.js';
+
+/* nav Template */
+function addNav() {
+	const header = document.querySelector('.headerNav');
+	header.innerHTML = navTemplate();
+}
+addNav();
+
 //요소 모음
 const option_list = document.getElementById('option_list');
 const searchBtn = document.querySelector('.search-btn');
@@ -39,8 +48,8 @@ async function searchGoods(e) {
 }
 
 /* product template */
-function productTemplate(image,name,price) {
-  return `
+function productTemplate(image, name, price) {
+	return `
     <div class="productItem flex-col w-full h-full bg-slate-200">
       <div class="grow w-full">
           <img src="${image}" alt="상품이미지">
@@ -56,17 +65,17 @@ function productTemplate(image,name,price) {
 async function productAll() {
 	const response = await fetch('/api/productlist');
 	const result = await response.json();
-  const productCon = document.querySelector('.productCon');
+	const productCon = document.querySelector('.productCon');
 
 	console.log(result);
 
-  result.map(e=>{
-    const name = e.name;
-    const price = e.price;
-    const image = e.image ? e.image : '../images/no-image.png'
-    const productItem = productTemplate(image, name, price)
-    productCon.innerHTML += productItem
-  })
+	result.map((e) => {
+		const name = e.name;
+		const price = e.price;
+		const image = e.image ? e.image : '../images/no-image.png';
+		const productItem = productTemplate(image, name, price);
+		productCon.innerHTML += productItem;
+	});
 }
 
 // GET / api / productlist;

@@ -4,6 +4,14 @@ const manufacturer = $('.manufacturer').innerText;
 const title = $('.title').innerText;
 const price = $('.priceTag').innerText;
 const description = $('.description').innerText;
+import { navTemplate } from '../common/nav.js';
+
+/* nav Template */
+function addNav() {
+	const header = document.querySelector('.headerNav');
+	header.innerHTML = navTemplate();
+}
+addNav();
 
 btnAddCart.addEventListener('click', () => {
 	let productData = { manufacturer, title, price, description };
