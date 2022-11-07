@@ -2,7 +2,7 @@ import {redirectMain} from '/permission.js';
 import * as Api from '/api.js';
 import store from '../cart/store.js';
 import { addCommas, searchAddressByDaumPost } from '/useful-functions.js';
-import { navTemplate } from '../common/nav.js';
+import { navTemplate } from '/common/nav.js';
 
 /* nav Template */
 function addNav() {

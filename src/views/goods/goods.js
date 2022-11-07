@@ -1,4 +1,4 @@
-import { navTemplate } from '../common/nav.js';
+import { navTemplate } from '/common/nav.js';
 
 /* nav Template */
 function addNav() {

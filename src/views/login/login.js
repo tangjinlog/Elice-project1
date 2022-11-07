@@ -1,7 +1,7 @@
 import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 const $ = (selector) => document.querySelector(selector);
-import { navTemplate } from '../common/nav.js';
+import { navTemplate } from '/common/nav.js';
 
 /* nav Template */
 function addNav() {

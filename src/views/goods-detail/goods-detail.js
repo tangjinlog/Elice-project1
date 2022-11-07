@@ -4,7 +4,7 @@ const manufacturer = $('.manufacturer').innerText;
 const title = $('.title').innerText;
 const price = $('.priceTag').innerText;
 const description = $('.description').innerText;
-import { navTemplate } from '../common/nav.js';
+import { navTemplate } from '/common/nav.js';
 
 /* nav Template */
 function addNav() {
