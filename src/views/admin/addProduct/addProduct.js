@@ -7,13 +7,16 @@ function addNav() {
 }
 addNav();
 
-const keywordCon = document.querySelector('.addKeyword');
-const addBtn = document.querySelector('.addKeywordBtn');
-const input = document.querySelector('.imgInput');
+/* 참조함수 */
+const $ = (selector) => document.querySelector(selector);
+
+const keywordCon = $('.addKeyword');
+const addBtn = $('.addKeywordBtn');
+const input = $('.imgInput');
 
 /* image upload */
 function imgPathDisplay() {
-	const preview = document.querySelector('.imgPath');
+	const preview = $('.imgPath');
 	const curFiles = input.files;
 	console.log(curFiles);
 	/* 업로드 클릭시 초기화 */
@@ -43,14 +46,15 @@ input.addEventListener('change', imgPathDisplay);
 addBtn.addEventListener('click', addKeyword);
 
 function addKeyword(e) {
+	const self = this;
 	/* 자동이동방지 */
 	e.preventDefault();
-	let keywordInput = document.querySelector('.keywordInput');
+	let keywordInput = $('.keywordInput');
 	const value = keywordInput.value;
 	/* keyword 템플릿 */
 	const keyword = `
     <div class='item'>
-      <div class="flex bg-neutral-200/[0.55] rounded-lg mr-2">
+      <div class="flex bg-neutral-200/[0.55] rounded-lg">
         <span class="px-2">${value}</span>
         <span class="px-2"><i class='deleteIcon fa fa-times'></i></span>
       </div>
@@ -66,5 +70,11 @@ function addKeyword(e) {
 
 /* 키워드삭제 */
 function deleteKeyword(e) {
-	this.parentNode.parentNode.parentNode.remove();
+	let parentTag = e.target;
+	for (
+		;
+		parentTag.classList.contains('item') != true;
+		parentTag = parentTag.parentElement
+	);
+	parentTag.remove();
 }
