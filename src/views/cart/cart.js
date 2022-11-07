@@ -1,3 +1,12 @@
+import { navTemplate } from '../common/nav.js';
+
+/* nav Template */
+function addNav() {
+	const header = document.querySelector('.headerNav');
+	header.innerHTML = navTemplate();
+}
+addNav();
+
 const $ = (selector) => document.querySelector(selector);
 const productName = $('.productName');
 const productCount = $('.productCount');

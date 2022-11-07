@@ -1,6 +1,14 @@
 import * as Api from '/api.js';
 import { validateEmail } from '/useful-functions.js';
 const $ = (selector) => document.querySelector(selector);
+import { navTemplate } from '../common/nav.js';
+
+/* nav Template */
+function addNav() {
+	const header = document.querySelector('.headerNav');
+	header.innerHTML = navTemplate();
+}
+addNav();
 
 // 요소(element), input 혹은 상수
 // const fullNameInput = $('#fullNameInput');
