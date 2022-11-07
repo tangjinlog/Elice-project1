@@ -8,7 +8,7 @@ class ProductService {
 	}
 
 	// 1. 제품 등록하기 - 주의!! postman에서 테스트시, 수동으로 카테고리 생성 후 _id와 name 입력 필요
-  //  프론트에서 카테고리 아이디와 이름을 별도로 전달해주고 있으므로!!
+	//  프론트에서 카테고리 아이디와 이름을 별도로 전달해주고 있으므로!!
 
 	async addProduct(productInfo) {
 		// 객체 destructuring
@@ -22,11 +22,11 @@ class ProductService {
 			);
 		}
 		// 카테고리명 이용 조회 후 신규 카테고리일 경우 자동 생성
-    const existCategory = await categoryModel.findByName(category.name);
-    if (!existCategory) {
-      const createdNewCategory = await categoryModel.create(category.name);
-      category._id = createdNewCategory._id.toString();
-    }
+		const existCategory = await categoryModel.findByName(category.name);
+		if (!existCategory) {
+			const createdNewCategory = await categoryModel.create(category.name);
+			category._id = createdNewCategory._id.toSrting();
+		}
 
 		// db에 저장
 		const createdNewProduct = await this.productModel.create(productInfo);
@@ -54,11 +54,11 @@ class ProductService {
 		return totalProduct;
 	}
 
-	// // category에 해당하는 제품 목록을 받음.
-	// async getProductsByCategory(category) {
-	//   const products = await this.productModel.findByCategory(category);
-	//   return products;
-	// }
+	// category에 해당하는 제품 목록을 받음.
+	async getProductsByCategory(category) {
+		const products = await this.productModel.findByCategory(category);
+		return products;
+	}
 
 	// id에 해당하는 제품을 받음.
 	async getProductById(_id) {

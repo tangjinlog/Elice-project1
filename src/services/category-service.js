@@ -1,14 +1,17 @@
-import { categoryModel } from '../db';
+import { categoryModel, productModel } from '../db';
 
 class CategoryService {
-	constructor(categoryModel) {
+	constructor(categoryModel, productModel) {
 		this.categoryModel = categoryModel;
+		this.productModel = productModel;
 	}
 
 	// 1. 신규 카데고리 등록하기
-	async addCategory(categoryName) {
-		// 카데고리명 중복 확인 
-		const existCategory = await this.categoryModel.findByName(categoryName);
+	async addCategory(categoryInfo) {
+		const { name, description } = categoryInfo;
+
+		// 카데고리명 중복 확인
+		const existCategory = await this.categoryModel.findByName(name);
 		if (existCategory) {
 			throw new Error(
 				'이 카데고리는 이미 등록되어있습니다. 다른 카데고리명을 입력해 주세요.',
@@ -16,7 +19,7 @@ class CategoryService {
 		}
 
 		// db에 저장
-		const createdNewCategory = await this.categoryModel.create(categoryName);
+		const createdNewCategory = await this.categoryModel.create(categoryInfo);
 
 		// 정상적으로 등록됐는지 체크
 		const newCategoryCheck = await this.categoryModel.findById(
@@ -25,7 +28,7 @@ class CategoryService {
 		if (!newCategoryCheck) {
 			const error = new Error('카데고리가 정상적으로 등록되지 않았습니다.');
 			error.name = 'InternalServerError';
-			throw error;
+			throw error; //코드리뷰 - 에러코드로 프론트에 전달해보세요
 		}
 		return createdNewCategory;
 	}
@@ -35,11 +38,14 @@ class CategoryService {
 		return await this.categoryModel.findAll();
 	}
 
-	// 3. 카테고리 이름으로 조회하기
-	async findCategoryByName(categoryName) {
+	// 3. 카데고리 이름으로 조회하기
+	async findCategoryById(categoryName) {
+		//상품 등록 여부 확인
 		const category = await this.categoryModel.findByName(categoryName);
 		if (!category) {
-			const error = new Error('등록되어있지 않은 카테고리입니다.');
+			const error = new Error(
+				'등록되어있지 않은 카테고리입니다. 카데고리 id를 다시 확인해주세요.',
+			);
 			error.name = 'NotFound';
 			throw error;
 		}
@@ -51,7 +57,9 @@ class CategoryService {
 		//상품 등록 여부 확인
 		const category = await this.categoryModel.findById(categoryId);
 		if (!category) {
-			const error = new Error('등록되어있지 않은 카테고리입니다.');
+			const error = new Error(
+				'등록되어있지 않은 카테고리입니다. 카데고리 이름을 다시 확인해주세요.',
+			);
 			error.name = 'NotFound';
 			throw error;
 		}
@@ -60,28 +68,30 @@ class CategoryService {
 
 	// 4. 카테고리 수정
 	async editCategory(categoryId, updateInfo) {
-		const category = await this.categoryModel.findById(categoryId);
-
-		// db에서 찾지 못한 경우, 에러 메시지 반환
-		if (!category) {
-			const error = new Error('등록되어있지 않은 카테고리입니다.');
-			error.name = 'NotFound';
-			throw error;
-		}
-
-		// 업데이트 진행
-		updatedCategory = await this.categoryModel.update(categoryId, updateInfo);
-
+		// 업데이트 진행 - 안되면 주석처리 코드로 바꾸기
+		const updatedCategory = await this.categoryModel.update({
+			categoryId,
+			updateInfo,
+		});
+		// const updatedCategory = await this.categoryModel.update({categoryId, update: updateInfo});
 		return updatedCategory;
 	}
 
 	//5. 카데고리 삭제
 	async deleteCategory(categoryId) {
-		const category = await this.categoryModel.findByName(categoryId);
-		if (!category) {
-			throw new Error('존재하지 않는 상품입니다.');
+		const product = await this.productModel.findById(categoryId);
+		if (product) {
+			throw new Error(
+				`${categoryId} 카데고리에 등록되어 있는 상품이 있습니다. 등록된 상품 이동 후, 카데고리를 삭제해주세요.`,
+			);
 		}
-		return await this.categoryModel.delete(categoryId);
+		const { deleteCount } = await this.categoryModel.delete(categoryId);
+
+		if (deleteCount === 0) {
+			throw new Error(`${categoryId} 카데고리 삭제에 실패했습니다.`);
+		}
+
+		return { result: 'success' };
 	}
 }
 

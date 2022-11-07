@@ -34,7 +34,9 @@ export class ProductModel {
 
 	// 해당 제품가격으로 가져오기
 	async findByPrice(price1, price2) {
-		return await Product.find({ price: { $gte: price1, $lte: price2 } }).populate('category');
+		return await Product.find({
+			price: { $gte: price1, $lte: price2 },
+		}).populate('category');
 	}
 
 	// 무료배송여부로 가져오기
@@ -42,10 +44,10 @@ export class ProductModel {
 		return await Product.find({ free_delivery: boolean }).populate('category');
 	}
 
-	//   // 해당 제품카테고리로 가져오기
-	// async findByCategory(category) {
-	//   return await Product.find({ category });
-	// }
+	// 해당 제품카테고리로 가져오기
+	async findByCategory(category) {
+		return await Product.find({ category });
+	}
 
 	//-------상품 추가 -------
 	async create(productInfo) {
@@ -59,7 +61,9 @@ export class ProductModel {
 		const filter = { _id };
 		const option = { returnOriginal: false };
 
-		return await Product.findOneAndUpdate(filter, updateInfo, option).populate('category');
+		return await Product.findOneAndUpdate(filter, updateInfo, option).populate(
+			'category',
+		);
 	}
 
 	//-------상품 삭제 -------

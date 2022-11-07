@@ -1,16 +1,29 @@
+// import is from '@isindresorhus/is';
+import is from '@sindresorhus/is';
 import { Router } from 'express';
+// import { adminOnly, loginRequired } from '../services';
 import { categoryService } from '../services';
-// import { loginRequired, adminRequired } from '../middlewares'
 
 const categoryRouter = Router();
 
-// 1. 신규 카데고리 등록 api
+// 1. 신규 카데고리 생성(admin)
 categoryRouter.post(
-	'/addcategory',
-	/*loginRequired, adminRequired,*/ async function (req, res, next) {
+	'/category',
+	/*adminOnly,*/ async function (req, res, next) {
 		try {
-			const { name } = req.body;
-			const newCategory = await categoryService.addCategory(name);
+			// application/json 설정을 프론트에서 안하면, body가 비어 있게 됨.
+			if (is.emptyObject(req.body)) {
+				throw new Error(
+					'headers의 Content-Type을 application/json으로 설정해주세요.',
+				);
+			}
+
+			// req(request)에서 데이터 가져오기
+			const { name, discription } = req.body;
+			const newCategory = await categoryService.addCategory({
+				name,
+				discription,
+			});
 
 			res.status(201).json(newCategory);
 		} catch (error) {
@@ -22,20 +35,9 @@ categoryRouter.post(
 // 2. 전체 카테고리 목록 조회 api
 categoryRouter.get('/categories', async function (req, res, next) {
 	try {
-		const categories = await categoryService.getAllCategories(); 
+		const categories = await categoryService.getAllCategories();
 
 		res.status(200).json(categories);
-	} catch (error) {
-		next(error);
-	}
-});
-
-// 3. 카테고리 이름으로 조회 api
-categoryRouter.get('/category/:categoryName', async function (req, res, next) {
-	try {
-		const { categoryName } = req.params;
-		const category = await categoryService.findCategoryByName(categoryName);
-		res.status(200).json(category);
 	} catch (error) {
 		next(error);
 	}
@@ -53,12 +55,12 @@ categoryRouter.get('/category-id/:categoryId', async function (req, res, next) {
 });
 
 // 4. 카테고리 정보 수정
-categoryRouter.patch('edit-category/:categoryId',
+categoryRouter.patch(
+	'edit-category/:categoryId',
 	/*loginRequired, adminRequired,*/ async function (req, res, next) {
 		try {
-
 			// req.params 으로부터 categoryId 추출
-			const {categoryId} = req.params;
+			const { categoryId } = req.params;
 
 			// req.body 로부터 업데이트할 카테고리 정보 추출.
 			// const { name } = req.body;
@@ -78,15 +80,18 @@ categoryRouter.patch('edit-category/:categoryId',
 );
 
 // 5. 카데고리 삭제
-categoryRouter.delete('delete-category/:categoryId', async function (req, res, next) {
-	try {
-		const {categoryId} = req.params;
-		const delCategory = await categoryService.deleteCategory(categoryId);
+categoryRouter.delete(
+	'delete-category/:categoryId',
+	async function (req, res, next) {
+		try {
+			const { categoryId } = req.params;
+			const delCategory = await categoryService.deleteCategory(categoryId);
 
-		res.status(201).json(delCategory);
-	} catch (err) {
-		next(err);
-	}
-});
+			res.status(201).json(delCategory);
+		} catch (err) {
+			next(err);
+		}
+	},
+);
 
 export { categoryRouter };
