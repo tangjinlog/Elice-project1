@@ -1,12 +1,10 @@
 import { navTemplate } from '/common/nav.js';
-
 /* nav Template */
 function addNav() {
 	const header = document.querySelector('.headerNav');
 	header.innerHTML = navTemplate();
 }
 addNav();
-
 //요소 모음
 const option_list = document.getElementById('option_list');
 const searchBtn = document.querySelector('.search-btn');
@@ -52,11 +50,11 @@ function productTemplate(image, name, price) {
 	return `
     <div class="productItem flex-col w-full h-full bg-slate-200">
       <div class="grow w-full">
-          <img src="${image}" alt="상품이미지">
+          <img class="image" src="${image}" alt="상품이미지">
       </div>
-      <p>${name}</p>
+      <p class="name">${name}</p>
       <div>
-        <span>${price}원</span>
+        <span class="price">${price}원</span>
       </div>
     </div>
   `;
@@ -66,7 +64,6 @@ async function productAll() {
 	const response = await fetch('/api/productlist');
 	const result = await response.json();
 	const productCon = document.querySelector('.productCon');
-
 	console.log(result);
 
 	result.map((e) => {
@@ -74,10 +71,28 @@ async function productAll() {
 		const price = e.price;
 		const image = e.image ? e.image : '../images/no-image.png';
 		const productItem = productTemplate(image, name, price);
+		let detailArr = [];
+
 		productCon.innerHTML += productItem;
+
+		const images = document.querySelectorAll('.image');
+		images.forEach((e) => {
+			e.addEventListener('click', (e) => {
+				const image = e.target.src;
+				console.log(e.target);
+				const name = e.target.parentNode.nextElementSibling.innerText;
+				const price = parseInt(
+					e.target.parentElement.nextElementSibling.nextElementSibling
+						.firstElementChild.innerText,
+				);
+				console.log(image, name, price);
+				const details = { image, name, price };
+				detailArr.push(details);
+				const value = JSON.stringify(detailArr);
+				window.localStorage.setItem('details', value);
+			});
+		});
 	});
 }
-
-// GET / api / productlist;
 
 productAll();
