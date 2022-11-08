@@ -1,5 +1,4 @@
 import { categoryModel, productModel } from '../db';
-
 class CategoryService {
 	constructor(categoryModel, productModel) {
 		this.categoryModel = categoryModel;
@@ -8,11 +7,11 @@ class CategoryService {
 
 	// 1. 신규 카데고리 등록하기
 	async addCategory(categoryInfo) {
-		const { name, description } = categoryInfo;
+		const { name } = categoryInfo;
 
 		// 카데고리명 중복 확인
-		const existCategory = await this.categoryModel.findByName(name);
-		if (existCategory) {
+		const isExistCategory = await this.categoryModel.findByName(name);
+		if (isExistCategory) {
 			throw new Error(
 				'이 카데고리는 이미 등록되어있습니다. 다른 카데고리명을 입력해 주세요.',
 			);
@@ -39,10 +38,9 @@ class CategoryService {
 	}
 
 	// 3. 카데고리 이름으로 조회하기
-	async findCategoryById(categoryName) {
-		//상품 등록 여부 확인
-		const category = await this.categoryModel.findByName(categoryName);
-		if (!category) {
+	async findCategoryByName(categoryName) {
+		const isExistCategory = await this.categoryModel.findByName(categoryName);
+		if (!isExistCategory) {
 			const error = new Error(
 				'등록되어있지 않은 카테고리입니다. 카데고리 id를 다시 확인해주세요.',
 			);
@@ -54,9 +52,8 @@ class CategoryService {
 
 	// 3-1. 카데고리 _id로 조회하기
 	async findCategoryById(categoryId) {
-		//상품 등록 여부 확인
-		const category = await this.categoryModel.findById(categoryId);
-		if (!category) {
+		const isExistCategory = await this.categoryModel.findById(categoryId);
+		if (!isExistCategory) {
 			const error = new Error(
 				'등록되어있지 않은 카테고리입니다. 카데고리 이름을 다시 확인해주세요.',
 			);
@@ -68,21 +65,23 @@ class CategoryService {
 
 	// 4. 카테고리 수정
 	async editCategory(categoryId, updateInfo) {
-		// 업데이트 진행 - 안되면 주석처리 코드로 바꾸기
+		// 업데이트 진행
 		const updatedCategory = await this.categoryModel.update({
 			categoryId,
 			updateInfo,
 		});
-		// const updatedCategory = await this.categoryModel.update({categoryId, update: updateInfo});
+		console.log(updatedCategory);
 		return updatedCategory;
 	}
 
 	//5. 카데고리 삭제
 	async deleteCategory(categoryId) {
-		const product = await this.productModel.findById(categoryId);
-		if (product) {
+		//상품 등록 여부 확인
+		const isExistProduct = await this.productModel.findOneByCategoryId(categoryId);
+		console.log(product)
+		if (isExistProduct) {
 			throw new Error(
-				`${categoryId} 카데고리에 등록되어 있는 상품이 있습니다. 등록된 상품 이동 후, 카데고리를 삭제해주세요.`,
+				`_id:${categoryId} 카데고리에 등록되어 있는 상품이 있습니다. 등록된 상품 이동 후, 카데고리를 삭제해주세요.`,
 			);
 		}
 		const { deleteCount } = await this.categoryModel.delete(categoryId);
@@ -95,6 +94,6 @@ class CategoryService {
 	}
 }
 
-const categoryService = new CategoryService(categoryModel);
+const categoryService = new CategoryService(categoryModel, productModel);
 
 export { categoryService };

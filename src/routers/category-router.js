@@ -18,10 +18,10 @@ categoryRouter.post(
 			}
 
 			// req(request)에서 데이터 가져오기
-			const { name, discription } = req.body;
+			const { name, description } = req.body;
 			const newCategory = await categoryService.addCategory({
 				name,
-				discription,
+				description,
 			});
 
 			res.status(201).json(newCategory);
@@ -44,7 +44,7 @@ categoryRouter.get('/categories', async function (req, res, next) {
 
 // 3-1. _id로 카데고리 조회(회원)
 categoryRouter.get(
-	'/categories/:categoryId',
+	'/category/:categoryId',
 	/*loginRequired, */ async function (req, res, next) {
 		try {
 			const { categoryId } = req.params;
@@ -58,7 +58,7 @@ categoryRouter.get(
 
 // 4. _id로 카테고리 수정(admin)
 categoryRouter.patch(
-	'/categories/:categoryId',
+	'/category/:categoryId',
 	/*adminRequired,*/ async function (req, res, next) {
 		try {
 			if (is.emptyObject(req.body)) {
@@ -73,7 +73,8 @@ categoryRouter.patch(
 				...(name && { name }),
 				...(description && { description }),
 			};
-
+			console.log(categoryId);
+			console.log(updateInfo);
 			// 카테고리 정보 업데이트
 			const updatedCategoryInfo = await categoryService.editCategory(
 				categoryId,
@@ -90,11 +91,14 @@ categoryRouter.patch(
 
 // 5. _id로 카데고리 삭제 (회원)
 categoryRouter.delete(
-	'/categories/:categoryId',
+	'/category/:categoryId' /* loginRequired,*/,
 	async function (req, res, next) {
 		try {
-			const { categoryId } = req.params;
-			const deleteCategoryResult = await categoryService.deleteCategory(categoryId);
+			const categoryId = req.params.categoryId;
+			const deleteCategoryResult = await categoryService.deleteCategory(
+				categoryId,
+			);
+			console.log(deleteCategoryResult);
 
 			res.status(201).json(deleteCategoryResult);
 		} catch (err) {
