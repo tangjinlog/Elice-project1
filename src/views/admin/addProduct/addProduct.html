@@ -27,7 +27,7 @@
 			</div>
 			<!-- 폼 -->
 			<div class="categoryFormCon mt-10 shadow">
-				<form action="" class="px-6 pb-6">
+				<form action="/api/addproduct" method="post" class="px-6 pb-6">
 					<p class="formTitle text-center text-sky-500 text-2xl mb-5">
 						제품 판매하기
 					</p>
@@ -39,6 +39,7 @@
 								id="titleInput"
 								class="border rounded p-2 mt-2 mb-4 w-full"
 								placeholder="Men Clothes"
+								name="name"
 							/>
 						</div>
 					</div>
@@ -53,40 +54,85 @@
 								<option value="카테고리를 선택해 주세요." selected>
 									카테고리를 선택해 주세요.
 								</option>
-								<option value="애완돌">애완돌</option>
+								<option value="일반">일반</option>
 								<option value="애완돌 하우스">애완돌 하우스</option>
 								<option value="애완돌 옷">애완돌 옷</option>
 							</select>
-							<!-- <input
-                type="text"
-                id="categoryInput"
-                class="border rounded p-2 mt-2 mb-4 w-full"
-                placeholder="봄"
-              /> -->
 						</div>
 					</div>
 					<div>
-						<label for="manufacturing" class="font-bold">제조사</label>
+						<label for="colorInput" class="font-bold">색상</label>
 						<div>
+							<select
+								class="p-3 mt-2 mb-4 w-full border rounded"
+								name="color"
+								id="color"
+							>
+								<option value="색상을 선택해 주세요." selected>
+									색상을 선택해 주세요.
+								</option>
+								<option value="블랙">블랙</option>
+								<option value="레드">레드</option>
+								<option value="퍼플">퍼플</option>
+							</select>
+						</div>
+					</div>
+					<div>
+						<label for="sizes" class="font-bold">사이즈</label>
+						<div class="text-center border rounded mt-2 mb-4">
 							<input
-								type="text"
-								id="manufacturing"
-								class="border rounded p-2 mt-2 mb-4 w-full"
-								placeholder="(주)OO물류"
+								class="ml-10"
+								type="radio"
+								id="size-small"
+								name="size"
+								value="small"
 							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="size-small"
+								>small</label
+							>
+							<input
+								class="ml-10"
+								type="radio"
+								id="size-medium"
+								name="size"
+								value="medium"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="size-medium"
+								>medium</label
+							>
+							<input
+								class="ml-10"
+								type="radio"
+								id="size-large"
+								name="size"
+								value="large"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="size-large"
+								>large</label
+							>
 						</div>
 					</div>
 					<div>
-						<label for="descInput" class="font-bold">요약 설명</label>
-						<div>
-							<textarea
-								class="border rounded p-2 mt-2 mb-4 w-full"
-								name="descArea"
-								id="descInput"
-								cols="30"
-								rows="3"
-								placeholder="제품에 대한 간략한 설명을 적어주세요."
-							></textarea>
+						<label for="delivery" class="font-bold">무료배송</label>
+						<div class="text-center border rounded mt-2 mb-4">
+							<input
+								type="radio"
+								id="delivery"
+								name="free_delivery"
+								value="true"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="delivery"
+								>true</label
+							>
+							<input
+								type="radio"
+								id="delivery"
+								name="free_delivery"
+								value="false"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="delivery"
+								>false</label
+							>
 						</div>
 					</div>
 					<div>
@@ -134,6 +180,7 @@
 								id="stockInput"
 								class="border rounded p-2 mt-2 mb-4 w-full"
 								placeholder="10000"
+								name="stock"
 							/>
 						</div>
 					</div>
@@ -145,6 +192,7 @@
 								id="priceInput"
 								class="relative border rounded py-2 pl-2 pr-10 mt-2 mb-4 w-full"
 								placeholder="100,000"
+								name="price"
 							/>
 							<span class="block absolute top-[25%] w-10 h-10 -right-2"
 								>원</span
@@ -176,7 +224,7 @@
 					<button
 						class="addCategory block w-full text-center py-2 my-5 bg-sky-500 text-white text-2xl mb-5 rounded"
 					>
-						카테고리 추가하기
+						제품 추가하기
 					</button>
 				</form>
 			</div>

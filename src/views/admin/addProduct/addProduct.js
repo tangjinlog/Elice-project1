@@ -46,7 +46,6 @@ input.addEventListener('change', imgPathDisplay);
 addBtn.addEventListener('click', addKeyword);
 
 function addKeyword(e) {
-	const self = this;
 	/* 자동이동방지 */
 	e.preventDefault();
 	let keywordInput = $('.keywordInput');
@@ -78,3 +77,6 @@ function deleteKeyword(e) {
 	);
 	parentTag.remove();
 }
+
+const addForm = $('.categoryFormCon');
+addForm.addEventListener('submit', () => alert('상품이 추가되었습니다.'));
