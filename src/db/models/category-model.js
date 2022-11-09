@@ -25,8 +25,8 @@ export class CategoryModel {
 	}
 
 	// 4. 카데고리 수정 id로
-	async update({ _id, updateInfo }) {
-		const filter = { _id };
+	async update({ categoryId, updateInfo }) {
+		const filter = { _id : categoryId };
 		const option = { returnOriginal: false };
 		return await Category.findOneAndUpdate(filter, updateInfo, option);
 	}
