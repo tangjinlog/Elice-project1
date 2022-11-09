@@ -22,6 +22,7 @@ const selectAll = () => {
 		if (!checkedVals.includes(false)) {
 			allCheckBoxes.forEach((checkbox) => (checkbox.checked = false));
 		} else {
+			console.log('빈 체크박스 있음');
 			allCheckBoxes.forEach((checkbox) => (checkbox.checked = true));
 		}
 	});
