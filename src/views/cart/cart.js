@@ -25,7 +25,6 @@ const selectAll = () => {
 	const checkedVals = [];
 	allCheckBoxes.forEach((checkbox) => checkedVals.push(checkbox.checked));
 	let cartData = JSON.parse(window.localStorage.getItem('cart'));
-
 	if (!checkedVals.includes(false)) {
 		allCheckBoxes.forEach((checkbox) => {
 			checkbox.checked = false;
@@ -98,40 +97,6 @@ const changeCheck = () => {
 	});
 };
 
-// const changeCheck = () => {
-// 	const totalNumsTag = $('.totalNums');
-// 	const totalPriceTag = $('.totalPrice');
-// 	const deliveryFeeTag = $('.deliveryFee');
-// 	const paymentTag = $('.payment');
-// 	let totalNums = 0;
-// 	let totalPrice = 0;
-// 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
-// 	allCheckBoxes.forEach((eachCheck) => {
-// 		if (eachCheck.checked) {
-// 			const eachNums =
-// 				eachCheck.nextElementSibling.nextElementSibling.children[1].children[0]
-// 					.value;
-// 			let eachPrice =
-// 				eachCheck.nextElementSibling.nextElementSibling.nextElementSibling.innerText.split(
-// 					'',
-// 				);
-// 			totalNums += parseInt(eachNums);
-// 			eachPrice.pop();
-// 			eachPrice = parseInt(eachPrice.join(''));
-// 			totalPrice += eachPrice;
-// 		}
-// 	});
-// 	totalNumsTag.innerText = `${totalNums}개`;
-// 	totalPriceTag.innerText = `${totalPrice}원`;
-// 	if (totalPrice > 30000) {
-// 		deliveryFeeTag.innerText = '무료';
-// 		paymentTag.innerText = totalPriceTag.innerText;
-// 	} else {
-// 		deliveryFeeTag.innerText = '3000원';
-// 		paymentTag.innerText = `${totalPrice + 3000}원`;
-// 	}
-// };
-
 const showPayInfo = () => {
 	const totalNumsTag = $('.totalNums');
 	const totalPriceTag = $('.totalPrice');
@@ -146,8 +111,13 @@ const showPayInfo = () => {
 			totalPrice += item.price * item.count;
 		}
 	});
-	totalNumsTag.innerText = totalNums;
-	totalPriceTag.innerText = totalPrice;
+	totalNumsTag.innerText = `${totalNums}개`;
+	totalPriceTag.innerText = `${totalPrice}원`;
+	deliveryFeeTag.innerText =
+		totalPrice < 20000 ? (totalPrice ? `3000원` : null) : `무료배송`;
+	paymentTag.innerText = `${
+		totalPrice < 20000 ? totalPrice + 3000 : totalPrice
+	}원`;
 };
 
 const loadCartList = async () => {
