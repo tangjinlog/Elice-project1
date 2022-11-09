@@ -42,7 +42,7 @@ class CategoryService {
 		const isExistCategory = await this.categoryModel.findByName(categoryName);
 		if (!isExistCategory) {
 			const error = new Error(
-				'등록되어있지 않은 카테고리입니다. 카데고리 id를 다시 확인해주세요.',
+				'등록되어있지 않은 카테고리입니다. 카데고리 이름을 다시 확인해주세요.',
 			);
 			error.name = 'NotFound';
 			throw error;
@@ -55,23 +55,21 @@ class CategoryService {
 		const isExistCategory = await this.categoryModel.findById(categoryId);
 		if (!isExistCategory) {
 			const error = new Error(
-				'등록되어있지 않은 카테고리입니다. 카데고리 이름을 다시 확인해주세요.',
+				'등록되어있지 않은 카테고리입니다. 카데고리 id를 다시 확인해주세요.',
 			);
 			error.name = 'NotFound';
 			throw error;
 		}
-		return category;
+		return categoryId;
 	}
 
 	// 4. 카테고리 수정
 	async editCategory(categoryId, updateInfo) {
 		// 업데이트 진행
-		const updatedCategory = await this.categoryModel.update({
+		return await this.categoryModel.update({
 			categoryId,
 			updateInfo,
 		});
-		console.log(updatedCategory);
-		return updatedCategory;
 	}
 
 	//5. 카데고리 삭제

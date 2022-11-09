@@ -1,4 +1,4 @@
-import is from '@sindresorhus/is';
+// import is from '@sindresorhus/is';
 import { Router } from 'express';
 // import { adminOnly, loginRequired } from '../services';
 import { categoryService } from '../services';
@@ -11,11 +11,11 @@ categoryRouter.post(
 	/*adminOnly,*/ async function (req, res, next) {
 		try {
 			// application/json 설정을 프론트에서 안하면, body가 비어 있게 됨.
-			if (is.emptyObject(req.body)) {
-				throw new Error(
-					'headers의 Content-Type을 application/json으로 설정해주세요.',
-				);
-			}
+			// if (is.emptyObject(req.body)) {
+			// 	throw new Error(
+			// 		'headers의 Content-Type을 application/json으로 설정해주세요.',
+			// 	);
+			// }
 
 			// req(request)에서 데이터 가져오기
 			const { name, description } = req.body;
@@ -61,24 +61,24 @@ categoryRouter.patch(
 	'/category/:categoryId',
 	/*adminRequired,*/ async function (req, res, next) {
 		try {
-			if (is.emptyObject(req.body)) {
-				throw new Error(
-					'headers의 Content-Type을 application/json으로 설정해주세요.',
-				);
-			}
-			const { categoryId } = req.params;
-			const { name, description } = req.body;
+			// if (is.emptyObject(req.body)) {
+			// 	throw new Error(
+			// 		'headers의 Content-Type을 application/json으로 설정해주세요.',
+			// 	);
+			// }
 
-			const updateInfo = {
-				...(name && { name }),
-				...(description && { description }),
-			};
-			console.log(categoryId);
-			console.log(updateInfo);
+			// const { categoryId } = req.params;
+			// const { name, description } = req.body;
+
+			// const updateInfo = {
+			// 	...(name && { name }),
+			// 	...(description && { description }),
+			// };
+
 			// 카테고리 정보 업데이트
 			const updatedCategoryInfo = await categoryService.editCategory(
-				categoryId,
-				updateInfo,
+				req.params.categoryId,
+				req.body
 			);
 
 			// 업데이트된 카테고리 데이터를 프론트 json형태로 전달

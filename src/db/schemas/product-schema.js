@@ -13,7 +13,7 @@ const ProductSchema = new Schema(
 			required: true,
 			ref: 'category',
 		},
-		detailDescription: { type: Number, required: true },
+		detailDescription: { type: String, required: true },
 		// imageKey: { type: Number, required: true },
 		stock: { type: Number, default: 1 },
 	},
