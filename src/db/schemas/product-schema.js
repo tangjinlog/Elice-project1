@@ -7,7 +7,14 @@ const ProductSchema = new Schema(
 		color: { type: String, required: true },
 		price: { type: Number, required: true },
 		free_delivery: { type: Boolean, required: true },
-		category: { type: String, required: true, default: '일반' },
+		// sellerId:{type: Schema.Types.ObjectId, required: true, ref: 'user'},
+		categoryId: {
+			type: Schema.Types.ObjectId,
+			required: true,
+			ref: 'category',
+		},
+		detailDescription: { type: String, required: true },
+		// imageKey: { type: Number, required: true },
 		stock: { type: Number, default: 1 },
 	},
 	{
