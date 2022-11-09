@@ -20,7 +20,8 @@ btnAddCart.addEventListener('click', () => {
 	const price = parseInt(priceTag.innerText);
 	const description = descriptionTag.innerText;
 	const count = parseInt(countTag.value);
-	let productData = { manufacturer, title, price, description, count };
+	const checked = true;
+	let productData = { manufacturer, title, price, description, count, checked };
 	let cartData = window.localStorage.getItem('cart');
 	if (!cartData) {
 		cartData = [];
