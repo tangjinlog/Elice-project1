@@ -7,28 +7,41 @@ const cartContainer = $('.cart-products-container');
 const allSelectCheckbox = document.getElementById('allSelectCheckbox');
 const removeCheckedInput = $('.removeChecked');
 
-let allCheckBoxes;
 //functions
 function addNav() {
 	const header = document.querySelector('.headerNav');
 	header.innerHTML = navTemplate();
 }
 
-const selectAll = () => {
-	allCheckBoxes = document.querySelectorAll('.cartCheckBox');
-	allSelectCheckbox.addEventListener('click', () => {
-		const checkedVals = [];
-		allCheckBoxes.forEach((checkbox) => checkedVals.push(checkbox.checked));
-		if (!checkedVals.includes(false)) {
-			allCheckBoxes.forEach((checkbox) => (checkbox.checked = false));
-		} else {
-			console.log('빈 체크박스 있음');
-			allCheckBoxes.forEach((checkbox) => (checkbox.checked = true));
-		}
+const setChecked = (isCheckedList) => {
+	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
+	allCheckBoxes.forEach((eachCheckBox, index) => {
+		eachCheckBox.checked = isCheckedList[index];
 	});
 };
 
+const selectAll = () => {
+	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
+	const checkedVals = [];
+	allCheckBoxes.forEach((checkbox) => checkedVals.push(checkbox.checked));
+	let cartData = JSON.parse(window.localStorage.getItem('cart'));
+
+	if (!checkedVals.includes(false)) {
+		allCheckBoxes.forEach((checkbox) => {
+			checkbox.checked = false;
+		});
+		cartData.forEach((item) => (item.checked = false));
+	} else {
+		allCheckBoxes.forEach((checkbox) => (checkbox.checked = true));
+		cartData.forEach((item) => (item.checked = true));
+	}
+	cartData = JSON.stringify(cartData);
+	window.localStorage.setItem('cart', cartData);
+	window.location.reload();
+};
+
 const removeChecked = () => {
+	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	removeCheckedInput.addEventListener('click', () => {
 		const checked_list = [];
 		allCheckBoxes.forEach((checkbox) => {
@@ -58,6 +71,7 @@ const changeItemNum = () => {
 				alert('올바른 수량을 입력해주세요');
 				e.target.value = 1;
 			} else {
+				e.preventDefault();
 				const cartData = JSON.parse(window.localStorage.getItem('cart'));
 				cartData[e.target.id].count = parseInt(e.target.value);
 				window.localStorage.setItem('cart', JSON.stringify(cartData));
@@ -67,41 +81,88 @@ const changeItemNum = () => {
 	});
 };
 
+const changeCheck = () => {
+	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
+	allCheckBoxes.forEach((eachCheckBox) => {
+		eachCheckBox.addEventListener('change', (e) => {
+			let cartData = JSON.parse(window.localStorage.getItem('cart'));
+			const title =
+				e.target.nextElementSibling.nextElementSibling.children[0].innerText;
+			cartData.forEach((item) => {
+				if (item.title === title) {
+					item.checked ? (item.checked = false) : (item.checked = true);
+				}
+			});
+			window.localStorage.setItem('cart', JSON.stringify(cartData));
+		});
+	});
+};
+
+// const changeCheck = () => {
+// 	const totalNumsTag = $('.totalNums');
+// 	const totalPriceTag = $('.totalPrice');
+// 	const deliveryFeeTag = $('.deliveryFee');
+// 	const paymentTag = $('.payment');
+// 	let totalNums = 0;
+// 	let totalPrice = 0;
+// 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
+// 	allCheckBoxes.forEach((eachCheck) => {
+// 		if (eachCheck.checked) {
+// 			const eachNums =
+// 				eachCheck.nextElementSibling.nextElementSibling.children[1].children[0]
+// 					.value;
+// 			let eachPrice =
+// 				eachCheck.nextElementSibling.nextElementSibling.nextElementSibling.innerText.split(
+// 					'',
+// 				);
+// 			totalNums += parseInt(eachNums);
+// 			eachPrice.pop();
+// 			eachPrice = parseInt(eachPrice.join(''));
+// 			totalPrice += eachPrice;
+// 		}
+// 	});
+// 	totalNumsTag.innerText = `${totalNums}개`;
+// 	totalPriceTag.innerText = `${totalPrice}원`;
+// 	if (totalPrice > 30000) {
+// 		deliveryFeeTag.innerText = '무료';
+// 		paymentTag.innerText = totalPriceTag.innerText;
+// 	} else {
+// 		deliveryFeeTag.innerText = '3000원';
+// 		paymentTag.innerText = `${totalPrice + 3000}원`;
+// 	}
+// };
+
 const showPayInfo = () => {
 	const totalNumsTag = $('.totalNums');
 	const totalPriceTag = $('.totalPrice');
 	const deliveryFeeTag = $('.deliveryFee');
 	const paymentTag = $('.payment');
 	const cartData = JSON.parse(window.localStorage.getItem('cart'));
-
 	let totalNums = 0;
 	let totalPrice = 0;
-	cartData.forEach((eachItem) => {
-		totalNums += eachItem.count;
-		totalPrice += eachItem.count * eachItem.price;
+	cartData.forEach((item) => {
+		if (item.checked) {
+			totalNums += item.count;
+			totalPrice += item.price * item.count;
+		}
 	});
-	totalNumsTag.innerText = `${totalNums}개`;
-	totalPriceTag.innerText = `${totalPrice}원`;
-	if (totalPrice > 30000) {
-		deliveryFeeTag.innerText = '무료';
-		paymentTag.innerText = totalPriceTag.innerText;
-	} else {
-		deliveryFeeTag.innerText = '3000원';
-		paymentTag.innerText = `${totalPrice + 3000}원`;
-	}
+	totalNumsTag.innerText = totalNums;
+	totalPriceTag.innerText = totalPrice;
 };
 
 const loadCartList = async () => {
 	let cartData = window.localStorage.getItem('cart');
 	cartData = JSON.parse(cartData);
+	let isCheckedList = [];
 	cartData.forEach((item, index) => {
 		const price = item.price;
 		const name = item.title;
 		const count = item.count;
+		isCheckedList.push(item.checked);
 		cartContainer.insertAdjacentHTML(
 			'beforeend',
 			`		<div class="cartList bg-sky-300  w-full h-24 flex">
-		<input type="checkbox" class="cartCheckBox"/>
+		<input  type="checkbox" class="cartCheckBox"/>
 		<figure class="imgArea w-[20%]"><img /></figure>
 		<div class="nameArea w-[20%] m-auto">
 			<p class="productName text-center">${name}</p>
@@ -118,10 +179,20 @@ const loadCartList = async () => {
 		`,
 		);
 	});
-	selectAll();
+	setChecked(isCheckedList);
 	removeChecked();
 	changeItemNum();
+	changeCheck();
 	showPayInfo();
+	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
+	allCheckBoxes.forEach((eachCheckBox) => {
+		eachCheckBox.addEventListener('change', () => {
+			showPayInfo();
+		});
+	});
+	allSelectCheckbox.addEventListener('click', () => {
+		selectAll();
+	});
 };
 
 loadCartList();

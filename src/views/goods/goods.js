@@ -17,7 +17,7 @@ const loadAllProducts = async () => {
 		productList.insertAdjacentHTML(
 			'beforeend',
 			`
-	  <a href="../goods-detail/goods-detail.html">
+	  <a href="../goods-detail/${product._id}">
 		  <div class="productItem flex-col w-full h-full bg-slate-200">
 		    <div class="grow w-full">
 				  <img id="${product._id}" src="${
