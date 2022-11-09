@@ -1,236 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>반려돌 전체</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <nav class="w-full py-2">
-      <ul id="navbar" class="flex w-full">
-        <li class="pl-10 my-auto text-xl">
-          <a href="../home/home.html">
-            <i class="fa-solid fa-house"></i>
-          </a>
-        </li>
-        <li class="pl-10">
-          <button
-            class="text-black bg-white hover:bg-black hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
-            type="button"
-            data-dropdown-toggle="dropdown"
-          >
-            카테고리
-            <svg
-              class="w-4 h-4 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <!-- Dropdown menu -->
-          <div
-            class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4"
-            id="dropdown"
-          >
-            <ul class="py-1" aria-labelledby="dropdown">
-              <li>
-                <a
-                  href="#"
-                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
-                  >일반돌</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
-                  >인센스홀더</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
-                  >디퓨저</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="w-1/12 pl-5 my-auto ml-auto">
-          <a href="../register/register.html">회원가입</a>
-        </li>
-        <li class="w-1/12 pl-5 my-auto">
-          <a href="../login/login.html">로그인</a>
-        </li>
-        <li class="w-1/12 pl-5 my-auto">
-          <a href="/cart">
-            <span>
-              <i class="fas fa-cart-shopping" aria-hidden="true"></i>
-            </span>
-            <span> 카트</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="filter-div flex flex-col justify-center">
-      <div class="filter-box w-3/5 justify-center m-auto border-4">
-        <div class="filter 배송비 flex py-2 border-b-2">
-          <div class="w-1/12 pl-3">배송비</div>
-          <div class="option-box flex w-11/12 pl-12">
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="delivery-opt"
-                id="free_deli"
-                class="filter-option"
-                value="무료배송"
-              />
-              <label for="free_deli">무료배송</label>
-            </div>
-          </div>
-        </div>
-        <div class="filter 색깔 flex py-2 border-b-2">
-          <div class="w-1/12 pl-3">색상</div>
-          <div class="option-box flex w-11/12 pl-12">
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="color-opt"
-                id="col-white"
-                class="filter-option"
-                value="흰색"
-              />
-              <label for="col-white">흰색</label>
-            </div>
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="color-opt"
-                id="col-black"
-                class="filter-option"
-                value="검은색"
-              />
-              <label for="col-black">검은색</label>
-            </div>
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="color-opt"
-                id="col-gray"
-                class="filter-option"
-                value="회색"
-              />
-              <label for="col-gray">회색</label>
-            </div>
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="color-opt"
-                id="col-etc"
-                class="filter-option"
-                value="유채색"
-              />
-              <label for="col-etc">유채색</label>
-            </div>
-          </div>
-        </div>
-        <div class="filter 가격대 flex py-2 border-b-2">
-          <div class="w-1/12 pl-3">가격대</div>
-          <div class="option-box flex w-11/12 pl-12">
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="price-opt"
-                id="under-10000"
-                class="filter-option"
-                value="1만원 이하"
-              />
-              <label for="under-10000">1만원 이하</label>
-            </div>
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="price-opt"
-                id="10000-20000"
-                class="filter-option"
-                value="1만원~2만원"
-              />
-              <label for="10000-20000">1만원~2만원</label>
-            </div>
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="price-opt"
-                id="over-20000"
-                class="filter-option"
-                value="2만원 이상"
-              />
-              <label for="over-20000">2만원 이상</label>
-            </div>
-          </div>
-        </div>
-        <div class="filter 카테고리 flex py-2">
-          <div class="w-1/12 pl-3">카테고리</div>
-          <div class="option-box flex w-11/12 pl-12">
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="category-opt"
-                id="normal-stone"
-                class="filter-option"
-                value="일반돌"
-              />
-              <label for="normal-stone">일반돌</label>
-            </div>
-            <div class="w-1/5">
-              <input
-                type="checkbox"
-                name="category-opt"
-                id="incense"
-                class="filter-option"
-                value="인센스홀더"
-              />
-              <label for="incense">인센스홀더</label>
-            </div>
-            <div class="w-1/5 test">
-              <input
-                type="checkbox"
-                name="category-opt"
-                id="diffuser"
-                class="filter-option"
-                value="디퓨저"
-              />
-              <label for="diffuser">디퓨저</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="w-3/5 m-auto bg-neutral-100 p-2 flex">
-        <button>필터 초기화</button>
-        <ul class="inline-block flex" id="option_list"></ul>
-        <button class="search-btn">검색</button>
-      </div>
-    </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>반려돌 전체</title>
+		<script src="https://cdn.tailwindcss.com" defer></script>
+		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<script src="./goods.js" type="module" defer></script>
+	</head>
+	<body>
+		<header class="headerNav"></header>
+		<div class="filter-div flex flex-col justify-center">
+			<div class="filter-box w-3/5 justify-center m-auto border-4">
+				<div class="filter 배송비 flex py-2 border-b-2">
+					<div class="w-1/12 pl-3">배송비</div>
+					<div class="option-box flex w-11/12 pl-12">
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="delivery-opt"
+								id="free_deli"
+								class="filter-option"
+								value="무료배송"
+							/>
+							<label for="free_deli">무료배송</label>
+						</div>
+					</div>
+				</div>
+				<div class="filter 색깔 flex py-2 border-b-2">
+					<div class="w-1/12 pl-3">색상</div>
+					<div class="option-box flex w-11/12 pl-12">
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="color-opt"
+								id="col-white"
+								class="filter-option"
+								value="흰색"
+							/>
+							<label for="col-white">흰색</label>
+						</div>
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="color-opt"
+								id="col-black"
+								class="filter-option"
+								value="검은색"
+							/>
+							<label for="col-black">검은색</label>
+						</div>
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="color-opt"
+								id="col-gray"
+								class="filter-option"
+								value="회색"
+							/>
+							<label for="col-gray">회색</label>
+						</div>
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="color-opt"
+								id="col-etc"
+								class="filter-option"
+								value="유채색"
+							/>
+							<label for="col-etc">유채색</label>
+						</div>
+					</div>
+				</div>
+				<div class="filter 가격대 flex py-2 border-b-2">
+					<div class="w-1/12 pl-3">가격대</div>
+					<div class="option-box flex w-11/12 pl-12">
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="price-opt"
+								id="under-10000"
+								class="filter-option"
+								value="1만원 이하"
+							/>
+							<label for="under-10000">1만원 이하</label>
+						</div>
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="price-opt"
+								id="10000-20000"
+								class="filter-option"
+								value="1만원~2만원"
+							/>
+							<label for="10000-20000">1만원~2만원</label>
+						</div>
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="price-opt"
+								id="over-20000"
+								class="filter-option"
+								value="2만원 이상"
+							/>
+							<label for="over-20000">2만원 이상</label>
+						</div>
+					</div>
+				</div>
+				<div class="filter 카테고리 flex py-2">
+					<div class="w-1/12 pl-3">카테고리</div>
+					<div class="option-box flex w-11/12 pl-12">
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="category-opt"
+								id="normal-stone"
+								class="filter-option"
+								value="일반돌"
+							/>
+							<label for="normal-stone">일반돌</label>
+						</div>
+						<div class="w-1/5">
+							<input
+								type="checkbox"
+								name="category-opt"
+								id="incense"
+								class="filter-option"
+								value="인센스홀더"
+							/>
+							<label for="incense">인센스홀더</label>
+						</div>
+						<div class="w-1/5 test">
+							<input
+								type="checkbox"
+								name="category-opt"
+								id="diffuser"
+								class="filter-option"
+								value="디퓨저"
+							/>
+							<label for="diffuser">디퓨저</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="w-3/5 m-auto bg-neutral-100 p-2 flex">
+				<button>필터 초기화</button>
+				<ul class="inline-block flex" id="option_list"></ul>
+				<button class="search-btn">검색</button>
+			</div>
+		</div>
+		<!-- 상품목록 -->
+		<main role="main" class="w-full h-screen">
+			<div class="bg-sky-200 w-3/5 mx-auto border-3 h-full">
+				<div
+					class="product-list grid grid-cols-3 grid-rows-3 gap-3 text-center h-full"
+				></div>
+			</div>
+		</main>
 
-    <script type="text/javascript" src="goods.js"></script>
-  </body>
+		<script type="text/javascript" src="goods.js"></script>
+	</body>
 </html>

@@ -1,3 +1,12 @@
+import { navTemplate } from '/common/nav.js';
+
+/* nav Template */
+function addNav() {
+	const header = document.querySelector('.headerNav');
+	header.innerHTML = navTemplate();
+}
+addNav();
+
 /* modal */
 const modal = `
   <div class="modalBackground flex justify-center items-center absolute w-full h-full inset-0 bg-black/[0.25]">
@@ -16,48 +25,52 @@ const modal = `
   </div>
 `;
 
-const userDeleteBtn = document.querySelector(".userDelete");
-userDeleteBtn.addEventListener("click", createModal);
+const userDeleteBtn = document.querySelector('.userDelete');
+userDeleteBtn.addEventListener('click', createModal);
 
 /* 모달창 생성 */
 function createModal() {
-  /* userDeleteBtn 전달 */
-  const self = this;
-  const modalEl = document.createElement("div");
-  modalEl.setAttribute("class", "modalCon");
-  modalEl.innerHTML = modal;
-  document.querySelector("body").prepend(modalEl);
+	/* userDeleteBtn 전달 */
+	const self = this;
+	const modalEl = document.createElement('div');
+	modalEl.setAttribute('class', 'modalCon');
+	modalEl.innerHTML = modal;
+	document.querySelector('body').prepend(modalEl);
 
-  const deleteYesBtn = document.getElementById("deleteYesBtn");
-  const deleteNoBtn = document.getElementById("deleteNoBtn");
-  const closeBtn = document.querySelector(".closeBtn");
+	const deleteYesBtn = document.getElementById('deleteYesBtn');
+	const deleteNoBtn = document.getElementById('deleteNoBtn');
+	const closeBtn = document.querySelector('.closeBtn');
 
-  /* 즉시실행 방지 */
-  deleteYesBtn.addEventListener("click", ()=> {
-    cancelOrder(self)
-  });
-  deleteYesBtn.addEventListener("click", closeModal);
-  deleteNoBtn.addEventListener("click", closeModal);
-  /* x 버튼 클릭시 닫기 */
-  closeBtn.addEventListener("click", closeModal);
+	/* 즉시실행 방지 */
+	deleteYesBtn.addEventListener('click', () => {
+		cancelOrder(self);
+	});
+	deleteYesBtn.addEventListener('click', closeModal);
+	deleteNoBtn.addEventListener('click', closeModal);
+	/* x 버튼 클릭시 닫기 */
+	closeBtn.addEventListener('click', closeModal);
 
-  /* 모달창 외에 배경을 클릭하면 닫기 */
-  modalEl.addEventListener("click", (e) => {
-    const target = e.target;
-    if (target.classList.contains("modalBackground")) {
-      closeModal(e);
-    }
-  });
+	/* 모달창 외에 배경을 클릭하면 닫기 */
+	modalEl.addEventListener('click', (e) => {
+		const target = e.target;
+		if (target.classList.contains('modalBackground')) {
+			closeModal(e);
+		}
+	});
 }
 /* 모달창 닫기 */
 function closeModal(e) {
-  const modalEl = document.querySelector(".modalCon");
-  const body = document.querySelector("body");
-  body.removeChild(modalEl);
+	const modalEl = document.querySelector('.modalCon');
+	const body = document.querySelector('body');
+	body.removeChild(modalEl);
 }
 
 function cancelOrder(cancelBtn) {
-  let parentTag = cancelBtn;
-  for(; parentTag.classList.contains('orderList') != true; parentTag = parentTag.parentElement);
-  parentTag.remove()
+	let parentTag = cancelBtn;
+	for (
+		;
+		parentTag.classList.contains('orderList') != true;
+		parentTag = parentTag.parentElement
+	);
+	parentTag.remove();
 }
