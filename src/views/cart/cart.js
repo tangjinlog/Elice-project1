@@ -131,7 +131,7 @@ const loadCartList = async () => {
 		isCheckedList.push(item.checked);
 		cartContainer.insertAdjacentHTML(
 			'beforeend',
-			`		<div class="cartList bg-sky-300  w-full h-24 flex">
+			`		<div class="cartList px-4 border-t border-black  w-full h-24 flex">
 		<input  type="checkbox" class="cartCheckBox"/>
 		<figure class="imgArea w-[20%]"><img /></figure>
 		<div class="nameArea w-[20%] m-auto">
