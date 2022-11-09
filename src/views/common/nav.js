@@ -38,6 +38,13 @@ export function navTemplate() {
 						<ul class="py-1" aria-labelledby="dropdown">
 							<li>
 								<a
+									href="/category/all"
+									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+									>전체</a
+								>
+							</li>
+							<li>
+								<a
 									href="/category/normal"
 									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
 									>일반돌</a
