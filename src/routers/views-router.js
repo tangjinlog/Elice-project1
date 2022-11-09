@@ -4,10 +4,12 @@ import path from 'path';
 const viewsRouter = express.Router();
 
 viewsRouter.use('/', serveStatic('home'));
-viewsRouter.use('/account/addProduct', serveAccountStatic(`add`));
-viewsRouter.use('/account/addCategory', serveAccountStatic(`orders`));
-viewsRouter.use('/account/orderManagement', serveAccountStatic(`security`));
-viewsRouter.use('/account/userManagement', serveAccountStatic(`signout`));
+viewsRouter.use('/account', serveStatic('account'));
+viewsRouter.use('/account/add', serveAccountStatic(`add`));
+viewsRouter.use('/account/orders', serveAccountStatic(`orders`));
+viewsRouter.use('/account/security', serveAccountStatic(`security`));
+viewsRouter.use('/account/signout', serveAccountStatic(`signout`));
+viewsRouter.use('/admin', serveStatic('admin'));
 viewsRouter.use('/admin/addProduct', serveAdminStatic(`addProduct`));
 viewsRouter.use('/admin/addCategory', serveAdminStatic(`addCategory`));
 viewsRouter.use('/admin/orderManagement', serveAdminStatic(`orderManagement`));
@@ -18,7 +20,6 @@ viewsRouter.use('/goods', serveStatic('goods'));
 viewsRouter.use('/goods-detail/:id', serveStatic('goods-detail'));
 viewsRouter.use('/register', serveStatic('register'));
 viewsRouter.use('/login', serveStatic('login'));
-viewsRouter.use('/admin', serveStatic('admin'));
 viewsRouter.use('/shippingpoint', serveStatic('shippingpoint'));
 
 // views 폴더의 최상단 파일인 rabbit.png, api.js 등을 쓸 수 있게 함
