@@ -5,28 +5,23 @@ const OrderItem = model('order-items', OrderItemSchema);
 
 export class OrderItemModel {
 	async findById(orderItemId) {
-		const orderItem = await OrderItem.findOne({ _id: orderItemId });
-		return orderItem;
+		return await OrderItem.findOne({ _id: orderItemId });
 	}
 
 	async findAllByOrderId(orderId) {
-		const orderItems = await OrderItem.find({ orderId });
-		return orderItems;
+		return await OrderItem.find({ orderId });
 	}
 
 	async findAllByProductId(productId) {
-		const orderItems = await OrderItem.find({ productId });
-		return orderItems;
+		return await OrderItem.find({ productId });
 	}
 
 	async create(orderItemInfo) {
-		const createdNewOrderItem = await OrderItem.create(orderItemInfo);
-		return createdNewOrderItem;
+		return await OrderItem.create(orderItemInfo);
 	}
 
 	async findAll() {
-		const orderItems = await OrderItem.find({});
-		return orderItems;
+		return await OrderItem.find({});
 	}
 
 	async update({ orderItemId, update }) {
@@ -42,8 +37,7 @@ export class OrderItemModel {
 	}
 
 	async deleteById(orderItemId) {
-		const result = await OrderItem.deleteOne({ _id: orderItemId });
-		return result;
+		return await OrderItem.deleteOne({ _id: orderItemId });
 	}
 }
 
