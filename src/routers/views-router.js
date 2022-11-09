@@ -22,6 +22,8 @@ viewsRouter.use('/register', serveStatic('register'));
 viewsRouter.use('/login', serveStatic('login'));
 viewsRouter.use('/shippingpoint', serveStatic('shippingpoint'));
 
+viewsRouter.use('/category/:id', serveCategoryStatic('goods'));
+
 // views 폴더의 최상단 파일인 rabbit.png, api.js 등을 쓸 수 있게 함
 viewsRouter.use('/', serveStatic(''));
 
@@ -39,6 +41,11 @@ function serveAdminStatic(resource) {
 }
 function serveAccountStatic(resource) {
 	const resourcePath = path.join(__dirname, `../views/account/${resource}`);
+	const option = { index: `${resource}.html` };
+	return express.static(resourcePath, option);
+}
+function serveCategoryStatic(resource) {
+	const resourcePath = path.join(__dirname, `../views/${resource}`);
 	const option = { index: `${resource}.html` };
 	return express.static(resourcePath, option);
 }

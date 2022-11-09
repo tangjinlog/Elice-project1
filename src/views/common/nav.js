@@ -38,21 +38,21 @@ export function navTemplate() {
 						<ul class="py-1" aria-labelledby="dropdown">
 							<li>
 								<a
-									href="#"
+									href="/category/normal"
 									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
 									>일반돌</a
 								>
 							</li>
 							<li>
 								<a
-									href="#"
+									href="/category/incense-holder"
 									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
 									>인센스홀더</a
 								>
 							</li>
 							<li>
 								<a
-									href="#"
+									href="/category/diffuser"
 									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
 									>디퓨저</a
 								>
