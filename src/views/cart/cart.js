@@ -116,7 +116,7 @@ const showPayInfo = () => {
 	deliveryFeeTag.innerText =
 		totalPrice < 20000 ? (totalPrice ? `3000원` : null) : `무료배송`;
 	paymentTag.innerText = `${
-		totalPrice < 20000 ? totalPrice + 3000 : totalPrice
+		totalPrice < 20000 ? (totalPrice ? totalPrice + 3000 : 0) : totalPrice
 	}원`;
 };
 
