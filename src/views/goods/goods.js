@@ -9,7 +9,7 @@ function addNav() {
 addNav();
 
 const loadAllProducts = async () => {
-	const response = await fetch('/api/productlist');
+	const response = await fetch('/api/products');
 	const productDatas = await response.json();
 	const productList = document.querySelector('.product-list');
 
