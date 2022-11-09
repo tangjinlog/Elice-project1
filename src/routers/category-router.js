@@ -22,8 +22,7 @@ categoryRouter.post(
 				name,
 				description,
 			});
-
-			res.status(201).json(newCategory);
+			res.status(201).redirect('/admin/addCategory/addCategory.html');
 		} catch (error) {
 			next(error);
 		}
@@ -77,7 +76,7 @@ categoryRouter.patch(
 			// 카테고리 정보 업데이트
 			const updatedCategoryInfo = await categoryService.editCategory(
 				req.params.categoryId,
-				req.body
+				req.body,
 			);
 
 			// 업데이트된 카테고리 데이터를 프론트 json형태로 전달

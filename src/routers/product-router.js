@@ -16,7 +16,7 @@ productRouter.post('/product', async (req, res, next) => {
 	try {
 		const newProduct = await productService.addProduct(req.body);
 
-		res.status(201).json(newProduct);
+		res.status(201).redirect('/admin/addProduct/addProduct.html');
 	} catch (error) {
 		next(error);
 	}
@@ -36,17 +36,22 @@ productRouter.get('/products', async function (req, res, next) {
 
 //카테고리별 제품 목록 api
 //category에 해당하는 제품 목록을 가져옴
-productRouter.get('/products/category/:categoryName', async function (req, res, next) {
-	try {
-		// category에 해당하는 제품 목록을 얻음
-		const { categoryName } = req.params;
-		const products = await productService.getProductsByCategoryName(categoryName);
-		// 제품 목록(배열)을 JSON 형태로 프론트에 보냄
-		res.status(200).json(products);
-	} catch (error) {
-		next(error);
-	}
-});
+productRouter.get(
+	'/products/category/:categoryName',
+	async function (req, res, next) {
+		try {
+			// category에 해당하는 제품 목록을 얻음
+			const { categoryName } = req.params;
+			const products = await productService.getProductsByCategoryName(
+				categoryName,
+			);
+			// 제품 목록(배열)을 JSON 형태로 프론트에 보냄
+			res.status(200).json(products);
+		} catch (error) {
+			next(error);
+		}
+	},
+);
 
 //제품 상세 api
 // 제품이름에 해당하는 제품 정보를 가져옴
