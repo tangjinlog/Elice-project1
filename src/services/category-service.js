@@ -76,7 +76,6 @@ class CategoryService {
 	async deleteCategory(categoryId) {
 		//상품 등록 여부 확인
 		const isExistProduct = await this.productModel.findOneByCategoryId(categoryId);
-		console.log(isExistProduct)
 		if (isExistProduct) {
 			throw new Error(
 				`_id:${categoryId} 카데고리에 등록되어 있는 상품이 있습니다. 등록된 상품 이동 후, 카데고리를 삭제해주세요.`,

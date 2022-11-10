@@ -6,7 +6,7 @@ const Product = model('product', ProductSchema);
 export class ProductModel {
 	// 모든제품 가져오기
 	async findAll() {
-		return await Product.find({});
+		return await Product.find({}).sort({ createdAt: -1 });
 	}
 
 	// 해당 제품 _id로 가져오기
@@ -20,11 +20,11 @@ export class ProductModel {
 	}
 	// 카테고리 이름에 해당하는 제품들 가져오기
 	async findAllByCategoryName(categoryName) {
-		return await Product.find({ categoryName });
+		return await Product.find({ categoryName }).sort({ createdAt: -1 });
 	}
 	// 카테고리_id에 해당하는 제품들 가져오기
 	async findAllByCategoryId(categoryId) {
-		return await Product.find({ categoryId });
+		return await Product.find({ categoryId }).sort({ createdAt: -1 });
 	}
 
 	// 카테고리_id에 해당하는 제품1개 가져오기
@@ -68,7 +68,7 @@ export class ProductModel {
 		const filter = { _id };
 		const option = { returnOriginal: false };
 
-		return await Product.findOneAndUpdate(filter, updateInfo, option)
+		return await Product.findOneAndUpdate(filter, updateInfo, option);
 	}
 
 	//-------상품 삭제 -------

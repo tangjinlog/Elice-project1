@@ -1,33 +1,57 @@
 import { Router } from 'express';
 import { productService } from '../services';
-import { loginRequired,adminOnly } from '../middlewares';
-//import multer from 'multer';
+import { adminOnly } from '../middlewares';
+import multer from 'multer';
 
 const productRouter = Router();
 
-// 제품 등록 api
-productRouter.post('/product', adminOnly, async (req, res, next) => {
-	try {
-		// req (request) 에서 데이터 가져오기
-		const { name, size, color, price, free_delivery, categoryId, stock } =
-			req.body;
-
-		// 위 데이터를 제품 db에 추가하기
-		const newProduct = await productService.addProduct({
-			name,
-			size,
-			color,
-			price,
-			free_delivery,
-			categoryId,
-			stock,
-		});
-
-		res.status(201).json(newProduct);
-	} catch (error) {
-		next(error);
-	}
+const storage = multer.diskStorage({
+	destination: function (req, file, cd) {
+		cd(
+			null,'src/views/images/products/',
+		);
+	},
+	filename: function (req, file, cb) {
+		cb(null, Date.now() + '-' + file.originalname);
+	},
 });
+let multerUpload = multer({ storage: storage });
+
+// 제품 등록 api
+productRouter.post(
+	'/product', adminOnly, multerUpload.single('productImage'),
+	async (req, res, next) => {
+		try {
+			const {
+				name,
+				size,
+				color,
+				price,
+				free_delivery,
+				detailDescription,
+				category,
+				stock,
+			} = req.body;
+			const filename = req.file.filename;
+
+			const newProduct = await productService.addProduct({
+				name,
+				size,
+				color,
+				price,
+				free_delivery,
+				category,
+				detailDescription,
+				stock,
+				productImage:filename,
+			});
+
+			res.status(201).json(newProduct);
+		} catch (error) {
+			next(error);
+		}
+	},
+);
 
 // 제품 목록 api
 // 전체 제품 목록을 가져옴
@@ -48,7 +72,7 @@ productRouter.get(
 		try {
 			const { categoryName } = req.params;
 			const products = await productService.getProductsByCategoryName(
-				categoryName
+				categoryName,
 			);
 			res.status(200).json(products);
 		} catch (error) {
