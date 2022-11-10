@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>쇼핑-n팀</title>
+		<!-- 아이콘 -->
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/elice-rabbit-favicon.png"
+		/>
+		<!-- 폰트 어썸: 아이콘 -->
+		<script
+			defer
+			src="https://kit.fontawesome.com/9daa42bcef.js"
+			crossorigin="anonymous"
+		></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- 커스텀 css, js -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+		<script src="./complete.js" type="module" defer></script>
+	</head>
+	<body>
+		<!-- 헤더 -->
+		<header class="headerNav"></header>
+		<main id="main" role="main">
+			<!-- 주문완료창 -->
+			<section class="section">
+				<div class="container mx-auto">
+					<div
+						class="order-complete-container grid place-items-center min-h-screen"
+					>
+						<div
+							class="box order-complete flex flex-col w-[50%] h-96 rounded-md border border-gray-200 shadow-2xl"
+						>
+							<div
+								class="icon-text grow text-2xl justify-center text-center pt-20"
+							>
+								<span>
+									<i
+										class="fa-sharp fa-solid fa-gift text-3xl align-middle"
+									></i>
+									<span class="font-bold">주문이 완료되었습니다!</span>
+								</span>
+							</div>
+							<div
+								class="buttons-container grow rounded-md justify-center items-center h-24 py-28 px-5"
+							>
+								<button
+									class="buttons float-left text-white border border-blue-700 bg-blue-700 rounded-md h-16 w-[48%] my-auto text-xl font-bold cursor-pointer justify-center hover:brightness-50"
+									id="orderDetailButton "
+								>
+									주문내역 보기
+								</button>
+								<button
+									class="buttons float-right border border-indigo-800 rounded-md h-16 w-[48%] text-xl font-bold cursor-pointer justify-center hover:bg-gray-500"
+									id="shoppingButton"
+								>
+									쇼핑 계속하기
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

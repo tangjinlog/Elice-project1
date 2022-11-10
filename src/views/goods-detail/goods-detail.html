@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>쇼핑-n팀</title>
+		<!-- 아이콘 -->
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/elice-rabbit-favicon.png"
+		/>
+		<!-- bulma css -->
+
+		<!-- 폰트 어썸: 아이콘 -->
+		<script
+			defer
+			src="https://kit.fontawesome.com/9daa42bcef.js"
+			crossorigin="anonymous"
+		></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<!-- 커스텀 css, js -->
+		<script src="./goods-detail.js" type="module" defer></script>
+	</head>
+	<body>
+		<!-- 헤더 -->
+		<header class="headerNav"></header>
+		<section class="section h-screen">
+			<div class="container w-[90%] h-[90%] mx-auto mt-16">
+				<div class="tile is-ancestor product-detail-card flex">
+					<div class="tile is-6 is-parent w-[50%] border mx-5">
+						<div class="tile is-child box product-image">
+							<figure class="image is-sqaure">
+								<p>이미지 넣는곳</p>
+							</figure>
+						</div>
+					</div>
+					<div
+						class="tile is-parent is-vertical w-[50%] p-5 border border-gray-200 shadow-2xl"
+					>
+						<div class="tile is-child box product-detail px-5">
+							<div class="tabs border-b-2">
+								<ul>
+									<li class="manufacturer">애완돌</li>
+								</ul>
+							</div>
+							<div class="content">
+								<p
+									class="title is-3 is-family-monospace text-3xl mt-5 font-medium"
+								>
+									작은 돌멩이
+								</p>
+								<p>
+									<span class="priceTag text-3xl mt-5 font-bold">1,000,000</span
+									>원
+								</p>
+								<p class="description mt-10 mb-10">
+									★작고 귀여운 당신만의 애완돌★
+								</p>
+							</div>
+						</div>
+						<div
+							class="buttons-container grow rounded-md justify-center items-center h-24 px-5 mx-5 flex space-x-4"
+						>
+							<div class="w-[20%] flex">
+								<p class="mr-2">수량:</p>
+								<input
+									value="1"
+									type="number"
+									class="countTag w-10 border border-black flex"
+								/>
+							</div>
+							<button
+								class="buttons addCart text-white border border-blue-700 bg-blue-700 rounded-md h-16 w-[35%] my-auto text-xl font-bold cursor-pointer justify-center hover:brightness-50"
+								id="orderDetailButton "
+							>
+								장바구니 추가하기
+							</button>
+							<button
+								class="buttons float-right border border-teal-300 bg-teal-300 rounded-md h-16 w-[35%] text-xl font-bold cursor-pointer justify-center hover:bg-teal-600 border-teal-600"
+								id="shoppingButton"
+							>
+								바로 구매하기
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

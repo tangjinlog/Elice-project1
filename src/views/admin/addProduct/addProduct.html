@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>제품추가</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+		<script src="./addProduct.js" type="module" defer></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+	</head>
+	<body>
+		<header class="headerNav"></header>
+		<section class="flex-col justify-center px-12 py-6 mx-auto max-w-screen-md">
+			<!-- 제목 -->
+			<div class="bg-blue-400 rounded">
+				<div>
+					<h1 class="border-b-2 mb-3 pb-3 text-2xl p-3 rounded">제품 판매</h1>
+				</div>
+			</div>
+			<!-- 폼 -->
+			<div class="categoryFormCon mt-10 shadow">
+				<form
+					action="/api/addproduct"
+					method="post"
+					enctype="multipart/form-data"
+					class="px-6 pb-6"
+				>
+					<p class="formTitle text-center text-sky-500 text-2xl mb-5">
+						제품 판매하기
+					</p>
+					<div>
+						<label for="titleInput" class="font-bold">제품 이름</label>
+						<div>
+							<input
+								type="text"
+								id="titleInput"
+								class="border rounded p-2 mt-2 mb-4 w-full"
+								placeholder="유니크 돌멩이"
+								name="name"
+							/>
+						</div>
+					</div>
+					<div>
+						<label for="categoryInput" class="font-bold">카테고리</label>
+						<div>
+							<select
+								class="p-3 mt-2 mb-4 w-full border rounded"
+								name="category"
+								id="category"
+							>
+								<option value="카테고리를 선택해 주세요." selected>
+									카테고리를 선택해 주세요.
+								</option>
+								<option value="일반">일반</option>
+								<option value="디퓨저">디퓨저</option>
+								<option value="애완돌 옷"></option>
+							</select>
+						</div>
+					</div>
+					<div>
+						<label for="colorInput" class="font-bold">색상</label>
+						<div>
+							<select
+								class="p-3 mt-2 mb-4 w-full border rounded"
+								name="color"
+								id="color"
+							>
+								<option value="색상을 선택해 주세요." selected>
+									색상을 선택해 주세요.
+								</option>
+								<option value="블랙">블랙</option>
+								<option value="레드">레드</option>
+								<option value="퍼플">퍼플</option>
+							</select>
+						</div>
+					</div>
+					<div>
+						<label for="sizes" class="font-bold">사이즈</label>
+						<div class="text-center border rounded mt-2 mb-4">
+							<input
+								class="ml-10"
+								type="radio"
+								id="size-small"
+								name="size"
+								value="small"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="size-small"
+								>small</label
+							>
+							<input
+								class="ml-10"
+								type="radio"
+								id="size-medium"
+								name="size"
+								value="medium"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="size-medium"
+								>medium</label
+							>
+							<input
+								class="ml-10"
+								type="radio"
+								id="size-large"
+								name="size"
+								value="large"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="size-large"
+								>large</label
+							>
+						</div>
+					</div>
+					<!-- <div>
+						<label for="delivery" class="font-bold">무료배송</label>
+						<div class="text-center border rounded mt-2 mb-4">
+							<input
+								type="radio"
+								id="delivery"
+								name="free_delivery"
+								value="true"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="delivery"
+								>true</label
+							>
+							<input
+								type="radio"
+								id="delivery"
+								name="free_delivery"
+								value="false"
+							/>
+							<label class="inline-block py-3 pr-3 mr-10" for="delivery"
+								>false</label
+							>
+						</div>
+					</div> -->
+					<div>
+						<label for="descMoreInput" class="font-bold">상세 설명</label>
+						<div>
+							<textarea
+								class="border rounded p-2 mt-2 mb-4 w-full"
+								name="descArea"
+								id="detailDescription"
+								cols="30"
+								rows="10"
+								placeholder="제품에 대해 자세히 적어주세요."
+							></textarea>
+						</div>
+					</div>
+					<div>
+						<label for="imgInput" class="font-bold">제품 사진</label>
+						<div class="border rounded my-2 relative">
+							<label for="fileLabel">
+								<input
+									type="file"
+									id="imgInput"
+									name="productImage"
+									class="imgInput border rounded opacity-0 absolute w-full h-full"
+									placeholder="title"
+									accept=".png, .jpeg, .jpg"
+									multiple
+								/>
+								<span
+									class="flex items-center inline-block p-2 absolute bg-slate-400 h-full rounded-tl rounded-bl"
+								>
+									<i class="fa-solid fa-camera"></i>
+									<span class="fileLabel ml-1">사진 업로드</span>
+								</span>
+								<span class="imgPath inline-block p-2 ml-36"
+									>사진파일(png, jpg, jpeg)</span
+								>
+							</label>
+						</div>
+					</div>
+					<div>
+						<label for="stockInput" class="font-bold">재고 수</label>
+						<div>
+							<input
+								type="number"
+								id="stockInput"
+								class="border rounded p-2 mt-2 mb-4 w-full"
+								placeholder="10000"
+								name="stock"
+							/>
+						</div>
+					</div>
+					<div>
+						<label for="priceInput" class="font-bold">가격</label>
+						<div class="relative clear-both w-full">
+							<input
+								type="number"
+								id="priceInput"
+								class="relative border rounded py-2 pl-2 pr-10 mt-2 mb-4 w-full"
+								placeholder="100,000"
+								name="price"
+							/>
+							<span class="block absolute top-[25%] w-10 h-10 -right-2"
+								>원</span
+							>
+						</div>
+					</div>
+
+					<!-- <div>
+						<label for="keywordInput" class="font-bold">검색 키워드</label>
+						<div class="flex w-full py-2 mt-2">
+							<div class="grow -mr-px">
+								<input
+									type="text"
+									class="keywordInput p-2 border rounded-tl rounded-bl w-full max-w-full"
+								/>
+							</div>
+							<div>
+								<button
+									class="addKeywordBtn py-2 px-3 bg-slate-400 rounded-tr rounded-br border-1 w-full h-full"
+								>
+									추가하기
+								</button>
+							</div>
+						</div>
+					</div> -->
+					<!-- keyword js추가 -->
+					<div class="addKeyword flex flex-wrap gap-2"></div>
+
+					<button
+						class="addCategory block w-full text-center py-2 my-5 bg-sky-500 text-white text-2xl mb-5 rounded"
+					>
+						제품 추가하기
+					</button>
+				</form>
+			</div>
+		</section>
+	</body>
+</html>

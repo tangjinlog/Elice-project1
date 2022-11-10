@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>장바구니</title>
+		<!-- 아이콘 -->
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/elice-rabbit-favicon.png"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<!-- 폰트 어썸: 아이콘 -->
+		<script
+			defer
+			src="https://kit.fontawesome.com/9daa42bcef.js"
+			crossorigin="anonymous"
+		></script>
+		<!-- 커스텀 css, js -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+		<script src="./cart.js" type="module" defer></script>
+	</head>
+	<body>
+		<!-- 헤더 -->
+		<header class="headerNav"></header>
+		<div class="section h-screen w-[80%] mx-auto">
+			<div class="mx-auto mt-14 h-full">
+				<div>
+					<ul class="flex">
+						<li
+							class="w-1/6 text-3xl pt-5 pl-3 fas fa-cart-shopping text-lime-400"
+						>
+							<a>장바구니</a>
+						</li>
+						<li
+							class="w-1/6 text-2xl pt-5 pl-5 fa-sharp fa-solid fa-credit-card"
+						>
+							<a>주문결제</a>
+						</li>
+						<li class="w-1/6 text-2xl pt-5 pl-2 fa-sharp fa-solid fa-gift">
+							<a>주문완료</a>
+						</li>
+						<li class="w-1/3"></li>
+					</ul>
+				</div>
+				<hr />
+				<div class="w-full h-10"></div>
+				<div class="flex space-x-5">
+					<div class="w-[60%] rounded-md shadow-2xl box-content">
+						<div class="w-[90%] mx-auto mt-5 pt-3">
+							<div class="tile is-8 is-parent cart-products">
+								<!-- 장바구니에 담긴 상품 모음 -->
+								<div
+									class="box cart-products-container"
+									id="cartProductsContainer"
+								>
+									<div
+										class="cart-products-header flex pb-2 border-b-[2px] border-black"
+									>
+										<label class="checkbox flex hover:text-blue-500">
+											<p class="selectAllBtn" class="help font-extrabold">
+												전체선택
+											</p>
+										</label>
+										<label class="seperator">
+											<p class="help help-seperator">
+												&nbsp;&nbsp;|&nbsp;&nbsp;
+											</p>
+										</label>
+										<label
+											class="delete-part hover:text-blue-500"
+											id="partialDeleteLabel"
+										>
+											<p class="removeChecked help font-extrabold">선택삭제</p>
+										</label>
+									</div>
+
+									<!-- 장바구니에 담긴 상품들의 html 요소(카드 형태)가 주입되는 곳 -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="w-[40%] h-[46%] rounded-md shadow-2xl">
+						<div class="w-[90%] mx-auto mt-5 pt-3">
+							<div class="box order-summary">
+								<div
+									class="text-2xl pt-8 border-black border-b-2 text-slate-600"
+								>
+									<p>결제정보</p>
+								</div>
+
+								<div class="order-info">
+									<div class="info flex justify-between mt-5 text-2xl">
+										<p>상품수</p>
+										<p class="totalNums" id="productsTitle">0개</p>
+									</div>
+									<div class="info flex justify-between my-5 text-2xl">
+										<p>상품금액</p>
+										<p class="totalPrice">0원</p>
+									</div>
+									<div class="info flex justify-between mb-5 text-2xl">
+										<p>배송비</p>
+										<p class="deliveryFee">0원</p>
+									</div>
+								</div>
+								<div
+									class="flex justify-between text-2xl pt-5 border-black border-t-2 text-slate-600"
+								>
+									<p class="total-label">총 결제금액</p>
+									<p class="payment">0원</p>
+								</div>
+								<div class="purchase my-5 px-5 py-5">
+									<a href="../shippingpoint/shippingpoint.html">
+										<button
+											class="button hover:bg-blue-600 font-extrabold text-2xl h-16 w-[100%] bg-blue-400 rounded-lg"
+											id="checkoutButton"
+										>
+											구매하기
+										</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
