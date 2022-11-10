@@ -14,6 +14,19 @@ function addNav() {
 	header.innerHTML = navTemplate();
 }
 
+const showProductCounts = () => {
+	const allPrices = document.querySelectorAll('.eachPrice');
+	const allPricesData = [];
+	JSON.parse(store.getItem('cart')).forEach((item) => {
+		allPricesData.push(item.price * item.count);
+	});
+	allPrices.forEach(
+		(eachPrice, index) => (eachPrice.innerText = allPricesData[index] + '원'),
+	);
+
+	console.log(allPricesData);
+};
+
 //상품 checked상태를 받아와서 그대로 화면에 보여주기 위한 함수
 const loadCheckedState = (isCheckedList) => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
@@ -79,6 +92,7 @@ const changeItemNum = () => {
 				store.setItem('cart', JSON.stringify(cartData));
 			}
 			showPayInfo();
+			showProductCounts();
 		});
 	});
 };
