@@ -31,7 +31,7 @@ export async function createModal(modal) {
 	});
 
 	/* 모달창 닫기 */
-	function closeModal(e) {
+	async function closeModal(e) {
 		const modalEl = $('.modalCon');
 		const body = $('body');
 		body.removeChild(modalEl);

@@ -7,6 +7,9 @@ function addNav() {
 }
 addNav();
 
+/* 참조함수 */
+const $ = (selector) => document.querySelector(selector);
+
 /* modal */
 const modal = `
   <div class="modalBackground flex justify-center items-center absolute w-full h-full inset-0 bg-black/[0.25]">
