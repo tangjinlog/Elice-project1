@@ -14,19 +14,20 @@ const createGoods = (productDatas, productList) => {
 		productList.insertAdjacentHTML(
 			'beforeend',
 			`
-	  <a href="/goods-detail/${product._id}">
 		  <div class="productItem flex-col w-full h-full bg-slate-200">
 		    <div class="grow w-full">
+				<a href="/goods-detail/${product._id}">
+
 				  <img id="${product._id}" src="${
 				product.image ? product.image : '../images/no-image.png'
-			}" alt="상품이미지">
+			}" alt="상품이미지">		</a>
+
 		    </div>
 		    <p>${product.name}</p>
 		    <div>
 			    ${product.price}원
 		    </div>
 	    </div>
-		</a>
   `,
 		);
 	});
