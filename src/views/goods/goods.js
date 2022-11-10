@@ -8,31 +8,49 @@ function addNav() {
 }
 addNav();
 
-const loadAllProducts = async () => {
-	const response = await fetch('/api/productlist');
-	const productDatas = await response.json();
-	const productList = document.querySelector('.product-list');
-
+const createGoods = (productDatas, productList) => {
 	productDatas.forEach((product) => {
+		const src = `/images/products/${product.productImage}`;
+		console.log(product);
 		productList.insertAdjacentHTML(
 			'beforeend',
 			`
-	  <a href="../goods-detail/goods-detail.html">
 		  <div class="productItem flex-col w-full h-full bg-slate-200">
 		    <div class="grow w-full">
+				<a href="/goods-detail/${product._id}">
+
 				  <img id="${product._id}" src="${
-				product.image ? product.image : '../images/no-image.png'
-			}" alt="상품이미지">
+				src ? src : '../images/no-image.png'
+			}" alt="상품이미지">		</a>
+
 		    </div>
 		    <p>${product.name}</p>
 		    <div>
 			    ${product.price}원
 		    </div>
 	    </div>
-		</a>
   `,
 		);
 	});
+};
+
+const loadAllProducts = async () => {
+	const productList = document.querySelector('.product-list');
+	const category = window.location.pathname.split('/')[2];
+	const response = await fetch('/api/products');
+	let productDatas = await response.json();
+	if (category == 'normal') {
+		productDatas = productDatas.filter((product) => product.category == '일반');
+	} else if (category == 'incense-holder') {
+		productDatas = productDatas.filter(
+			(product) => product.category == '인센스홀더',
+		);
+	} else if (category == 'diffuser') {
+		productDatas = productDatas.filter(
+			(product) => product.category == '디퓨저',
+		);
+	}
+	createGoods(productDatas, productList);
 	const productItems = document.querySelectorAll('.productItem');
 	productItems.forEach((productItem) => {
 		productItem.addEventListener('click', (e) => {

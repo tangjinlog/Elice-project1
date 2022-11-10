@@ -4,7 +4,7 @@ export function navTemplate() {
     <nav class="w-full py-2">
 			<ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
 				<li class="pl-10 my-auto text-xl">
-					<a href="/home/home.html">
+					<a href="/">
 						<i class="fa-solid fa-house"></i>
 					</a>
 				</li>
@@ -38,21 +38,28 @@ export function navTemplate() {
 						<ul class="py-1" aria-labelledby="dropdown">
 							<li>
 								<a
-									href="#"
+									href="/category/all"
+									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
+									>전체</a
+								>
+							</li>
+							<li>
+								<a
+									href="/category/normal"
 									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
 									>일반돌</a
 								>
 							</li>
 							<li>
 								<a
-									href="#"
+									href="/category/incense-holder"
 									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
 									>인센스홀더</a
 								>
 							</li>
 							<li>
 								<a
-									href="#"
+									href="/category/diffuser"
 									class="hover:bg-gray-100 text-gray-700 block px-4 py-2"
 									>디퓨저</a
 								>
@@ -62,16 +69,19 @@ export function navTemplate() {
 				</li>
 
 				<li class="w-1/12 pl-5 my-auto ml-auto">
-					<a href="/admin/admin.html">페이지관리</a>
+					<a href="/admin">페이지관리</a>
 				</li>
 				<li class="w-1/12 pl-5 my-auto">
-					<a href="/account/account.html">계정관리</a>
+					<a href="/account">계정관리</a>
 				</li>
 				<li class="w-1/12 pl-5 my-auto">
-					<a href="/login/login.html">로그인</a>
+					<a href="/login">로그인</a>
 				</li>
 				<li class="w-1/12 pl-5 my-auto">
-					<a href="/cart/cart.html">
+					<a href="/register">회원가입</a>
+				</li>
+				<li class="w-1/12 pl-5 my-auto">
+					<a href="/cart">
 						<span>
 							<i class="fas fa-cart-shopping" aria-hidden="true"></i>
 						</span>
