@@ -24,7 +24,7 @@ export class ProductModel {
 	}
 	// 카테고리_id에 해당하는 제품들 가져오기
 	async findAllByCategoryId(categoryId) {
-		return await Product.find({ categoryId });
+		return await Product.find({ categoryId });git 
 	}
 
 	// 카테고리_id에 해당하는 제품1개 가져오기
