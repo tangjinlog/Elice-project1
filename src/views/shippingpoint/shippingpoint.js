@@ -31,11 +31,9 @@ userRequestInput.addEventListener('change', (e) => {
 });
 
 const store = window.localStorage;
-console.log(JSON.parse(store.getItem('cart')));
 const checkedProducts = JSON.parse(store.getItem('cart')).filter(
 	(product) => product.checked == true,
 );
-console.log(checkedProducts);
 let totalNums = 0;
 let totalPrice = 0;
 checkedProducts.forEach((item) => {
@@ -58,23 +56,6 @@ const showPayInfo = () => {
 };
 showPayInfo();
 
-function sendPost(url, params) {
-	var form = document.createElement('form');
-	form.setAttribute('method', 'post');
-	form.setAttribute('target', '_blank');
-	form.setAttribute('action', url);
-
-	for (var key in params) {
-		var hiddenField = document.createElement('input');
-		hiddenField.setAttribute('type', 'hidden');
-		hiddenField.setAttribute('name', key);
-		hiddenField.setAttribute('value', params[key]);
-		form.appendChild(hiddenField);
-	}
-
-	document.body.appendChild(form);
-	form.submit();
-}
 const token = window.sessionStorage.getItem('token');
 checkoutBtn.addEventListener('click', (e) => {
 	e.preventDefault();
@@ -88,9 +69,8 @@ checkoutBtn.addEventListener('click', (e) => {
 
 	fetch('/api/order', {
 		method: 'post',
-		headers: { Authorization: token },
+		headers: { authorization: `bearer ${token}` },
 		body: {
-			userId: '아무거나',
 			totalPrice,
 			address: { postalCode, address1, address2 },
 			request,
