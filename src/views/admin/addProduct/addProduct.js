@@ -1,5 +1,5 @@
 import { navTemplate } from '/common/nav.js';
-
+import { quest } from '/common/quest.js';
 /* nav Template */
 function addNav() {
 	const header = document.querySelector('.headerNav');
@@ -33,6 +33,7 @@ function imgPathDisplay() {
 		preview.appendChild(list);
 
 		for (const file of curFiles) {
+			file.src = URL.createObjectURL(file);
 			const listItem = document.createElement('li');
 			const para = document.createElement('p');
 			para.textContent = `${file.name}`;
@@ -64,19 +65,11 @@ function addKeyword(e) {
 	}
 	keywordInput.value = '';
 	const deleteIcon = document.querySelectorAll('.deleteIcon');
-	deleteIcon.forEach((e) => e.addEventListener('click', deleteKeyword));
-}
-
-/* 키워드삭제 */
-function deleteKeyword(e) {
-	let parentTag = e.target;
-	for (
-		;
-		parentTag.classList.contains('item') != true;
-		parentTag = parentTag.parentElement
+	deleteIcon.forEach((e) =>
+		e.addEventListener('click', (e) => {
+			/* 키워드삭제 */
+			const deleteKeyword = quest(e, 'item');
+			deleteKeyword.remove();
+		}),
 	);
-	parentTag.remove();
 }
-
-const addForm = $('.categoryFormCon');
-addForm.addEventListener('submit', () => alert('상품이 추가되었습니다.'));

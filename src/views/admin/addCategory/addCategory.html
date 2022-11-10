@@ -27,12 +27,20 @@
 					</h1>
 				</div>
 			</div>
-			<p class="formTitle text-center text-sky-500 text-2xl mb-5">
+			<p class="formTitle text-center text-sky-500 text-2xl my-5">
 				카테고리 목록
 			</p>
-			<div class="orderListCon mt-10 max-w-screen-md">
+			<div class="categoryCon max-w-screen-md">
+				<div class="createCon flex justify-end">
+					<button
+						class="category-createBtn w-1/4 py-3 m-2 hover:bg-sky-500 bg-sky-100 rounded"
+						type="button"
+					>
+						카테고리 추가
+					</button>
+				</div>
 				<div
-					class="orderListCategory flex justify-around text-center bg-sky-400 rounded"
+					class="category-templateCon flex justify-around text-center bg-sky-400 rounded"
 				>
 					<div class="w-1/6">제목</div>
 					<div class="w-2/6">설명</div>
@@ -40,75 +48,13 @@
 				</div>
 			</div>
 			<!-- 카테고리 목록 -->
-			<div class="categoryFormCon flex text-center items-center border-b-2 shadow max-w-screen-md">
-					<form class="categoryForm flex items-center gap-[2.5rem] w-full justify-evenly"></form>
-
-			</div>
-			<!-- 폼 -->
-				<form action="" class="px-6 pb-6">
-					<div>
-						<label for="titleInput" class="font-bold">카테고리 제목</label>
-						<div>
-							<input
-								type="text"
-								id="titleInput"
-								class="border rounded p-2 mt-2 mb-4 w-full"
-								placeholder="Men Clothes"
-							/>
-						</div>
-					</div>
-					<div>
-						<label for="descInput" class="font-bold">카테고리 설명</label>
-						<div>
-							<input
-								type="text"
-								id="descInput"
-								class="border rounded p-2 mt-2 mb-4 w-full"
-								placeholder="봄"
-							/>
-						</div>
-					</div>
-					<div>
-						<label for="themeInput" class="font-bold">카테고리 테마</label>
-						<div>
-							<select
-								class="border rounded p-2 mt-2 mb-4 w-full"
-								name="theme"
-								id="categoryTheme"
-							>
-								<option value="default" selected>테마를 선택해 주세요.</option>
-								<option value="light-green">light-green</option>
-								<option value="red">red</option>
-								<option value="blue">blue</option>
-								<option value="yellow">yellow</option>
-								<option value="purple">purple</option>
-							</select>
-						</div>
-					</div>
-					<div>
-						<label for="imgInput" class="font-bold">카테고리 사진</label>
-						<div class="border rounded my-2">
-							<label for="fileLabel">
-								<input
-									type="file"
-									id="imgInput"
-									class="border rounded p-2 mt-2 mb-4 opacity-0 absolute w-full"
-									placeholder="title"
-								/>
-								<span class="inline-block bg-slate-400 p-2">
-									<i class="fa-solid fa-camera"></i>
-									<span class="fileLabel">사진 업로드</span>
-								</span>
-								<span class="ml-3">사진파일 (png, jpg, jpeg)</span>
-							</label>
-						</div>
-					</div>
-					<button
-						class="formTitle block w-full text-center py-2 my-5 bg-sky-500 text-white text-2xl mb-5 rounded"
-					>
-						카테고리 추가하기
-					</button>
-				</form>
+			<div
+				class="categoryFormCon flex text-center items-center border-b-2 shadow max-w-screen-md"
+			>
+				<!-- 폼 -->
+				<form
+					class="categoryForm flex-col content-evenly items-center gap-[2.5rem] w-full h-full"
+				></form>
 			</div>
 		</section>
 	</body>
