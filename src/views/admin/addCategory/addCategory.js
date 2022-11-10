@@ -48,11 +48,11 @@ async function allCategories() {
 
 /* modal */
 const modal = `
-	<div class="modalBackground flex justify-center items-center absolute w-full h-full inset-0 bg-black/[0.25]">
+	<div class="modalBackground flex justify-center items-center absolute z-10 w-full h-full inset-0 bg-black/[0.25]">
 		<div class="modalClose fixed top-10 right-10 text-3xl">
 			<i class="closeBtn fa-solid fa-x"></i>
 		</div>
-		<form action="/api/category" method="post" class="modalWindow justify-around relative w-90 h-auto bg-white px-10 py-6 -top-10 rounded">
+		<form action="/api/category" method="post" class="modalWindow justify-around relative z-10 w-90 h-auto bg-white px-10 py-6 -top-10 rounded">
 			<div class="flex-col items-center h-full">
 				<label for="titleInput" class="font-bold">카테고리 이름</label>
 				<div>
@@ -71,11 +71,11 @@ const modal = `
 	</div>`;
 
 const updateModal = (name, desc) => {
-	return `<div class="modalBackground flex justify-center items-center absolute w-full h-full inset-0 bg-black/[0.25]">
+	return `<div class="modalBackground flex justify-center items-center absolute z-10 w-full h-full inset-0 bg-black/[0.25]">
 			<div class="modalClose fixed top-10 right-10 text-3xl">
 				<i class="closeBtn fa-solid fa-x"></i>
 			</div>
-			<form action="" class="modalWindow justify-around relative w-90 h-auto bg-white px-10 py-6 -top-10 rounded">
+			<form action="" class="modalWindow justify-around relative z-1 w-90 h-auto bg-white px-10 py-6 -top-10 rounded">
 				<div class="flex-col items-center h-full">
 					<label for="nameInput" class="font-bold">카테고리 이름</label>
 					<div>
@@ -96,11 +96,11 @@ const updateModal = (name, desc) => {
 
 const deleteModal = () => {
 	return `
-  <div class="modalBackground flex justify-center items-center absolute w-full h-full inset-0 bg-black/[0.25]">
+  <div class="modalBackground flex justify-center items-center absolute z-10 w-full h-full inset-0 bg-black/[0.25]">
     <div class="modalClose fixed top-10 right-10 text-3xl">
       <i class="closeBtn fa-solid fa-x"></i>
     </div>
-    <div class="modalWindow justify-around relative w-90 h-40 bg-white px-10 py-6 -top-10 rounded">
+    <div class="modalWindow justify-around relative z-10 w-90 h-40 bg-white px-10 py-6 -top-10 rounded">
       <div class="flex-col items-center h-full">
         <p class="">카테고리 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</p>
         <div class="modalBtn flex justify-center items-center h-full">
@@ -114,7 +114,6 @@ const deleteModal = () => {
 
 /* 버튼연결 */
 const createBtn = $('.category-createBtn');
-
 createBtn.addEventListener('click', () => {
 	createModal(modal);
 });

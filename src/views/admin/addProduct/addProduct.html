@@ -27,7 +27,12 @@
 			</div>
 			<!-- 폼 -->
 			<div class="categoryFormCon mt-10 shadow">
-				<form action="/api/addproduct" method="post" class="px-6 pb-6">
+				<form
+					action="/api/addproduct"
+					method="post"
+					enctype="multipart/form-data"
+					class="px-6 pb-6"
+				>
 					<p class="formTitle text-center text-sky-500 text-2xl mb-5">
 						제품 판매하기
 					</p>
@@ -38,7 +43,7 @@
 								type="text"
 								id="titleInput"
 								class="border rounded p-2 mt-2 mb-4 w-full"
-								placeholder="Men Clothes"
+								placeholder="유니크 돌멩이"
 								name="name"
 							/>
 						</div>
@@ -55,8 +60,8 @@
 									카테고리를 선택해 주세요.
 								</option>
 								<option value="일반">일반</option>
-								<option value="애완돌 하우스">애완돌 하우스</option>
-								<option value="애완돌 옷">애완돌 옷</option>
+								<option value="디퓨저">디퓨저</option>
+								<option value="애완돌 옷"></option>
 							</select>
 						</div>
 					</div>
@@ -112,7 +117,7 @@
 							>
 						</div>
 					</div>
-					<div>
+					<!-- <div>
 						<label for="delivery" class="font-bold">무료배송</label>
 						<div class="text-center border rounded mt-2 mb-4">
 							<input
@@ -134,14 +139,14 @@
 								>false</label
 							>
 						</div>
-					</div>
+					</div> -->
 					<div>
 						<label for="descMoreInput" class="font-bold">상세 설명</label>
 						<div>
 							<textarea
 								class="border rounded p-2 mt-2 mb-4 w-full"
 								name="descArea"
-								id="descMoreInput"
+								id="detailDescription"
 								cols="30"
 								rows="10"
 								placeholder="제품에 대해 자세히 적어주세요."
@@ -155,6 +160,7 @@
 								<input
 									type="file"
 									id="imgInput"
+									name="productImage"
 									class="imgInput border rounded opacity-0 absolute w-full h-full"
 									placeholder="title"
 									accept=".png, .jpeg, .jpg"
@@ -200,7 +206,7 @@
 						</div>
 					</div>
 
-					<div>
+					<!-- <div>
 						<label for="keywordInput" class="font-bold">검색 키워드</label>
 						<div class="flex w-full py-2 mt-2">
 							<div class="grow -mr-px">
@@ -217,7 +223,7 @@
 								</button>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- keyword js추가 -->
 					<div class="addKeyword flex flex-wrap gap-2"></div>
 

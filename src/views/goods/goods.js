@@ -10,6 +10,7 @@ addNav();
 
 const createGoods = (productDatas, productList) => {
 	productDatas.forEach((product) => {
+		const src = `/images/products/${product.productImage}`;
 		console.log(product);
 		productList.insertAdjacentHTML(
 			'beforeend',
@@ -19,7 +20,7 @@ const createGoods = (productDatas, productList) => {
 				<a href="/goods-detail/${product._id}">
 
 				  <img id="${product._id}" src="${
-				product.image ? product.image : '../images/no-image.png'
+				src ? src : '../images/no-image.png'
 			}" alt="상품이미지">		</a>
 
 		    </div>
