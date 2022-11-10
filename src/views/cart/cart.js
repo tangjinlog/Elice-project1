@@ -14,9 +14,7 @@ function addNav() {
 	header.innerHTML = navTemplate();
 }
 
-/*
-상품의 checked상태를 받아와서 그대로 화면에 보여주기 위한 함수
-*/
+//상품 checked상태를 받아와서 그대로 화면에 보여주기 위한 함수
 const loadCheckedState = (isCheckedList) => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	allCheckBoxes.forEach((eachCheckBox, index) => {
