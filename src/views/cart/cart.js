@@ -3,28 +3,44 @@ addNav();
 
 //selectors
 const $ = (selector) => document.querySelector(selector);
+const store = window.localStorage;
 const cartContainer = $('.cart-products-container');
-const allSelectCheckbox = document.getElementById('allSelectCheckbox');
+const selectAllBtn = $('.selectAllBtn');
 const removeCheckedInput = $('.removeChecked');
 
-//functions
+//상단 navbar 모듈
 function addNav() {
 	const header = document.querySelector('.headerNav');
 	header.innerHTML = navTemplate();
 }
 
-const setChecked = (isCheckedList) => {
+const showProductCounts = () => {
+	const allPrices = document.querySelectorAll('.eachPrice');
+	const allPricesData = [];
+	JSON.parse(store.getItem('cart')).forEach((item) => {
+		allPricesData.push(item.price * item.count);
+	});
+	allPrices.forEach(
+		(eachPrice, index) => (eachPrice.innerText = allPricesData[index] + '원'),
+	);
+
+	console.log(allPricesData);
+};
+
+//상품 checked상태를 받아와서 그대로 화면에 보여주기 위한 함수
+const loadCheckedState = (isCheckedList) => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	allCheckBoxes.forEach((eachCheckBox, index) => {
 		eachCheckBox.checked = isCheckedList[index];
 	});
 };
 
+//전체선택 버튼 기능구현을 위한 함수
 const selectAll = () => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	const checkedVals = [];
 	allCheckBoxes.forEach((checkbox) => checkedVals.push(checkbox.checked));
-	let cartData = JSON.parse(window.localStorage.getItem('cart'));
+	let cartData = JSON.parse(store.getItem('cart'));
 	if (!checkedVals.includes(false)) {
 		allCheckBoxes.forEach((checkbox) => {
 			checkbox.checked = false;
@@ -35,10 +51,10 @@ const selectAll = () => {
 		cartData.forEach((item) => (item.checked = true));
 	}
 	cartData = JSON.stringify(cartData);
-	window.localStorage.setItem('cart', cartData);
-	window.location.reload();
+	store.setItem('cart', cartData);
 };
 
+//선택삭제 버튼 기능구현을 위한 함수
 const removeChecked = () => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	removeCheckedInput.addEventListener('click', () => {
@@ -50,18 +66,20 @@ const removeChecked = () => {
 				);
 		});
 		let newCartData = [];
-		let cartData = JSON.parse(window.localStorage.getItem('cart'));
+		let cartData = JSON.parse(store.getItem('cart'));
 		cartData.forEach((product) => {
-			if (!checked_list.includes(product.title)) {
+			if (!checked_list.includes(product.name)) {
 				newCartData.push(product);
 			}
 		});
 		newCartData = JSON.stringify(newCartData);
-		window.localStorage.setItem('cart', newCartData);
+		store.setItem('cart', newCartData);
+		showPayInfo();
 		window.location.reload();
 	});
 };
 
+//물건 수량 변경시 로컬 스토리지 상품 데이터의 count값을 바꿔서 저장해주기 위한 함수
 const changeItemNum = () => {
 	const productCounts = document.querySelectorAll('.productCount');
 	productCounts.forEach((productCount) => {
@@ -70,39 +88,41 @@ const changeItemNum = () => {
 				alert('올바른 수량을 입력해주세요');
 				e.target.value = 1;
 			} else {
-				e.preventDefault();
-				const cartData = JSON.parse(window.localStorage.getItem('cart'));
+				const cartData = JSON.parse(store.getItem('cart'));
 				cartData[e.target.id].count = parseInt(e.target.value);
-				window.localStorage.setItem('cart', JSON.stringify(cartData));
-				window.location.reload();
+				store.setItem('cart', JSON.stringify(cartData));
 			}
+			showPayInfo();
+			showProductCounts();
 		});
 	});
 };
-
+//물건 체크시 checked 상태를 로컬 스토리지에 업데이트하기 위한 함수
 const changeCheck = () => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	allCheckBoxes.forEach((eachCheckBox) => {
 		eachCheckBox.addEventListener('change', (e) => {
-			let cartData = JSON.parse(window.localStorage.getItem('cart'));
-			const title =
+			let cartData = JSON.parse(store.getItem('cart'));
+			const name =
 				e.target.nextElementSibling.nextElementSibling.children[0].innerText;
 			cartData.forEach((item) => {
-				if (item.title === title) {
+				if (item.name === name) {
 					item.checked ? (item.checked = false) : (item.checked = true);
 				}
 			});
-			window.localStorage.setItem('cart', JSON.stringify(cartData));
+			store.setItem('cart', JSON.stringify(cartData));
+			showPayInfo();
 		});
 	});
 };
 
+//결제정보를 보여주기 위한 함수
 const showPayInfo = () => {
 	const totalNumsTag = $('.totalNums');
 	const totalPriceTag = $('.totalPrice');
 	const deliveryFeeTag = $('.deliveryFee');
 	const paymentTag = $('.payment');
-	const cartData = JSON.parse(window.localStorage.getItem('cart'));
+	const cartData = JSON.parse(store.getItem('cart'));
 	let totalNums = 0;
 	let totalPrice = 0;
 	cartData.forEach((item) => {
@@ -120,14 +140,13 @@ const showPayInfo = () => {
 	}원`;
 };
 
+//카트에 담긴 상품데이터를 불러와 화면에 보여주기 위한 함수
 const loadCartList = async () => {
-	let cartData = window.localStorage.getItem('cart');
+	let cartData = store.getItem('cart');
 	cartData = JSON.parse(cartData);
 	let isCheckedList = [];
 	cartData.forEach((item, index) => {
-		const price = item.price;
-		const name = item.title;
-		const count = item.count;
+		const { price, name, count } = item;
 		isCheckedList.push(item.checked);
 		cartContainer.insertAdjacentHTML(
 			'beforeend',
@@ -149,19 +168,14 @@ const loadCartList = async () => {
 		`,
 		);
 	});
-	setChecked(isCheckedList);
+	loadCheckedState(isCheckedList);
 	removeChecked();
 	changeItemNum();
 	changeCheck();
 	showPayInfo();
-	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
-	allCheckBoxes.forEach((eachCheckBox) => {
-		eachCheckBox.addEventListener('change', () => {
-			showPayInfo();
-		});
-	});
-	allSelectCheckbox.addEventListener('click', () => {
+	selectAllBtn.addEventListener('click', () => {
 		selectAll();
+		showPayInfo();
 	});
 };
 

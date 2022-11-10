@@ -75,7 +75,10 @@ export function navTemplate() {
 					<a href="/account">계정관리</a>
 				</li>
 				<li class="w-1/12 pl-5 my-auto">
-					<a href="/login>로그인</a>
+					<a href="/login">로그인</a>
+				</li>
+				<li class="w-1/12 pl-5 my-auto">
+					<a href="/register">회원가입</a>
 				</li>
 				<li class="w-1/12 pl-5 my-auto">
 					<a href="/cart">
