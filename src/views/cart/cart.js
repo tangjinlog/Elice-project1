@@ -68,12 +68,13 @@ const removeChecked = () => {
 		let newCartData = [];
 		let cartData = JSON.parse(store.getItem('cart'));
 		cartData.forEach((product) => {
-			if (!checked_list.includes(product.title)) {
+			if (!checked_list.includes(product.name)) {
 				newCartData.push(product);
 			}
 		});
 		newCartData = JSON.stringify(newCartData);
 		store.setItem('cart', newCartData);
+		showPayInfo();
 		window.location.reload();
 	});
 };
