@@ -36,7 +36,6 @@ const selectAll = () => {
 	}
 	cartData = JSON.stringify(cartData);
 	window.localStorage.setItem('cart', cartData);
-	window.location.reload();
 };
 
 const removeChecked = () => {
@@ -70,11 +69,10 @@ const changeItemNum = () => {
 				alert('올바른 수량을 입력해주세요');
 				e.target.value = 1;
 			} else {
-				e.preventDefault();
 				const cartData = JSON.parse(window.localStorage.getItem('cart'));
 				cartData[e.target.id].count = parseInt(e.target.value);
 				window.localStorage.setItem('cart', JSON.stringify(cartData));
-				window.location.reload();
+				// window.location.reload();
 			}
 		});
 	});
@@ -85,10 +83,10 @@ const changeCheck = () => {
 	allCheckBoxes.forEach((eachCheckBox) => {
 		eachCheckBox.addEventListener('change', (e) => {
 			let cartData = JSON.parse(window.localStorage.getItem('cart'));
-			const title =
+			const name =
 				e.target.nextElementSibling.nextElementSibling.children[0].innerText;
 			cartData.forEach((item) => {
-				if (item.title === title) {
+				if (item.name === name) {
 					item.checked ? (item.checked = false) : (item.checked = true);
 				}
 			});
@@ -125,9 +123,7 @@ const loadCartList = async () => {
 	cartData = JSON.parse(cartData);
 	let isCheckedList = [];
 	cartData.forEach((item, index) => {
-		const price = item.price;
-		const name = item.title;
-		const count = item.count;
+		const { price, name, count } = item;
 		isCheckedList.push(item.checked);
 		cartContainer.insertAdjacentHTML(
 			'beforeend',
@@ -160,8 +156,16 @@ const loadCartList = async () => {
 			showPayInfo();
 		});
 	});
+	const allCountInput = document.querySelectorAll('.productCount');
+	allCountInput.forEach((eachCount) => {
+		eachCount.addEventListener('change', () => {
+			showPayInfo();
+		});
+	});
+
 	allSelectCheckbox.addEventListener('click', () => {
 		selectAll();
+		showPayInfo();
 	});
 };
 
