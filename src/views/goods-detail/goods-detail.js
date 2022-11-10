@@ -1,6 +1,6 @@
 const $ = (selector) => document.querySelector(selector);
+const store = window.localStorage;
 const btnAddCart = $('.addCart');
-const manufacturerTag = $('.manufacturer');
 const titleTag = $('.title');
 const priceTag = $('.priceTag');
 const descriptionTag = $('.description');
@@ -14,14 +14,13 @@ function addNav() {
 }
 addNav();
 
+let detailData = JSON.parse(store.getItem('detail'))[0];
+
 btnAddCart.addEventListener('click', () => {
-	const manufacturer = manufacturerTag.innerText;
-	const title = titleTag.innerText;
-	const price = parseInt(priceTag.innerText);
-	const description = descriptionTag.innerText;
 	const count = parseInt(countTag.value);
 	const checked = true;
-	let productData = { manufacturer, title, price, description, count, checked };
+	const name = detailData.name;
+	let productData = { ...detailData, count, checked };
 	let cartData = window.localStorage.getItem('cart');
 	if (!cartData) {
 		cartData = [];
@@ -30,13 +29,13 @@ btnAddCart.addEventListener('click', () => {
 		cartData = JSON.parse(cartData);
 		let isExist = false;
 		cartData.forEach((eachItem) => {
-			if (eachItem.title === title) {
+			if (eachItem.name === name) {
 				isExist = true;
 			}
 		});
 		if (isExist) {
 			cartData.forEach((eachItem) => {
-				if (eachItem.title === title) {
+				if (eachItem.name === name) {
 					eachItem.count += count;
 				}
 			});
@@ -53,10 +52,9 @@ btnAddCart.addEventListener('click', () => {
 });
 
 const showDetailData = () => {
-	const detailData = JSON.parse(window.localStorage.getItem('detail'));
-	console.log(detailData);
-	titleTag.innerText = detailData[0].name;
-	priceTag.innerText = detailData[0].price;
+	titleTag.innerText = detailData.name;
+	priceTag.innerText = detailData.price;
+	descriptionTag.innerText = detailData.detailDescription;
 };
 
 showDetailData();
