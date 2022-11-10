@@ -52,7 +52,6 @@ class ProductService {
 	async getProductsByCategoryName(categoryName) {
 		const category = await this.categoryModel.findByName(categoryName);
     const products = await this.productModel.findAllByCategoryId(category._id);
-console.log(products)
     return products;
 	}
 
@@ -66,9 +65,7 @@ console.log(products)
 	async getProductByName(name) {
 		//상품 등록 여부 확인
 		const product = await this.productModel.findByName(name);
-		console.log(product);
 		if (!product) {
-			console.log(name);
 			throw new Error('해당 제품을 찾을 수 없습니다.');
 		}
 		return product;
@@ -88,7 +85,6 @@ console.log(products)
 	async editProduct(_id, updateInfo) {
 		// 우선 해당 id의 제품이 db에 있는지 확인
 		let product = await this.productModel.findById(_id);
-console.log(product)
 		// db에서 찾지 못한 경우, 에러 메시지 반환
 		if (!product) {
 			const error = new Error('등록되어있지 않은 상품입니다.');
