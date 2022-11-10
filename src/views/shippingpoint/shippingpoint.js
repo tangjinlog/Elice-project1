@@ -5,10 +5,11 @@ function addNav() {
 	header.innerHTML = navTemplate();
 }
 addNav();
-
 const $ = (selector) => document.querySelector(selector);
 
 //주문자정보
+const userNameInput = $('.userName');
+const userPhoneNumberInput = $('.userPhoneNumber');
 const postNumInput = $('.postNum');
 const address1Input = $('.address1');
 const address2Input = $('.address2');
@@ -16,10 +17,7 @@ const userRequestInput = $('.userRequest');
 const userWriteInput = $('.userWrite');
 const userInput = $('.userInput');
 
-//결제정보
 const checkoutBtn = $('.checkoutBtn');
-
-//구매하기 버튼을 클릭시 실행되는 함수
 
 //직접선택 선택시에만 인풋을 보여주기 위한 함수
 userRequestInput.addEventListener('change', (e) => {
@@ -58,7 +56,8 @@ showPayInfo();
 
 const token = window.sessionStorage.getItem('token');
 checkoutBtn.addEventListener('click', (e) => {
-	e.preventDefault();
+	const userName = userNameInput.value;
+	const userPhoneNumber = userPhoneNumberInput.value;
 	const postalCode = postNumInput.value;
 	const address1 = address1Input.value;
 	const address2 = address2Input.value;
@@ -66,16 +65,27 @@ checkoutBtn.addEventListener('click', (e) => {
 		userRequestInput.value != 'userWrite'
 			? userRequestInput.value
 			: userInput.value;
+	e.preventDefault();
 
 	fetch('/api/order', {
 		method: 'post',
-		headers: { authorization: `bearer ${token}` },
-		body: {
-			totalPrice,
+		headers: {
+			authorization: `bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			totalPrice: finalPrice,
 			address: { postalCode, address1, address2 },
 			request,
-		},
+		}),
 	})
 		.then((response) => response.json())
-		.then((data) => console.log(data));
+		.then((data) => {
+			if (data.result == 'error') {
+				alert('입력값이 올바른지 확인해주세요');
+				console.error(data.reason);
+			} else {
+				window.location.href = '/complete';
+			}
+		});
 });

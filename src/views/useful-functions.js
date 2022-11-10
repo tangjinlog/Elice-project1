@@ -12,6 +12,10 @@ export const validateEmail = (email) => {
 		);
 };
 
+export const validateName = (name) => {
+	return String(name).match(/[^가-힣a-zA-Z]/g);
+};
+
 // 숫자에 쉼표를 추가함. (10000 -> 10,000)
 export const addCommas = (n) => {
 	return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
