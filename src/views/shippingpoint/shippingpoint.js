@@ -41,6 +41,7 @@ checkedProducts.forEach((item) => {
 const deliveryFee = totalPrice < 20000 ? 3000 : 0;
 const finalPrice = totalPrice + deliveryFee;
 
+/**결제정보를 보여주기 위한 함수 */
 const showPayInfo = () => {
 	const totalNumsInput = $('.totalNums');
 	const totalPriceInput = $('.totalPrice');
@@ -54,6 +55,15 @@ const showPayInfo = () => {
 };
 showPayInfo();
 
+/**결제된 상품을 장바구니에서 제거해주는 함수 */
+const removePurchasedItems = () => {
+	const removeList = [];
+	JSON.parse(store.getItem('cart')).forEach((item) => {
+		if (!item.checked) removeList.push(item);
+	});
+	store.setItem('cart', JSON.stringify(removeList));
+};
+
 const token = window.sessionStorage.getItem('token');
 checkoutBtn.addEventListener('click', (e) => {
 	const postalCode = postNumInput.value;
@@ -65,6 +75,7 @@ checkoutBtn.addEventListener('click', (e) => {
 			: userInput.value;
 	e.preventDefault();
 
+	//결제 확인창을 띄우기 위한 기능
 	if (confirm('결제하시겠습니까?')) {
 		fetch('/api/order', {
 			method: 'post',
@@ -87,6 +98,7 @@ checkoutBtn.addEventListener('click', (e) => {
 					window.location.href = '/complete';
 				}
 			});
+		removePurchasedItems();
 	} else {
 		alert('결제가 취소되었습니다');
 	}
