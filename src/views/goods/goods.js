@@ -21,12 +21,15 @@ const createGoods = (productDatas, productList) => {
 		  <div class="productItem flex-col w-full h-full bg-slate-200">
 		    <div class="grow w-full">
 				<a href="/goods-detail/${product._id}">
-				  <img id="${product._id}" src="${
+				  <img class="h-4/6 " id="${product._id}" src="${
 				src ? src : '../images/no-image.png'
-			}" alt="상품이미지">		</a>
+			}" alt="상품이미지">		
+				</a>
 
 		    </div>
-		    <p>${product.name}</p>
+				<div class="p-2">
+		    	<p>${product.name}</p>
+				</div>
 		    <div>
 			    ${product.price}원
 		    </div>

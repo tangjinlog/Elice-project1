@@ -5,6 +5,7 @@ const titleTag = $('.title');
 const priceTag = $('.priceTag');
 const descriptionTag = $('.description');
 const countTag = $('.countTag');
+const productImage = $('.image');
 const nowPurchaseBtn = document.getElementById('shoppingButton');
 import { navTemplate } from '/common/nav.js';
 
@@ -71,6 +72,7 @@ nowPurchaseBtn.addEventListener('click', () => {
 
 /**로컬스토리지의 detail데이터를 화면에 보여주기 위한 함수 */
 const showDetailData = () => {
+	productImage.src = `/images/products/${detailData.productImage}`;
 	titleTag.innerText = `상품이름: ${detailData.name}`;
 	priceTag.innerText = `상품가격: ${detailData.price}원`;
 	descriptionTag.innerText = detailData.detailDescription;
