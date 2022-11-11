@@ -4,7 +4,6 @@ const Order = model('orders', OrderSchema);
 
 export class OrderModel {
 	async findAll() {
-		// 모든 주문 항목 가져오기
 		return await Order.find({});
 	}
 
@@ -12,8 +11,20 @@ export class OrderModel {
 		return await Order.create(orderInfo);
 	}
 
-	async findById(orderId) {
+	async findByUserId(userId) {
+		// DB에서 userId를 populate하기
+		return await Order.find({ userId }).populate('userId');
+	}
+
+	async findByOrderId(orderId) {
 		return await Order.findOne({ _id: orderId });
+	}
+
+	async update({ orderId, update }) {
+		const filter = { _id: orderId };
+		const option = { returnOriginal: false };
+
+		return await Order.findOneAndUpdate(filter, update, option);
 	}
 
 	async delete(orderId) {

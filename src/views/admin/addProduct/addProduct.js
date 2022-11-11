@@ -1,68 +1,141 @@
-const keywordCon = document.querySelector(".addKeyword");
-const addBtn = document.querySelector('.addKeywordBtn');
-const input = document.querySelector('.imgInput');
+import { navTemplate } from '/common/nav.js';
+import { quest } from '/common/quest.js';
+/* nav Template */
+function addNav() {
+	const header = document.querySelector('.headerNav');
+	header.innerHTML = navTemplate();
+}
+addNav();
+
+/* 참조함수 */
+const $ = (selector) => document.querySelector(selector);
+/* 토큰 */
+const token = window.sessionStorage.getItem('token');
+
+const imginput = $('.imgInput');
 
 /* image upload */
 function imgPathDisplay() {
-  const preview = document.querySelector(".imgPath");
-  const curFiles = input.files;
-  console.log(curFiles)
-  /* 업로드 클릭시 초기화 */
-  while(preview.firstChild) {
-    preview.removeChild(preview.firstChild);
-  }
-  
-  if(curFiles.length === 0) {
-    const para = document.createElement('p');
-    para.textContent = '파일이 없습니다. 파일을 추가해주세요.';
-  } else {
-    const list = document.createElement('ol');
-    list.setAttribute('class', 'inline-block')
-    preview.appendChild(list);
+	const preview = $('.imgPath');
+	const curFiles = imginput.files;
+	console.log(curFiles);
+	/* 업로드 클릭시 초기화 */
+	while (preview.firstChild) {
+		preview.removeChild(preview.firstChild);
+	}
 
-    for(const file of curFiles) {
-      const listItem = document.createElement('li');
-      const para = document.createElement('p');
-      para.textContent = `${file.name}`
-      listItem.appendChild(para);
-      list.appendChild(listItem);
-    }
-  }
+	if (curFiles.length === 0) {
+		const para = document.createElement('p');
+		para.textContent = '파일이 없습니다. 파일을 추가해주세요.';
+	} else {
+		const list = document.createElement('ol');
+		list.setAttribute('class', 'inline-block');
+		preview.appendChild(list);
+
+		for (const file of curFiles) {
+			file.src = URL.createObjectURL(file);
+			const listItem = document.createElement('li');
+			const para = document.createElement('p');
+			para.textContent = `${file.name}`;
+			listItem.appendChild(para);
+			list.appendChild(listItem);
+			console.log(file);
+			return file;
+		}
+	}
 }
 
+let formData = new FormData();
 
+let newTitle;
+let newColor;
+let newCategory;
+let newPrice;
+let newStock;
+let newSize;
+let newDesc;
+//title,desc, color,category,size,stock,price
+imginput.addEventListener('change', () => {
+	formData.append('productImage', imgPathDisplay());
+});
 
+const descInput = $('#detailDescription');
+descInput.addEventListener('change', (e) => {
+	newDesc = e.target.value;
+	return newDesc;
+});
 
+const titleInput = $('#titleInput');
+titleInput.addEventListener('change', (e) => {
+	newTitle = e.target.value;
+	return newTitle;
+});
 
+const categoryValue = $('#category');
+categoryValue.addEventListener('change', (e) => {
+	newCategory = e.target.value;
+	return newCategory;
+});
+const colorValue = $('#color');
+colorValue.addEventListener('change', (e) => {
+	newColor = e.target.value;
+	return newColor;
+});
+/* 제품추가 */
+const sizeSmall = $('#sizeSmall');
+sizeSmall.addEventListener('change', (e) => {
+	return (newSize = e.target.value);
+});
+const sizeMedium = $('#sizeMedium');
+sizeMedium.addEventListener('change', (e) => {
+	console.log(e.target);
+	return (newSize = e.target.value);
+});
+const sizeLarge = $('#sizeLarge');
+sizeLarge.addEventListener('change', (e) => {
+	return (newSize = e.target.value);
+});
 
+const stock = $('#stockInput');
+stock.addEventListener('change', (e) => {
+	newStock = e.target.value;
+	return newStock;
+});
 
+const price = $('#priceInput');
+price.addEventListener('change', (e) => {
+	newPrice = e.target.value;
+	return newPrice;
+});
 
-input.addEventListener('change', imgPathDisplay);
-addBtn.addEventListener('click', addKeyword);
+const addBtn = $('.addProduct');
 
-function addKeyword(e) {
-  /* 자동이동방지 */
-  e.preventDefault();
-  let keywordInput = document.querySelector(".keywordInput");
-  const value = keywordInput.value;
-  /* keyword 템플릿 */
-  const keyword = `
-    <div class='item'>
-      <div class="flex bg-neutral-200/[0.55] rounded-lg mr-2">
-        <span class="px-2">${value}</span>
-        <span class="px-2"><i class='deleteIcon fa fa-times'></i></span>
-      </div>
-    </div>
-  `;
-  if (value !== "") {
-    keywordCon.innerHTML += keyword;
-  }
-  keywordInput.value = '';
-  const deleteIcon = document.querySelectorAll(".deleteIcon");
-  deleteIcon.forEach(e=>e.addEventListener('click', deleteKeyword))
-}
+addBtn.addEventListener('click', (e) => {
+	// e.preventDefault();
+	const desc = $('#detailDescription');
+	desc.addEventListener('change', (e) => {
+		newDesc = e.target.value;
+		return newDesc;
+	});
+	formData.append('name', newTitle);
+	formData.append('color', newColor);
+	formData.append('category', newCategory);
+	formData.append('size', newSize);
+	formData.append('stock', newStock);
+	formData.append('price', newPrice);
+	formData.append('detailDescription', newDesc);
 
-/* 키워드삭제 */
-function deleteKeyword(e) {
-  this.parentNode.parentNode.parentNode.remove()
+	addProduct(formData);
+	alert('제품이 등록되었습니다.');
+});
+
+async function addProduct(formData) {
+	console.log(formData);
+	await fetch('/api/product', {
+		method: 'POST',
+		headers: {
+			authorization: `bearer ${token}`,
+		},
+		body: formData,
+	});
 }

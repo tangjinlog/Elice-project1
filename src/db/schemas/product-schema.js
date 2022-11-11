@@ -6,8 +6,9 @@ const ProductSchema = new Schema(
 		size: { type: String, required: true },
 		color: { type: String, required: true },
 		price: { type: Number, required: true },
-		free_delivery: { type: Boolean, required: true },
-		category: { type: String, required: true, default: '일반' },
+		category: { type: String, required: true },
+		detailDescription: { type: String, required: true },
+		productImage: { type: String, required: false },
 		stock: { type: Number, default: 1 },
 	},
 	{

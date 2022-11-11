@@ -1,9 +1,8 @@
 import { Schema } from 'mongoose';
-import { orderService } from '../../services';
 
 const OrderSchema = new Schema(
 	{
-		userId: { type: Schema.Types.ObjectId, ref: 'users', required: true }, // userId를 user에서 참조
+		userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
 		totalPrice: { type: Number, required: true },
 		detailDescription: {
 			type: String,
@@ -11,7 +10,7 @@ const OrderSchema = new Schema(
 			required: false,
 		},
 		address: new Schema({
-			postalCode: String,
+			postalCode: { type: String, require: true },
 			address1: { type: String, required: true },
 			address2: String,
 			_id: false,

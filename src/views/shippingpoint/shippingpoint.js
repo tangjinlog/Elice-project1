@@ -1,182 +1,105 @@
-import {redirectMain} from '/permission.js';
-import * as Api from '/api.js';
-import store from '../cart/store.js';
-import { addCommas, searchAddressByDaumPost } from '/useful-functions.js';
-
-const storedItem =
-location.search?
-  [ JSON.parse( sessionStorage.getItem('product'))]
-  :
-  store
-  .getLocalStorage()
-  .filter((item) => item.cart === 'checked');
-console.log(storedItem);
-if(storedItem.length < 1){
-  alert("상품을 선택해주세요.");
-  redirectMain();
+import { navTemplate } from '/common/nav.js';
+/* nav Template */
+function addNav() {
+	const header = document.querySelector('.headerNav');
+	header.innerHTML = navTemplate();
 }
-//user Inputs
-const receiverNameInput = document.getElementById('receiverNameInput');
-const receiverPhoneNumberInput = document.getElementById(
-  'receiverPhoneNumberInput'
+addNav();
+const $ = (selector) => document.querySelector(selector);
+
+//주문자정보
+const postNumInput = $('.postNum');
+const address1Input = $('.address1');
+const address2Input = $('.address2');
+const userRequestInput = $('.userRequest');
+const userWriteInput = $('.userWrite');
+const userInput = $('.userInput');
+
+const checkoutBtn = $('.checkoutBtn');
+
+/**직접선택 선택시에만 인풋을 보여주기 위한 함수*/
+userRequestInput.addEventListener('change', (e) => {
+	if (e.target.value == 'userWrite') {
+		userWriteInput.classList.remove('hidden');
+	} else {
+		userWriteInput.classList.add('hidden');
+	}
+});
+
+const store = window.localStorage;
+
+//checked된 상태인 상품만 로컬스토리지에서 받아와서 저장
+const checkedProducts = JSON.parse(store.getItem('cart')).filter(
+	(product) => product.checked == true,
 );
-const postalCodeInput = document.getElementById('postalCodeInput');
-const address1Input = document.getElementById('address1Input');
-const address2Input = document.getElementById('address2Input');
-const customRequestInput = document.getElementById('customRequestInput');
-const requestSelectBox = document.getElementById('requestSelectBox');
-const searchAddressButton = document.getElementById('searchAddressButton');
+let totalNums = 0;
+let totalPrice = 0;
+checkedProducts.forEach((item) => {
+	totalNums += item.count;
+	totalPrice += item.price * item.count;
+});
+const deliveryFee = totalPrice < 20000 ? 3000 : 0;
+const finalPrice = totalPrice + deliveryFee;
 
-//product summary
-const productsTitle = document.getElementById('productsTitle');
-const productsTotal = document.getElementById('productsTotal');
-const deliveryFee = document.getElementById('deliveryFee');
-const orderTotal = document.getElementById('orderTotal');
+/**결제정보를 보여주기 위한 함수 */
+const showPayInfo = () => {
+	const totalNumsInput = $('.totalNums');
+	const totalPriceInput = $('.totalPrice');
+	const deliveryFeeInput = $('.deliveryFee');
+	const finalPriceInput = $('.finalPrice');
+	totalNumsInput.innerHTML = totalNums + '개';
+	totalPriceInput.innerHTML = totalPrice + '원';
+	deliveryFeeInput.innerHTML =
+		deliveryFee == 0 ? '무료배송' : deliveryFee + '원';
+	finalPriceInput.innerHTML = finalPrice + '원';
+};
+showPayInfo();
 
-// send Data
-const checkoutButton = document.getElementById('checkoutButton');
+/**결제된 상품을 장바구니에서 제거해주는 함수 */
+const removePurchasedItems = () => {
+	const removeList = [];
+	JSON.parse(store.getItem('cart')).forEach((item) => {
+		if (!item.checked) removeList.push(item);
+	});
+	store.setItem('cart', JSON.stringify(removeList));
+};
 
-addAllElements();
-addAllEvents();
+const token = window.sessionStorage.getItem('token');
+checkoutBtn.addEventListener('click', (e) => {
+	const postalCode = postNumInput.value;
+	const address1 = address1Input.value;
+	const address2 = address2Input.value;
+	const request =
+		userRequestInput.value != 'userWrite'
+			? userRequestInput.value
+			: userInput.value;
+	e.preventDefault();
 
-async function addAllElements() {
-  insertOrderSummary();
-}
-
-async function addAllEvents() {
-  searchAddressButton.addEventListener('click', insertAddressToAddrInputs);
-  checkoutButton.addEventListener('click', sendOrderInfoByPost);
-  requestSelectBox.addEventListener('change', changeRequestBox);
-}
-
-function changeRequestBox(e) {
-  const selectedItem = e.target.value;
-  if (selectedItem === '6') {
-    customRequestInput.classList.remove('is-hidden');
-  } else {
-    customRequestInput.classList.add('is-hidden');
-  }
-}
-
-// address Inputs에 다음 API를 사용한 값을 넣습니다.
-async function insertAddressToAddrInputs() {
-  const { zonecode, address } = await searchAddressByDaumPost();
-  postalCodeInput.value = zonecode;
-  address1Input.value = address;
-  address2Input.focus();
-}
-
-function insertOrderSummary() {
-  if (!storedItem || storedItem.length < 1) return;
-  console.log(storedItem);
-  let amount = 0;
-  let Fee = 3000;
-
-  globalThis.products = storedItem.map(({ _id, name, price, count }) => {
-    amount += price * count;
-    return {
-      _id,
-      name,
-      price,
-      count,
-      totalPrice: price * count,
-      title: `${name} / ${count}개`,
-    };
-  });
-  console.log('products', products, 'amount', amount);
-  productsTitle.innerHTML = products.map(({ title }) => title).join('<br>');
-  productsTotal.textContent = addCommas(amount) + '원';
-  deliveryFee.textContent = addCommas(Fee) + '원';
-  orderTotal.textContent = addCommas(Fee + amount) + '원';
-}
-
-/**
- * Author : Park Award
- * create At: 22-06-01
- * @param {Event} e 
- * @returns 
- * 주문 관련된 데이터를 서버 저장합니다.
- */
-async function sendOrderInfoByPost(e) {
-  e.preventDefault();
-  const receiverName = receiverNameInput.value;
-  const receiverPhoneNumber = receiverPhoneNumberInput.value;
-  const postalCode = postalCodeInput.value;
-  const address1 = address1Input.value;
-  const address2 = address2Input.value;
-  const requestSelect = requestSelectBox.value;
-  let requestComment = '';
-
-  const receiverNameValid = (/^[가-힣a-zA-Z]+$/).exec(receiverName);
-  const receiverPhoneNumberValid = receiverPhoneNumber.length > 7 && 	
-  (/^[0-9]+$/).exec(receiverPhoneNumber);
-  const addressValid = postalCode && address1 && address2;
-
-  if (!receiverNameValid) {
-    return alert('받는 분 이름을 입력해주세요.');
-  }
-  if (!receiverPhoneNumberValid) {
-    return alert('받는 분 연락처를 적어주세요.');
-  }
-  if (!addressValid) {
-    return alert('배송지를 입력해주세요.');
-  }
-
-  switch (requestSelect) {
-    case '0':
-      return alert('요청 사항을 선택해주세요');
-    case '1':
-      requestComment = '직접 수령하겠습니다.';
-      break;
-    case '2':
-      requestComment = '배송 전 연락바랍니다.';
-      break;
-    case '3':
-      requestComment = '부재 시 경비실에 맡겨주세요.';
-      break;
-    case '4':
-      requestComment = '부재 시 문 앞에 놓아주세요.';
-      break;
-    case '5':
-      requestComment = '부재 시 택배함에 넣어주세요';
-      break;
-    case '6':
-      requestComment = customRequestInput.value;
-      break;
-  }
-
-  const products = [];
-  globalThis.products.forEach(({ _id, count, totalPrice }) =>
-    products.push({
-      product_id: _id,
-      qty: count,
-      totalPrice,
-    })
-  );
-  const orderInfo = {
-    fullNameTo: receiverName,
-    phoneNumberTo: receiverPhoneNumber,
-    addressTo: {
-      postalCode,
-      address1,
-      address2,
-    },
-    messageTo: requestComment,
-    products,
-  };
-  console.log(orderInfo);
-  try {
-    const result = await Api.post('/api/orders', orderInfo);
-    if (result) {
-      if(location.search){
-        sessionStorage.setItem('Product','');
-      }else{
-        localStorage.clear();
-      }
-      window.location.href="/complete";
-      return alert('성공적으로 주문했습니다.');
-    }
-  } catch (err) {
-    alert(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${err.message}`);
-  }
-}
+	//결제 확인창을 띄우기 위한 기능
+	if (confirm('결제하시겠습니까?')) {
+		fetch('/api/order', {
+			method: 'post',
+			headers: {
+				authorization: `bearer ${token}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				totalPrice: finalPrice,
+				address: { postalCode, address1, address2 },
+				request,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.result == 'error') {
+					alert('입력값이 올바른지 확인해주세요');
+					console.error(data.reason);
+				} else {
+					window.location.href = '/complete';
+				}
+			});
+		removePurchasedItems();
+	} else {
+		alert('결제가 취소되었습니다');
+	}
+});
