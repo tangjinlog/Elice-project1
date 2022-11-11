@@ -8,12 +8,12 @@ const categoryRouter = Router();
 categoryRouter.post('/category', adminOnly, async function (req, res, next) {
 	try {
 		const { name, description } = req.body;
-		const newCategory = await categoryService.addCategory({
+		await categoryService.addCategory({
 			name,
 			description,
 		});
 
-		res.status(201).json(newCategory);
+		res.status(201).redirect('/admin/addCategory/addCategory.html')
 	} catch (error) {
 		next(error);
 	}

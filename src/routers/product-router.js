@@ -33,7 +33,7 @@ productRouter.post(
 				stock,
 			} = req.body;
 			const filename = req.file.filename;
-			const newProduct = await productService.addProduct({
+			await productService.addProduct({
 				name,
 				size,
 				color,
@@ -45,7 +45,7 @@ productRouter.post(
 				productImage:filename,
 			});
 
-			res.status(201).json(newProduct);
+			res.status(201).redirect('/admin/addProduct/addProduct.html');
 		} catch (error) {
 			next(error);
 		}
