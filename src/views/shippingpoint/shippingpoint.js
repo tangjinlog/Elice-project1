@@ -65,25 +65,29 @@ checkoutBtn.addEventListener('click', (e) => {
 			: userInput.value;
 	e.preventDefault();
 
-	fetch('/api/order', {
-		method: 'post',
-		headers: {
-			authorization: `bearer ${token}`,
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({
-			totalPrice: finalPrice,
-			address: { postalCode, address1, address2 },
-			request,
-		}),
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			if (data.result == 'error') {
-				alert('입력값이 올바른지 확인해주세요');
-				console.error(data.reason);
-			} else {
-				window.location.href = '/complete';
-			}
-		});
+	if (confirm('결제하시겠습니까?')) {
+		fetch('/api/order', {
+			method: 'post',
+			headers: {
+				authorization: `bearer ${token}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				totalPrice: finalPrice,
+				address: { postalCode, address1, address2 },
+				request,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.result == 'error') {
+					alert('입력값이 올바른지 확인해주세요');
+					console.error(data.reason);
+				} else {
+					window.location.href = '/complete';
+				}
+			});
+	} else {
+		alert('결제가 취소되었습니다');
+	}
 });

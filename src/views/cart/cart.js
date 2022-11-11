@@ -153,18 +153,16 @@ const loadCartList = async () => {
 			`		<div class="cartList px-4 border-t border-black  w-full h-24 flex">
 		<input  type="checkbox" class="cartCheckBox"/>
 		<figure class="imgArea w-[20%]"><img /></figure>
-		<div class="nameArea w-[20%] m-auto">
-			<p class="productName text-center">${name}</p>
-			<div class="flex justify-center">
-				<input
-					id = ${index}
-					class="productCount  w-10 text-center border border-black rounded-xl"
-					type="number"
-					value=${count}
-				/>
-			</div>
+		<div class="nameArea w-[40%] m-auto flex">
+			<p class="productName text-center ">${name}</p>
+			<input
+				id = ${index}
+				class=" ml-auto productCount  w-10 text-center border border-black rounded-xl"
+				type="number"
+				value=${count}
+			/>
 		</div>
-		<div class="eachPrice w-[60%] text-center my-auto">${price * count}원</div>
+		<div class="eachPrice w-[40%] text-center my-auto">${price * count}원</div>
 		`,
 		);
 	});
