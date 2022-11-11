@@ -3,9 +3,9 @@ export function navTemplate() {
 	return `
     <nav class="w-full py-2">
 			<ul id="navbar" class="flex w-full" aria-label="breadcrumbs">
-				<li class="pl-10 my-auto text-xl">
-					<a href="/">
-						<i class="fa-solid fa-house"></i>
+				<li class="pl-10 flex items-center my-auto text-xl">
+					<a href="/" class="inline-block h-10 w-10">
+						<img class="w-full h-full" src="/images/image.png" alt="홈버튼">
 					</a>
 				</li>
 				<li class="pl-10">
