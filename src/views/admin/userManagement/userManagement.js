@@ -7,6 +7,22 @@ function addNav() {
 	header.innerHTML = navTemplate();
 }
 addNav();
+/* 참조함수 */
+const $ = (selector) => document.querySelector(selector);
+
+/* 유저리스트 템플릿 */
+const userListTemplate = () => {
+	return `
+  <div class="userList flex justify-around">
+    <div class="w-1/6 py-3">${date}</div>
+    <div class="w-1/6 py-3">${email}</div>
+    <div class="w-1/6 py-3">${name}</div>
+    <div class="w-1/6 py-3">${auth}</div>
+    <div class="userDelete w-1/6 h-full py-3 bg-red-300 my-3 rounded">
+      <a href="#" class="whitespace-nowrap">회원정보삭제</a>
+    </div>
+  </div>`;
+};
 
 /* modal */
 const modal = `
@@ -25,9 +41,33 @@ const modal = `
     </div>
   </div>`;
 
-const userDeleteBtn = document.querySelector('.userDelete');
+/* 전체 유저목록 조회 */
+async function allUserList() {
+	const response = await fetch('/api/userlist');
+	const result = await response.json();
+	console.log(result);
+	result.forEach((elem) => {
+		const userListCon = $('.userListCon');
+		const id = elem._id;
+		// const auth =
+		userListCon.innerHTML += userListTemplate();
+	});
+}
+
+/* 버튼 연결 */
+const userDeleteBtn = $('.userDelete');
+console.log(userDeleteBtn);
 userDeleteBtn.addEventListener('click', (e) => {
 	createModal(modal);
-	const deleteElem = quest(e, 'userList');
-	deleteElem.remove();
+	const eTarget = e;
+	const yesBtn = $('#yesBtn');
+	yesBtn.addEventListener('click', (e) => {
+		const deleteElem = quest(eTarget, 'userList');
+		const modalEl = $('.modalCon');
+		const body = $('body');
+		body.removeChild(modalEl);
+		deleteElem.remove();
+	});
 });
+
+allUserList();
