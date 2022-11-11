@@ -35,24 +35,22 @@
 		<header class="headerNav"></header>
 		<div class="section h-screen w-[80%] mx-auto">
 			<div class="mx-auto mt-14 h-full">
-				<div>
-					<ul class="flex">
-						<li
-							class="w-1/6 text-3xl pt-5 pl-3 fas fa-cart-shopping text-lime-400"
-						>
-							<a>장바구니</a>
-						</li>
-						<li
-							class="w-1/6 text-2xl pt-5 pl-5 fa-sharp fa-solid fa-credit-card"
-						>
-							<a>주문결제</a>
-						</li>
-						<li class="w-1/6 text-2xl pt-5 pl-2 fa-sharp fa-solid fa-gift">
-							<a>주문완료</a>
-						</li>
-						<li class="w-1/3"></li>
-					</ul>
-				</div>
+				<ul class="flex h-12">
+					<li class="text-3xl my-auto fas fa-cart-shopping">
+						<a>장바구니</a>
+					</li>
+					<li
+						class="ml-4 my-auto text-2xl fa-sharp fa-solid fa-credit-card text-gray-400"
+					>
+						<a>주문결제</a>
+					</li>
+					<li
+						class="ml-4 my-auto text-2xl fa-sharp fa-solid fa-gift text-gray-400"
+					>
+						<a>주문완료</a>
+					</li>
+					<li class="w-1/3"></li>
+				</ul>
 				<hr />
 				<div class="w-full h-10"></div>
 				<div class="flex space-x-5">
@@ -84,7 +82,12 @@
 											<p class="removeChecked help font-extrabold">선택삭제</p>
 										</label>
 									</div>
-
+									<div class="flex py-5">
+										<div class="pl-2 w-[20%] h-full">상품선택</div>
+										<div class="pl-4 w-[30%] h-full">제품명</div>
+										<div class="pl-4 w-[25%] h-full">선택수량</div>
+										<div class="w-[25%] h-full">가격</div>
+									</div>
 									<!-- 장바구니에 담긴 상품들의 html 요소(카드 형태)가 주입되는 곳 -->
 								</div>
 							</div>
@@ -122,7 +125,7 @@
 								<div class="purchase my-5 px-5 py-5">
 									<a href="../shippingpoint/shippingpoint.html">
 										<button
-											class="button hover:bg-blue-600 font-extrabold text-2xl h-16 w-[100%] bg-blue-400 rounded-lg"
+											class="button text-white hover:bg-white hover:text-blue-400 border border-blue-400 font-bold text-2xl h-12 w-full bg-blue-400 rounded-lg"
 											id="checkoutButton"
 										>
 											구매하기

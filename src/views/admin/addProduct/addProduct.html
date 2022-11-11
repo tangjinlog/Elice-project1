@@ -27,12 +27,7 @@
 			</div>
 			<!-- 폼 -->
 			<div class="categoryFormCon mt-10 shadow">
-				<form
-					action="/api/addproduct"
-					method="post"
-					enctype="multipart/form-data"
-					class="px-6 pb-6"
-				>
+				<form class="px-6 pb-6" enctype="multipart/form-data">
 					<p class="formTitle text-center text-sky-500 text-2xl mb-5">
 						제품 판매하기
 					</p>
@@ -61,7 +56,7 @@
 								</option>
 								<option value="일반">일반</option>
 								<option value="디퓨저">디퓨저</option>
-								<option value="애완돌 옷"></option>
+								<option value="인덴스">인덴스</option>
 							</select>
 						</div>
 					</div>
@@ -88,7 +83,7 @@
 							<input
 								class="ml-10"
 								type="radio"
-								id="size-small"
+								id="sizeSmall"
 								name="size"
 								value="small"
 							/>
@@ -98,7 +93,7 @@
 							<input
 								class="ml-10"
 								type="radio"
-								id="size-medium"
+								id="sizeMedium"
 								name="size"
 								value="medium"
 							/>
@@ -108,7 +103,7 @@
 							<input
 								class="ml-10"
 								type="radio"
-								id="size-large"
+								id="sizeLarge"
 								name="size"
 								value="large"
 							/>
@@ -117,29 +112,6 @@
 							>
 						</div>
 					</div>
-					<!-- <div>
-						<label for="delivery" class="font-bold">무료배송</label>
-						<div class="text-center border rounded mt-2 mb-4">
-							<input
-								type="radio"
-								id="delivery"
-								name="free_delivery"
-								value="true"
-							/>
-							<label class="inline-block py-3 pr-3 mr-10" for="delivery"
-								>true</label
-							>
-							<input
-								type="radio"
-								id="delivery"
-								name="free_delivery"
-								value="false"
-							/>
-							<label class="inline-block py-3 pr-3 mr-10" for="delivery"
-								>false</label
-							>
-						</div>
-					</div> -->
 					<div>
 						<label for="descMoreInput" class="font-bold">상세 설명</label>
 						<div>
@@ -206,29 +178,11 @@
 						</div>
 					</div>
 
-					<!-- <div>
-						<label for="keywordInput" class="font-bold">검색 키워드</label>
-						<div class="flex w-full py-2 mt-2">
-							<div class="grow -mr-px">
-								<input
-									type="text"
-									class="keywordInput p-2 border rounded-tl rounded-bl w-full max-w-full"
-								/>
-							</div>
-							<div>
-								<button
-									class="addKeywordBtn py-2 px-3 bg-slate-400 rounded-tr rounded-br border-1 w-full h-full"
-								>
-									추가하기
-								</button>
-							</div>
-						</div>
-					</div> -->
 					<!-- keyword js추가 -->
 					<div class="addKeyword flex flex-wrap gap-2"></div>
 
 					<button
-						class="addCategory block w-full text-center py-2 my-5 bg-sky-500 text-white text-2xl mb-5 rounded"
+						class="addProduct block w-full text-center py-2 my-5 bg-sky-500 text-white text-2xl mb-5 rounded"
 					>
 						제품 추가하기
 					</button>

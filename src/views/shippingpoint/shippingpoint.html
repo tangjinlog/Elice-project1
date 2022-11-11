@@ -34,24 +34,21 @@
 		<header class="headerNav"></header>
 		<div class="section h-screen w-[80%] mx-auto">
 			<div class="mx-auto mt-14 h-full">
-				<div>
-					<ul class="flex">
-						<li
-							class="w-1/6 text-2xl pt-5 pl-5 fa-sharp fa-solid fa-credit-card"
-						>
-							<a>장바구니</a>
-						</li>
-						<li
-							class="w-1/6 text-3xl pt-5 pl-3 fas fa-cart-shopping text-lime-400"
-						>
-							<a>주문결제</a>
-						</li>
-						<li class="w-1/6 text-2xl pt-5 pl-2 fa-sharp fa-solid fa-gift">
-							<a>주문완료</a>
-						</li>
-						<li class="w-1/3"></li>
-					</ul>
-				</div>
+				<ul class="flex h-12">
+					<li
+						class="text-2xl my-auto pl-5 fa-sharp fa-solid fa-credit-card text-gray-400"
+					>
+						<a href="/cart">장바구니</a>
+					</li>
+					<li class="ml-4 my-auto text-3xl fas fa-cart-shopping">
+						<a>주문결제</a>
+					</li>
+					<li
+						class="ml-4 my-auto text-2xl fa-sharp fa-solid fa-gift text-gray-400"
+					>
+						<a>주문완료</a>
+					</li>
+				</ul>
 				<hr />
 				<div class="w-full h-10"></div>
 				<div class="flex space-x-5">
@@ -60,92 +57,90 @@
 							<div class="tile is-8 is-parent cart-products">
 								<!-- 배송지 정보 -->
 								<h1 class="text-2xl mb-5">배송지정보</h1>
-								<form action="" method="post">
-									<div class="flex h-10 mb-3">
-										<p class="w-1/4 my-auto">이름</p>
+								<div class="flex h-10 mb-3">
+									<p class="w-1/4 my-auto">이름</p>
+									<input
+										name=""
+										class="pl-2 w-3/4 border-gray-400 rounded-md border h-full"
+										type="text"
+									/>
+								</div>
+								<!--고객이름-->
+								<div class="flex h-10 mb-3">
+									<p class="w-1/4 my-auto">연락처</p>
+									<input
+										class="pl-2 w-3/4 border-gray-400 rounded-md border h-full"
+										type="text"
+									/>
+								</div>
+								<!--우편번호-->
+								<div class="flex h-10 mb-3">
+									<p class="w-1/4 my-auto">주소</p>
+									<div class="w-3/4 flex">
 										<input
-											name=""
-											class="pl-2 w-3/4 border-gray-400 rounded-md border h-full"
+											class="postNum pl-2 w-3/4 border-gray-400 rounded-md border h-full"
 											type="text"
 										/>
-									</div>
-									<!--고객이름-->
-									<div class="flex h-10 mb-3">
-										<p class="w-1/4 my-auto">연락처</p>
-										<input
-											class="pl-2 w-3/4 border-gray-400 rounded-md border h-full"
-											type="text"
-										/>
-									</div>
-									<!--우편번호-->
-									<div class="flex h-10 mb-3">
-										<p class="w-1/4 my-auto">주소</p>
-										<div class="w-3/4 flex">
-											<input
-												class="postNum pl-2 w-3/4 border-gray-400 rounded-md border h-full"
-												type="text"
-											/>
-											<button
-												class="w-20 ml-auto border-gray-400 rounded-md border h-full"
-											>
-												주소찾기
-											</button>
-										</div>
-									</div>
-									<!--주소1-->
-									<div class="flex h-10 mb-3">
-										<p class="w-1/4 my-auto"></p>
-										<input
-											class="address1 pl-2 w-3/4 border-gray-400 rounded-md border h-full"
-											type="text"
-										/>
-									</div>
-									<!--주소2-->
-									<div class="flex h-10 mb-3">
-										<p class="w-1/4 my-auto"></p>
-										<input
-											class="address2 pl-2 w-3/4 border-gray-400 rounded-md border h-full"
-											type="text"
-										/>
-									</div>
-									<!--고객요청사항-->
-									<div class="flex h-10 mb-3">
-										<p class="w-1/4 my-auto">요청사항</p>
-										<select
-											class="userRequest pl-2 w-3/4 border-gray-400 rounded-md border h-full"
-											type="text"
+										<button
+											class="w-20 ml-auto border-gray-400 rounded-md border h-full"
 										>
-											<option value="배송시 요청사항을 선택해주세요.">
-												배송시 요청사항을 선택해주세요.
-											</option>
-											<option value="직접 수령하겠습니다.">
-												직접 수령하겠습니다.
-											</option>
-											<option value="배송 전 연락바랍니다.">
-												배송 전 연락바랍니다.
-											</option>
-											<option value="부재시 경비실에 맡겨주세요.">
-												부재시 경비실에 맡겨주세요.
-											</option>
-											<option value="부재시 문 앞에 놓아주세요.">
-												부재시 문 앞에 놓아주세요.
-											</option>
-											<option value="부재시 택배함에 넣어주세요.">
-												부재시 택배함에 넣어주세요.
-											</option>
-											<option value="userWrite">직접 입력</option>
-										</select>
+											주소찾기
+										</button>
 									</div>
-									<!--직접선택인풋-->
-									<div class="userWrite flex h-10 mb-3 hidden">
-										<p class="w-1/4 my-auto"></p>
-										<input
-											class="userInput pl-2 w-3/4 border-gray-400 rounded-md border h-full"
-											type="text"
-											placeholder="최대 50자까지 입력 가능합니다"
-										/>
-									</div>
-								</form>
+								</div>
+								<!--주소1-->
+								<div class="flex h-10 mb-3">
+									<p class="w-1/4 my-auto"></p>
+									<input
+										class="address1 pl-2 w-3/4 border-gray-400 rounded-md border h-full"
+										type="text"
+									/>
+								</div>
+								<!--주소2-->
+								<div class="flex h-10 mb-3">
+									<p class="w-1/4 my-auto"></p>
+									<input
+										class="address2 pl-2 w-3/4 border-gray-400 rounded-md border h-full"
+										type="text"
+									/>
+								</div>
+								<!--고객요청사항-->
+								<div class="flex h-10 mb-3">
+									<p class="w-1/4 my-auto">요청사항</p>
+									<select
+										class="userRequest pl-2 w-3/4 border-gray-400 rounded-md border h-full"
+										type="text"
+									>
+										<option value="배송시 요청사항을 선택해주세요.">
+											배송시 요청사항을 선택해주세요.
+										</option>
+										<option value="직접 수령하겠습니다.">
+											직접 수령하겠습니다.
+										</option>
+										<option value="배송 전 연락바랍니다.">
+											배송 전 연락바랍니다.
+										</option>
+										<option value="부재시 경비실에 맡겨주세요.">
+											부재시 경비실에 맡겨주세요.
+										</option>
+										<option value="부재시 문 앞에 놓아주세요.">
+											부재시 문 앞에 놓아주세요.
+										</option>
+										<option value="부재시 택배함에 넣어주세요.">
+											부재시 택배함에 넣어주세요.
+										</option>
+										<option value="userWrite">직접 입력</option>
+									</select>
+								</div>
+								<!--직접선택인풋-->
+								<div class="userWrite flex h-10 mb-3 hidden">
+									<p class="w-1/4 my-auto"></p>
+									<input
+										class="userInput pl-2 w-3/4 border-gray-400 rounded-md border h-full"
+										type="text"
+										placeholder="최대 50자까지 입력 가능합니다"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -179,13 +174,11 @@
 									<p class="finalPrice">0원</p>
 								</div>
 								<div class="purchase my-5 px-5 py-5">
-									<a href="../shippingpoint/shippingpoint.html">
-										<button
-											class="checkoutBtn button hover:bg-cyan-500 font-extrabold text-2xl h-16 w-[100%] bg-cyan-300 rounded-lg"
-										>
-											결제하기
-										</button>
-									</a>
+									<button
+										class="checkoutBtn hover:bg-white hover:text-[#308BFF] border text-white border-[#308BFF] font-bold text-2xl h-12 w-full bg-[#308BFF] rounded-lg"
+									>
+										결제하기
+									</button>
 								</div>
 							</div>
 						</div>

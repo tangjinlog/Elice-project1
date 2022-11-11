@@ -1,5 +1,5 @@
 import { navTemplate } from '/common/nav.js';
-
+const $ = (selector) => document.querySelector(selector);
 /* nav Template */
 function addNav() {
 	const header = document.querySelector('.headerNav');
@@ -7,21 +7,12 @@ function addNav() {
 }
 addNav();
 
-const orderBtn = document.getElementById('orderDetailButton');
-const shopBtn = document.getElementById('shoppingButton');
+const orderBtn = $('.showOrder');
+const shopBtn = $('.keepShopping');
 
-function changeToProducts(e) {
-	const url = `/products`;
-	console.log(url);
-	location.href = url;
-}
-
-function changeToOrders(e) {
-	const url = `/orders`;
-	console.log(url);
-	location.href = url;
-}
-
-shopBtn.addEventListener('click', changeToProducts);
-
-orderBtn.addEventListener('click', changeToOrders);
+orderBtn.addEventListener('click', () => {
+	location.href = '/account/orders';
+});
+shopBtn.addEventListener('click', () => {
+	location.href = '/goods';
+});

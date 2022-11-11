@@ -11,6 +11,8 @@ function addNav() {
 }
 addNav();
 
+const token = window.sessionStorage.getItem('token');
+
 /* 카테고리 템플릿 */
 const categoryTemplate = (id, name, description) => {
 	return `
@@ -30,7 +32,11 @@ const categoryTemplate = (id, name, description) => {
 
 /* 카테고리 전체목록 */
 async function allCategories() {
-	const response = await fetch('/api/categories');
+	const response = await fetch('/api/categories', {
+		headers: {
+			authorization: `bearer ${token}`,
+		},
+	});
 	const result = await response.json();
 	console.log(result);
 	result.forEach((e) => {
@@ -52,7 +58,7 @@ const modal = `
 		<div class="modalClose fixed top-10 right-10 text-3xl">
 			<i class="closeBtn fa-solid fa-x"></i>
 		</div>
-		<form action="/api/category" method="post" class="modalWindow justify-around relative z-10 w-90 h-auto bg-white px-10 py-6 -top-10 rounded">
+		<form action="" method="" class="modalWindow justify-around relative z-10 w-90 h-auto bg-white px-10 py-6 -top-10 rounded">
 			<div class="flex-col items-center h-full">
 				<label for="titleInput" class="font-bold">카테고리 이름</label>
 				<div>
@@ -60,7 +66,7 @@ const modal = `
 				</div>
 				<label for="desInput" class="font-bold">카테고리 설명</label>
 				<div>
-					<input type="text" id="desInput" class="border rounded p-2 mt-2 mb-4 w-full" name="description"/>
+					<input type="text" id="descInput" class="border rounded p-2 mt-2 mb-4 w-full" name="description"/>
 				</div>
 			</div>
 			<div class="flex justify-center">
@@ -112,10 +118,17 @@ const deleteModal = () => {
   </div>`;
 };
 
-/* 버튼연결 */
+/* 카테고리 추가 */
 const createBtn = $('.category-createBtn');
 createBtn.addEventListener('click', () => {
 	createModal(modal);
+	const yesBtn = $('#yesBtn');
+	yesBtn.addEventListener('click', async (e) => {
+		const name = $('#titleInput').value;
+		const desc = $('#descInput').value;
+		const data = { name: name, description: desc };
+		await addCategory(data);
+	});
 });
 /* 카테고리 수정 */
 const updateElem = async (result) => {
@@ -167,12 +180,24 @@ const deleteElem = async (result) => {
 		});
 	});
 };
+/* create fetch */
+async function addCategory(data) {
+	await fetch('/api/category', {
+		method: 'POST',
+		headers: {
+			authorization: `bearer ${token}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	});
+}
 
 /* update fetch */
 async function updateCategory(data, id) {
 	await fetch(`/api/category/${id}`, {
 		method: 'PATCH',
 		headers: {
+			authorization: `bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(data),
@@ -182,9 +207,12 @@ async function updateCategory(data, id) {
 async function deleteCategory(id) {
 	await fetch(`/api/category/${id}`, {
 		method: 'DELETE',
-		headers: {},
+		headers: {
+			authorization: `bearer ${token}`,
+		},
 		body: '',
 	});
 }
 
 allCategories();
+addCategory();
