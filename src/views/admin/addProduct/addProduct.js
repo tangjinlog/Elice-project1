@@ -9,15 +9,15 @@ addNav();
 
 /* 참조함수 */
 const $ = (selector) => document.querySelector(selector);
+/* 토큰 */
+const token = window.sessionStorage.getItem('token');
 
-const keywordCon = $('.addKeyword');
-const addBtn = $('.addKeywordBtn');
-const input = $('.imgInput');
+const imginput = $('.imgInput');
 
 /* image upload */
 function imgPathDisplay() {
 	const preview = $('.imgPath');
-	const curFiles = input.files;
+	const curFiles = imginput.files;
 	console.log(curFiles);
 	/* 업로드 클릭시 초기화 */
 	while (preview.firstChild) {
@@ -39,37 +39,102 @@ function imgPathDisplay() {
 			para.textContent = `${file.name}`;
 			listItem.appendChild(para);
 			list.appendChild(listItem);
+			console.log(file);
+			return file;
 		}
 	}
 }
 
-input.addEventListener('change', imgPathDisplay);
-addBtn.addEventListener('click', addKeyword);
+let formData = new FormData();
 
-function addKeyword(e) {
-	/* 자동이동방지 */
+let newTitle;
+let newColor;
+let newCategory;
+let newPrice;
+let newStock;
+let newSize;
+let newDesc;
+//title,desc, color,category,size,stock,price
+
+const descInput = $('#detailDescription');
+descInput.addEventListener('change', (e) => {
+	newDesc = e.target.value;
+	return newDesc;
+});
+
+const titleInput = $('#titleInput');
+titleInput.addEventListener('change', (e) => {
+	newTitle = e.target.value;
+	return newTitle;
+});
+
+const categoryValue = $('#category');
+categoryValue.addEventListener('change', (e) => {
+	newCategory = e.target.value;
+	return newCategory;
+});
+const colorValue = $('#color');
+colorValue.addEventListener('change', (e) => {
+	newColor = e.target.value;
+	return newColor;
+});
+/* 제품추가 */
+const sizeSmall = $('#sizeSmall');
+sizeSmall.addEventListener('change', (e) => {
+	return (newSize = e.target.value);
+});
+const sizeMedium = $('#sizeMedium');
+sizeMedium.addEventListener('change', (e) => {
+	console.log(e.target);
+	return (newSize = e.target.value);
+});
+const sizeLarge = $('#sizeLarge');
+sizeLarge.addEventListener('change', (e) => {
+	return (newSize = e.target.value);
+});
+
+const stock = $('#stockInput');
+stock.addEventListener('change', (e) => {
+	newStock = e.target.value;
+	return newStock;
+});
+
+const price = $('#priceInput');
+price.addEventListener('change', (e) => {
+	newPrice = e.target.value;
+	return newPrice;
+});
+
+const addBtn = $('.addProduct');
+addBtn.addEventListener('change', () => {
+	formData.append('name', newTitle);
+	formData.append('color', newColor);
+	formData.append('category', newCategory);
+	formData.append('size', newSize);
+	formData.append('stock', newStock);
+	formData.append('price', newPrice);
+	formData.append('productImage', imgPathDisplay());
+});
+
+addBtn.addEventListener('click', () => {
 	e.preventDefault();
-	let keywordInput = $('.keywordInput');
-	const value = keywordInput.value;
-	/* keyword 템플릿 */
-	const keyword = `
-    <div class='item'>
-      <div class="flex bg-neutral-200/[0.55] rounded-lg">
-        <span class="px-2">${value}</span>
-        <span class="px-2"><i class='deleteIcon fa fa-times'></i></span>
-      </div>
-    </div>
-  `;
-	if (value !== '') {
-		keywordCon.innerHTML += keyword;
-	}
-	keywordInput.value = '';
-	const deleteIcon = document.querySelectorAll('.deleteIcon');
-	deleteIcon.forEach((e) =>
-		e.addEventListener('click', (e) => {
-			/* 키워드삭제 */
-			const deleteKeyword = quest(e, 'item');
-			deleteKeyword.remove();
-		}),
-	);
+	const desc = $('#detailDescription');
+	desc.addEventListener('change', (e) => {
+		newDesc = e.target.value;
+		return newDesc;
+	});
+	formData.append('detailDescription', newDesc);
+
+	addProduct(formData);
+});
+
+async function addProduct(formData) {
+	await fetch('/api/product', {
+		method: 'POST',
+		headers: {
+			authorization: `bearer ${token}`,
+			'Content-Type': 'multipart/form-data',
+		},
+		body: formData,
+	});
 }
