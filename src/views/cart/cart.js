@@ -8,7 +8,7 @@ const cartContainer = $('.cart-products-container');
 const selectAllBtn = $('.selectAllBtn');
 const removeCheckedInput = $('.removeChecked');
 
-//상단 navbar 모듈
+/**상단 navbar 모듈*/
 function addNav() {
 	const header = document.querySelector('.headerNav');
 	header.innerHTML = navTemplate();
@@ -27,7 +27,7 @@ const showProductCounts = () => {
 	console.log(allPricesData);
 };
 
-//상품 checked상태를 받아와서 그대로 화면에 보여주기 위한 함수
+/**상품 checked상태를 받아와서 그대로 화면에 보여주기 위한 함수 */
 const loadCheckedState = (isCheckedList) => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	allCheckBoxes.forEach((eachCheckBox, index) => {
@@ -35,7 +35,7 @@ const loadCheckedState = (isCheckedList) => {
 	});
 };
 
-//전체선택 버튼 기능구현을 위한 함수
+/**전체선택 버튼 기능구현을 위한 함수*/
 const selectAll = () => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	const checkedVals = [];
@@ -54,7 +54,7 @@ const selectAll = () => {
 	store.setItem('cart', cartData);
 };
 
-//선택삭제 버튼 기능구현을 위한 함수
+/**선택삭제 버튼 기능구현을 위한 함수*/
 const removeChecked = () => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	removeCheckedInput.addEventListener('click', () => {
@@ -79,7 +79,7 @@ const removeChecked = () => {
 	});
 };
 
-//물건 수량 변경시 로컬 스토리지 상품 데이터의 count값을 바꿔서 저장해주기 위한 함수
+/**물건 수량 변경시 로컬 스토리지 상품 데이터의 count값을 바꿔서 저장해주기 위한 함수*/
 const changeItemNum = () => {
 	const productCounts = document.querySelectorAll('.productCount');
 	productCounts.forEach((productCount) => {
@@ -97,7 +97,7 @@ const changeItemNum = () => {
 		});
 	});
 };
-//물건 체크시 checked 상태를 로컬 스토리지에 업데이트하기 위한 함수
+/**물건 체크시 checked 상태를 로컬 스토리지에 업데이트하기 위한 함수*/
 const changeCheck = () => {
 	const allCheckBoxes = document.querySelectorAll('.cartCheckBox');
 	allCheckBoxes.forEach((eachCheckBox) => {
@@ -116,7 +116,7 @@ const changeCheck = () => {
 	});
 };
 
-//결제정보를 보여주기 위한 함수
+/**결제정보를 보여주기 위한 함수*/
 const showPayInfo = () => {
 	const totalNumsTag = $('.totalNums');
 	const totalPriceTag = $('.totalPrice');
@@ -140,7 +140,7 @@ const showPayInfo = () => {
 	}원`;
 };
 
-//카트에 담긴 상품데이터를 불러와 화면에 보여주기 위한 함수
+/**카트에 담긴 상품데이터를 불러와 화면에 보여주기 위한 함수*/
 const loadCartList = async () => {
 	let cartData = store.getItem('cart');
 	cartData = JSON.parse(cartData);

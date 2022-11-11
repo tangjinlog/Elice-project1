@@ -8,8 +8,6 @@ addNav();
 const $ = (selector) => document.querySelector(selector);
 
 //주문자정보
-const userNameInput = $('.userName');
-const userPhoneNumberInput = $('.userPhoneNumber');
 const postNumInput = $('.postNum');
 const address1Input = $('.address1');
 const address2Input = $('.address2');
@@ -19,7 +17,7 @@ const userInput = $('.userInput');
 
 const checkoutBtn = $('.checkoutBtn');
 
-//직접선택 선택시에만 인풋을 보여주기 위한 함수
+/**직접선택 선택시에만 인풋을 보여주기 위한 함수*/
 userRequestInput.addEventListener('change', (e) => {
 	if (e.target.value == 'userWrite') {
 		userWriteInput.classList.remove('hidden');
@@ -29,6 +27,8 @@ userRequestInput.addEventListener('change', (e) => {
 });
 
 const store = window.localStorage;
+
+//checked된 상태인 상품만 로컬스토리지에서 받아와서 저장
 const checkedProducts = JSON.parse(store.getItem('cart')).filter(
 	(product) => product.checked == true,
 );
@@ -56,8 +56,6 @@ showPayInfo();
 
 const token = window.sessionStorage.getItem('token');
 checkoutBtn.addEventListener('click', (e) => {
-	const userName = userNameInput.value;
-	const userPhoneNumber = userPhoneNumberInput.value;
 	const postalCode = postNumInput.value;
 	const address1 = address1Input.value;
 	const address2 = address2Input.value;
