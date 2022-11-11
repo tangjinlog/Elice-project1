@@ -11,6 +11,8 @@ function addNav() {
 }
 addNav();
 
+const token = window.sessionStorage.getItem('token');
+
 /* 카테고리 템플릿 */
 const categoryTemplate = (id, name, description) => {
 	return `
@@ -30,7 +32,11 @@ const categoryTemplate = (id, name, description) => {
 
 /* 카테고리 전체목록 */
 async function allCategories() {
-	const response = await fetch('/api/categories');
+	const response = await fetch('/api/categories', {
+		headers: {
+			authorization: `bearer ${token}`,
+		},
+	});
 	const result = await response.json();
 	console.log(result);
 	result.forEach((e) => {
@@ -173,6 +179,7 @@ async function updateCategory(data, id) {
 	await fetch(`/api/category/${id}`, {
 		method: 'PATCH',
 		headers: {
+			authorization: `bearer ${token}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(data),
@@ -182,7 +189,9 @@ async function updateCategory(data, id) {
 async function deleteCategory(id) {
 	await fetch(`/api/category/${id}`, {
 		method: 'DELETE',
-		headers: {},
+		headers: {
+			authorization: `bearer ${token}`,
+		},
 		body: '',
 	});
 }

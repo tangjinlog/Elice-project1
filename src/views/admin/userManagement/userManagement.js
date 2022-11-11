@@ -43,7 +43,11 @@ const modal = `
 
 /* 전체 유저목록 조회 */
 async function allUserList() {
-	const response = await fetch('/api/userlist');
+	const response = await fetch('/api/userlist', {
+		headers: {
+			authorization: `bearer ${token}`,
+		},
+	});
 	const result = await response.json();
 	console.log(result);
 	result.forEach((elem) => {
@@ -51,12 +55,15 @@ async function allUserList() {
 		const id = elem._id;
 		// const auth =
 		userListCon.innerHTML += userListTemplate();
+
+		deleteElem();
 	});
 }
 
 /* 버튼 연결 */
-const userDeleteBtn = $('.userDelete');
+
 console.log(userDeleteBtn);
+const userDeleteBtn = $('.userDelete');
 userDeleteBtn.addEventListener('click', (e) => {
 	createModal(modal);
 	const eTarget = e;
