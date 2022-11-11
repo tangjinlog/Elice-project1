@@ -55,6 +55,9 @@ let newStock;
 let newSize;
 let newDesc;
 //title,desc, color,category,size,stock,price
+imginput.addEventListener('change', () => {
+	formData.append('productImage', imgPathDisplay());
+});
 
 const descInput = $('#detailDescription');
 descInput.addEventListener('change', (e) => {
@@ -106,34 +109,32 @@ price.addEventListener('change', (e) => {
 });
 
 const addBtn = $('.addProduct');
-addBtn.addEventListener('change', () => {
+
+addBtn.addEventListener('click', (e) => {
+	// e.preventDefault();
+	const desc = $('#detailDescription');
+	desc.addEventListener('change', (e) => {
+		newDesc = e.target.value;
+		return newDesc;
+	});
 	formData.append('name', newTitle);
 	formData.append('color', newColor);
 	formData.append('category', newCategory);
 	formData.append('size', newSize);
 	formData.append('stock', newStock);
 	formData.append('price', newPrice);
-	formData.append('productImage', imgPathDisplay());
-});
-
-addBtn.addEventListener('click', () => {
-	e.preventDefault();
-	const desc = $('#detailDescription');
-	desc.addEventListener('change', (e) => {
-		newDesc = e.target.value;
-		return newDesc;
-	});
 	formData.append('detailDescription', newDesc);
 
 	addProduct(formData);
+	alert('제품이 등록되었습니다.');
 });
 
 async function addProduct(formData) {
+	console.log(formData);
 	await fetch('/api/product', {
 		method: 'POST',
 		headers: {
 			authorization: `bearer ${token}`,
-			'Content-Type': 'multipart/form-data',
 		},
 		body: formData,
 	});
