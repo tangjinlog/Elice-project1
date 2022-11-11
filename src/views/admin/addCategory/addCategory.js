@@ -149,7 +149,7 @@ const deleteElem = async (result) => {
 
 			/* category description */
 			const target = result.filter((item) => item._id == e.target.id);
-			const eTarget = e.target;
+			const eTarget = e;
 			const id = target[0]._id;
 			/* delete 모달생성 */
 			createModal(deleteModal);
