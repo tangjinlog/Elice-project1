@@ -18,21 +18,22 @@ const createGoods = (productDatas, productList) => {
 		productList.insertAdjacentHTML(
 			'beforeend',
 			`
-		  <div class="productItem flex-col w-full h-full bg-slate-200">
-		    <div class="grow w-full">
-				<a href="/goods-detail/${product._id}">
-				  <img class="h-4/6 " id="${product._id}" src="${
+		  <div class="productItem first:col-span-2 first:row-span-2 [&:nth-child(2)]:col-span-1 [&:nth-child(2)]:row-span-1 [&:nth-child(3)]:row-span-1 [&:nth-child(3)]:col-span-1 [&:nth-child(4)]:col-span-1 [&:nth-child(8)]:row-span-1 [&:nth-child(8)]:col-start-[-3] [&:nth-child(8)]:col-end-[-1] [&:nth-child(9)]:col-span-2 [&:nth-child(9)]:row-span-1 flex-col justify-between items-center w-full bg-slate-200">
+		    <div class="w-full h-4/6 overflow-hidden">
+					<a href="/goods-detail/${product._id}">
+						<img class="object-cover " id="${product._id}" src="${
 				src ? src : '../images/no-image.png'
 			}" alt="상품이미지">		
-				</a>
-
+					</a>
 		    </div>
-				<div class="p-2">
-		    	<p>${product.name}</p>
+				<div class="">
+					<div class="p-2">
+						<p class="bold text-lg">${product.name}</p>
+					</div>
+					<div>
+						${product.price}원
+					</div>
 				</div>
-		    <div>
-			    ${product.price}원
-		    </div>
 	    </div>
   `,
 		);

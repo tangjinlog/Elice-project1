@@ -68,19 +68,19 @@ export function navTemplate() {
 					</div>
 				</li>
 
-				<li class="w-1/12 pl-5 my-auto ml-auto">
+				<li class="w-1/12 pl-5 my-auto ml-auto text-sm">
 					<a href="/admin">페이지관리</a>
 				</li>
-				<li class="w-1/12 pl-5 my-auto">
+				<li class="w-1/12 pl-5 my-auto text-sm">
 					<a href="/account">계정관리</a>
 				</li>
-				<li class="w-1/12 pl-5 my-auto">
+				<li class="w-1/12 pl-5 my-auto text-sm">
 					<a href="/login">로그인</a>
 				</li>
-				<li class="w-1/12 pl-5 my-auto">
+				<li class="w-1/12 pl-5 my-auto text-sm">
 					<a href="/register">회원가입</a>
 				</li>
-				<li class="w-1/12 pl-5 my-auto">
+				<li class="w-1/12 pl-5 my-auto text-sm">
 					<a href="/cart">
 						<span>
 							<i class="fas fa-cart-shopping" aria-hidden="true"></i>
