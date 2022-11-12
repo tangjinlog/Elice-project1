@@ -176,6 +176,7 @@ const deleteElem = async (result) => {
 				deleteElem.remove();
 				body.removeChild(modalEl);
 				deleteCategory(id);
+				console.log(id);
 			});
 		});
 	});
@@ -210,9 +211,7 @@ async function deleteCategory(id) {
 		headers: {
 			authorization: `bearer ${token}`,
 		},
-		body: '',
 	});
 }
 
 allCategories();
-addCategory();
