@@ -8,13 +8,13 @@ addNav();
 
 const itemListCon = document.querySelector('.slider-con');
 function sliderTemplate() {
-	for (let i = 1; i < 5; i++) {
+	for (let i = 1; i < 6; i++) {
 		itemListCon.innerHTML +=
 			'' +
-			`<ul class="w-[${6}00%] flex">
+			`<ul class="w-[${7}00%] flex">
     <li class="slide w-full flex">
     <div class="img-box w-screen h-full mx-auto">
-    <img class="mx-auto h-full" src="../images/slider/제목 없음-${i}.png" alt="image-${i}">
+    <img class="mx-auto h-full" src="../images/slider/slide${i}.png" alt="image-${i}">
     </a>
     </div>
     </li>
@@ -43,7 +43,7 @@ function itemArrow() {
 			itemListCon.style.marginLeft = `${-index * window.innerWidth}px`;
 			itemListCon.style.transition = `${0}s ease-out`;
 		}
-	}, 2000);
+	}, 4000);
 }
 sliderTemplate();
 itemArrow();
