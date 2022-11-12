@@ -18,7 +18,7 @@ const createGoods = (productDatas, productList) => {
 		productList.insertAdjacentHTML(
 			'beforeend',
 			`
-		  <div class="productItem first:col-span-2 first:row-span-2 [&:nth-child(2)]:col-span-1 [&:nth-child(2)]:row-span-1 [&:nth-child(3)]:row-span-1 [&:nth-child(3)]:col-span-1 [&:nth-child(4)]:col-span-1 [&:nth-child(8)]:row-span-1 [&:nth-child(8)]:col-start-[-3] [&:nth-child(8)]:col-end-[-1] [&:nth-child(9)]:col-span-2 [&:nth-child(9)]:row-span-1 flex-col justify-between items-center w-full bg-slate-200">
+		  <div class="productItem hover:-translate-y-0.5 transition first:col-span-2 first:row-span-2 [&:nth-child(2)]:col-span-1 [&:nth-child(2)]:row-span-1 [&:nth-child(3)]:row-span-1 [&:nth-child(3)]:col-span-1 [&:nth-child(4)]:col-span-1 [&:nth-child(8)]:row-span-1 [&:nth-child(8)]:col-start-[-3] [&:nth-child(8)]:col-end-[-1] [&:nth-child(9)]:col-span-2 [&:nth-child(9)]:row-span-1 flex-col justify-between items-center w-full bg-slate-200">
 		    <div class="w-full h-4/6 overflow-hidden">
 					<a href="/goods-detail/${product._id}">
 						<img class="object-cover " id="${product._id}" src="${
