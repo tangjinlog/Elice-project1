@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>카테고리 추가</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<script src="./addCategory.js" type="module" defer></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+	</head>
+	<body>
+		<header class="headerNav"></header>
+		<section class="flex-col justify-center px-12 py-6 mx-auto max-w-screen-md">
+			<!-- 제목 -->
+			<div class="bg-blue-400 rounded">
+				<div>
+					<h1 class="border-b-2 mb-3 pb-3 text-2xl p-3 rounded">
+						카테고리 관리
+					</h1>
+				</div>
+			</div>
+			<p class="formTitle text-center text-sky-500 text-2xl my-5">
+				카테고리 목록
+			</p>
+			<div class="categoryCon max-w-screen-md">
+				<div class="createCon flex justify-end">
+					<button
+						class="category-createBtn w-1/4 py-3 m-2 hover:bg-sky-500 bg-sky-100 rounded"
+						type="button"
+					>
+						카테고리 추가
+					</button>
+				</div>
+				<div
+					class="category-templateCon flex justify-around text-center bg-sky-400 rounded"
+				>
+					<div class="w-1/6">제목</div>
+					<div class="w-2/6">설명</div>
+					<div class="w-1/6">관리</div>
+				</div>
+			</div>
+			<!-- 카테고리 목록 -->
+			<div
+				class="categoryFormCon flex text-center items-center border-b-2 shadow max-w-screen-md"
+			>
+				<!-- 폼 -->
+				<form
+					class="categoryForm flex-col content-evenly items-center gap-[2.5rem] w-full h-full"
+				></form>
+			</div>
+		</section>
+	</body>
+</html>

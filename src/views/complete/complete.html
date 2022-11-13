@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>쇼핑-n팀</title>
+		<!-- 아이콘 -->
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/elice-rabbit-favicon.png"
+		/>
+		<!-- 폰트 어썸: 아이콘 -->
+		<script
+			defer
+			src="https://kit.fontawesome.com/9daa42bcef.js"
+			crossorigin="anonymous"
+		></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- 커스텀 css, js -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+		<script src="./complete.js" type="module" defer></script>
+	</head>
+	<body>
+		<!-- 헤더 -->
+		<header class="headerNav"></header>
+		<main id="main" role="main">
+			<div class="section h-screen w-[80%] mx-auto">
+				<div class="mx-auto mt-14 h-full">
+					<ul class="flex h-12">
+						<li
+							class="text-2xl my-auto pl-5 fa-sharp fa-solid fa-credit-card text-gray-400"
+						>
+							<a>장바구니</a>
+						</li>
+						<li
+							class="ml-4 my-auto text-2xl fas fa-cart-shopping text-gray-400"
+						>
+							<a>주문결제</a>
+						</li>
+						<li class="ml-4 my-auto text-3xl fa-sharp fa-solid fa-gift">
+							<a>주문완료</a>
+						</li>
+					</ul>
+					<hr />
+					<section
+						class="border rounded-md shadow-lg w-2/5 mx-auto mt-20 h-1/2 flex"
+					>
+						<div class="w-4/5 h-4/5 m-auto text-center flex flex-col">
+							<div class="my-auto text-3xl">주문이 완료되었습니다!</div>
+							<div
+								class="mx-auto mt-auto mb-4 border border-[#308BFF] w-3/4 h-12 rounded-md hover:bg-[#308BFF]"
+							>
+								<button
+									class="showOrder w-full h-full text-[#308BFF] hover:text-white"
+								>
+									주문내역 보기
+								</button>
+							</div>
+							<div
+								class="mx-auto border border-[#308BFF] w-3/4 h-12 rounded-md hover:bg-[#308BFF]"
+							>
+								<button
+									class="keepShopping w-full h-full text-[#308BFF] hover:text-white"
+								>
+									쇼핑 계속하기
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+			<!-- 주문완료창 -->
+		</main>
+	</body>
+</html>
